@@ -1,0 +1,14 @@
+{
+  "name": "smhigley-site",
+  "version": "1.0.0",
+  "description": "Personal website of Sarah Higley",
+  "scripts": {
+    "compile": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@11ty/eleventy": "latest"
+  },
+  "license": "MIT"
+}
