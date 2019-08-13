@@ -3,14 +3,20 @@
   "version": "1.0.0",
   "description": "Personal website of Sarah Higley",
   "scripts": {
-    "compile": "eleventy",
-    "serve": "eleventy --serve"
+    "sass": "sass scss/main.scss assets/site.css --style=compressed",
+    "compile": "npm run sass && eleventy",
+    "serve": "eleventy --serve",
+    "start": "concurrently 'npm run sass -- --watch' 'npm run serve'"
   },
-  "dependencies": {},
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
   "devDependencies": {
     "@11ty/eleventy": "0.9.0-beta.1",
     "@11ty/eleventy-plugin-rss": "^1.0.6",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^2.0.3"
+    "@11ty/eleventy-plugin-syntaxhighlight": "^2.0.3",
+    "concurrently": "^4.1.1",
+    "sass": "^1.22.9"
   },
   "license": "MIT"
 }

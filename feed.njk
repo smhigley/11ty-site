@@ -10,7 +10,7 @@ permalink: '/feed.xml'
 	<updated>{{ collections.post | rssLastUpdatedDate }}</updated>
 	<id>{{ site.url }}</id>
 	<author>
-    <name>{{ site.authorName }}</name>
+    <name>{{ site.author.name }}</name>
 	</author>
 	{% for post in collections.post %}
   {% set absolutePostUrl %}{{ site.url }}{{ post.url | url }}{% endset %}
