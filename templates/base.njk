@@ -1,0 +1,35 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}/feed.xml" />
+  <title>{{ title }} | Sarah Higley</title>
+  <style type="text/css">{% include "assets/site.css" %}</style>
+  <style type="text/css">{% include "assets/prism-a11y-dark.css" %}</style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="profile-info">
+        <img src="/assets/avatar.png" alt="Avatar of Sarah with a cat">
+        Sarah Higley
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog">Words</a></li>
+          <li><a href="/talks">Talks</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">{{ heading }}</h1>
+
+      {% block content %}
+      {% endblock %}
+    </main>
+  </div>
+</body>
+</html>

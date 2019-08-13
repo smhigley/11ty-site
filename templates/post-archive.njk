@@ -1,0 +1,8 @@
+{% extends 'templates/base.njk' %}
+
+{% set heading = 'Words' %}
+{% set items = collections.post %}
+
+{% block content %}
+  {% include 'templates/partials/item-list.njk' %}
+{% endblock %}

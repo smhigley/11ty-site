@@ -1,0 +1,11 @@
+{% if items.length %}
+  <ul class="item-list" reversed>
+    {% for item in items %}
+      <li class="item">
+        <a href="{{ item.url }}">{{ item.data.title }}</a>
+        <span class="meta">{{ item.data.date }}</span>
+        <p class="summary">{{ item.data.summary }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

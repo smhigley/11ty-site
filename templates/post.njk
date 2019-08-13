@@ -1,0 +1,8 @@
+{% extends 'templates/base.njk' %}
+
+{% set heading = title %}
+
+{% block content %}
+  <div class="meta">{{ date }}</div>
+  {{ content | safe }}
+{% endblock %}
