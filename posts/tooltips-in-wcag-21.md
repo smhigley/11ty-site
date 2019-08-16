@@ -13,7 +13,7 @@ Tooltips have been a reliable source of web accessibility woes from the very beg
 * How do non-mouse pointers (e.g. touchscreens and eye trackers) access the content?
 * How do blind and low vision users even know the tooltip is there, let alone read it?
 * If (Internet Lords forbid) there is interactive content inside, how does one access it without accidentally dismissing the tooltip?
-* How does a user with magnification software move their field of view without dismissing the tooltip?
+* How does a user with magnification software move their field of view to read the tooltip without accidentally dismissing it?
 
 ## So why do tooltips have so many problems?
 

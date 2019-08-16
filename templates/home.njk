@@ -1,0 +1,11 @@
+{% extends 'templates/base.njk' %}
+
+{% set items = collections.post.slice(-3) %}
+
+{% block content %}
+  {{ content | safe }}
+
+  <h2>Latest Posts</h2>
+
+  {% include 'templates/partials/item-list.njk' %}
+{% endblock %}

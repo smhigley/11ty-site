@@ -1,0 +1,68 @@
+html {
+  font-size: calc(1em + 0.5vw);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Josefin Slab", Garamond, serif;
+  font-weight: bold;
+  margin: 0 0 1.5rem;
+}
+
+h1, .h1 {
+  font-size: 2.5rem;
+}
+
+h2, .h2 {
+  font-size: 1.75rem;
+}
+
+h3, .h3 {
+  font-size: 1.25rem;
+}
+
+a {
+  color: #3c128f;
+  text-decoration: underline;
+
+  &:focus {
+    outline: 3px dashed #3c128f;
+    outline-offset: 3px;
+  }
+}
+
+blockquote {
+  border-left: 4px solid #ccc;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 1.5rem 0;
+  padding: 0.5rem 2rem;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+code {
+  background: #eee;
+  padding: 0.1em 0.2em;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul, ol, p {
+  margin: 0 0 1.5rem;
+}
+
+ul, ol {
+  li {
+    margin: 0 0 0.5rem;
+  }
+}
