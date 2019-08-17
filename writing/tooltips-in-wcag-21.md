@@ -1,7 +1,7 @@
 ---
 title: Tooltips in the time of WCAG 2.1
 tags: post
-date: 2019-08-12
+date: 2019-08-17
 summary: "A review of the history and current state of tooltip accessibility. AKA: everything you need to know before making a tooltip."
 ---
 
