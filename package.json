@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Personal website of Sarah Higley",
   "scripts": {
-    "sass": "sass scss/main.scss assets/site.css --style=compressed",
+    "build": "eleventy",
     "compile": "npm run sass && eleventy",
+    "sass": "sass scss/main.scss assets/site.css --style=compressed",
     "serve": "eleventy --serve",
     "start": "concurrently 'npm run sass -- --watch' 'npm run serve'"
   },
