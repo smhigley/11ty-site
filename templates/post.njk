@@ -3,6 +3,11 @@
 {% set heading = title %}
 
 {% block content %}
-  <div class="meta">{{ date }}</div>
+  <div class="meta">{{ date | dateFilter }}</div>
   {{ content | safe }}
+
+  <div class="post-footer">
+    <a href="/writing" class="back-link">All Posts</a>
+    <a href="#page-top" class="top-link">Back to top</a>
+  </div>
 {% endblock %}

@@ -1,8 +1,8 @@
 ---
 title: Tooltips in the time of WCAG 2.1
 tags: post
-date: 2019-08-10
-summary: "A review of the history and current state of tooltip accessibility. AKA: everything you need to know before making a tooltip"
+date: 2019-08-12
+summary: "A review of the history and current state of tooltip accessibility. AKA: everything you need to know before making a tooltip."
 ---
 
 TL;DR recommendation: Narrow down your definition of "tooltip," and jump to [the last section](#best-practices-summary).

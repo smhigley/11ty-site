@@ -12,20 +12,20 @@
   <div class="container">
     <header class="header">
       <div class="profile-info">
-        <img src="/assets/avatar.png" alt="Avatar of Sarah with a cat">
+        <img src="/assets/avatar.png" alt="Illustrated avatar of Sarah with a cat" class="profile-pic">
         Sarah Higley
       </div>
       <nav class="main-nav">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/blog">Words</a></li>
-          <li><a href="/talks">Talks</a></li>
+          <li><a href="/writing">Writing</a></li>
+          <li><a href="/speaking">Speaking</a></li>
         </ul>
       </nav>
     </header>
 
     <main class="main">
-      <h1 class="page-title">{{ heading }}</h1>
+      <h1 class="page-title" id="page-top">{{ heading }}</h1>
 
       {% block content %}
       {% endblock %}

@@ -3,7 +3,7 @@
     {% for item in items %}
       <li class="item">
         <a href="{{ item.url }}" class="h3">{{ item.data.title }}</a>
-        <span class="meta">{{ item.data.date }}</span>
+        <span class="meta">{{ item.data.date | dateFilter }}</span>
         <p class="summary">{{ item.data.summary }}</p>
       </li>
     {% endfor %}
