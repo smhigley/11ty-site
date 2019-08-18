@@ -17,9 +17,9 @@
       </div>
       <nav class="main-nav">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/writing">Writing</a></li>
-          <li><a href="/speaking">Speaking</a></li>
+          <li><a href="/" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+          <li><a href="/writing" {% if page.url.includes('writing') %}class="active"{% endif %}>Writing</a></li>
+          <li><a href="/speaking"  {% if page.url.includes('speaking') %}class="active"{% endif %}>Speaking</a></li>
         </ul>
       </nav>
     </header>

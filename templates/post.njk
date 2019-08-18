@@ -3,7 +3,7 @@
 {% set heading = title %}
 
 {% block content %}
-  <div class="meta">{{ date | dateFilter }}</div>
+  <div class="meta">{{ date.toUTCString() | dateFilter }}</div>
   {{ content | safe }}
 
   <div class="post-footer">

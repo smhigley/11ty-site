@@ -49,6 +49,7 @@ body {
     display: block;
     margin: 0 auto;
     max-width: 250px;
+    width: 100%;
   }
 }
 
@@ -104,7 +105,8 @@ body {
       transition: transform 0.3s ease-out;
     }
 
-    &:hover::after {
+    &:hover::after,
+    &.active::after {
       transform: translateX(0);
     }
   }
