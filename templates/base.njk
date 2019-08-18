@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}/feed.xml" />
   <title>{{ title }} | Sarah Higley</title>
+  <link rel="canonical" href="{{ site.url + page.url }}" />
+
+  <meta property="og:site_name" content="Sarah Higley" />
+  <meta property="og:title" content="{{ title }} | Sarah Higley" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ site.url + page.url }}" />
+  <meta name="twitter:creator" content="@codingchaos" />
+  <meta property="og:image" content="{{ site.url }}/assets/avatar.png" />
+  <meta name="twitter:image" content="{{ site.url }}/assets/avatar.png" />
+  <meta property="og:image:alt" content="Illustrated avatar of Sarah" />
+  <meta name="twitter:image:alt" content="Illustrated avatar of Sarah" />
+
+  {% if summary %}
+    <meta name="description" content="{{ summary }}" />
+    <meta name="twitter:description" content="{{ summary }}" />
+    <meta property="og:description" content="{{ summary }}" />
+  {% endif %}
+
   <style type="text/css">{% include "assets/site.css" %}</style>
   <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet" type="text/css">
 </head>
