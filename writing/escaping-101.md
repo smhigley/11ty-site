@@ -102,3 +102,5 @@ Escape has been used to do some weird things in native applications. In Internet
 While many of those seem uninituitive to me, they may make sense to someone else. When venturing off the beaten path of documented patterns and simple escape behavior, the ultimate test is always a well-rounded usability study and real-world feedback.
 
 In the meantime, check out [the grid example page](https://www-nzgzcsougj.now.sh/studies/grid/simple-actions) for a practical example containing several different uses of escape.
+
+Now to finish that expense report...
