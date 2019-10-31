@@ -198,6 +198,7 @@ Start by putting yourself in your users' frame of mind</p>
 <p>Escape has been used to do some weird things in native applications. In Internet Explorer, escape will clear a text input; same in Microsoft Outlook for Windows and File Explorer. Browser URL bars in Windows and MacOS will not only clear input but also restore the current URL on escape. On Windows, escape lets you exit the application menu and takes you back to whatever last had focus. Pressing escape in the chat window of Microsoft Teams jumps you to the most recent message. And there are certainly more escape oddities out there, waiting to be discovered.</p>
 <p>While many of those seem uninituitive to me, they may make sense to someone else. When venturing off the beaten path of documented patterns and simple escape behavior, the ultimate test is always a well-rounded usability study and real-world feedback.</p>
 <p>In the meantime, check out <a href="https://www-nzgzcsougj.now.sh/studies/grid/simple-actions">the grid example page</a> for a practical example containing several different uses of escape.</p>
+<p>Now to finish that expense report...</p>
 
     ]]></content>
   </entry>
