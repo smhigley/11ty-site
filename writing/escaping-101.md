@@ -45,7 +45,7 @@ A few more overlays you may find yourself needing to escape from:
 * Non-modal dialogs (e.g. [disclosure buttons with popups](https://www.w3.org/TR/wai-aria-practices-1.1/examples/disclosure/disclosure-navigation.html))
 * Custom context menus
 
-Generally overlays are pretty easy to recognize. Anything that appears on top of the regular flow of the document, whether [modal or non-modal](https://www.nngroup.com/articles/modal-nonmodal-dialog/), interactive or not, counts as an overlay and should be easy to dismiss. See the [WCAG 2.1 content on hover or focus](https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html) criterion, or my earlier [long tooltip ~rant~ article](https://sarahmhigley.com/writing/tooltips-in-wcag-21/) for more context on why.
+Generally overlays are pretty easy to recognize. Anything that appears on top of the regular flow of the document, whether [modal or non-modal](https://www.nngroup.com/articles/modal-nonmodal-dialog/), interactive or not, counts as an overlay and should be easy to dismiss. See the [WCAG 2.1 content on hover or focus](https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html) criterion, or my earlier [long tooltip ~~ant~~ article](https://sarahmhigley.com/writing/tooltips-in-wcag-21/) for more context on why.
 
 ### Part 2: Tab traps
 

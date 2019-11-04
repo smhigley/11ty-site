@@ -65,7 +65,7 @@ img {
   max-width: 100%;
 }
 
-ul, ol, p, pre {
+ul, ol, p, pre, table {
   margin: 0 0 1.5rem;
 }
 
@@ -73,4 +73,43 @@ ul, ol {
   li {
     margin: 0 0 0.5rem;
   }
+}
+
+.support-table {
+  border: 1px solid #9d9d9d;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.support-table tr {
+  background-color: #fff;
+  border-bottom: 1px solid #9d9d9d;
+}
+
+.support-table tr:nth-child(even) {
+  background-color: #f4f6f7;
+}
+
+.support-table th {
+  text-align: left;
+  // white-space: nowrap;
+}
+
+.support-table th,
+.support-table td {
+  border-left: 1px solid #9d9d9d;
+  padding: .5em 1em;
+}
+
+.support-table th:first-child,
+.support-table td:first-child {
+  border-left: 0;
+}
+
+.support-table .false {
+  background-color: #ffc3bf;
+}
+
+.support-table .true {
+  background-color: #caf4c6;
 }
