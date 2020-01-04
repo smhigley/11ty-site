@@ -367,6 +367,18 @@ Start by putting yourself in your users' frame of mind</p>
 <li><a href="https://github.com/microsoft/sonder-ui/tree/master/src/components/combobox">Editable combobox</a></li>
 <li><a href="https://github.com/microsoft/sonder-ui/tree/master/src/components/multiselect">Multi-select</a></li>
 </ol>
+<h2 id="more-links">More Links</h2>
+<p>For anyone who would like to play around with all the select component variations tested for this article, they can be found in three separate codepens here:</p>
+<ol>
+<li><a href="https://codepen.io/smhigley/pen/JjoKgxb">All select-only variations</a></li>
+<li><a href="https://codepen.io/smhigley/pen/BayzXbO">All editable combobox variations</a></li>
+<li><a href="https://codepen.io/smhigley/pen/GRgjRVN">All multi-select variations</a></li>
+</ol>
+<p>Finally, the environments for the two usability studies that were run with disabled participants are available here:</p>
+<ol>
+<li><a href="https://select-study-epxfpuejic.now.sh/studies/combobox">Main combobox study</a></li>
+<li><a href="https://select-study-epxfpuejic.now.sh/studies/combobox-apg">Additional mini ARIA 1.2 study</a></li>
+</ol>
 
     ]]></content>
   </entry>
