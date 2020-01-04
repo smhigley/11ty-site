@@ -17,3 +17,15 @@ The links each go to a github repository of web components written using [Stenci
 1. [Select-only combobox](https://github.com/microsoft/sonder-ui/tree/master/src/components/select)
 2. [Editable combobox](https://github.com/microsoft/sonder-ui/tree/master/src/components/combobox)
 3. [Multi-select](https://github.com/microsoft/sonder-ui/tree/master/src/components/multiselect)
+
+## More Links
+
+For anyone who would like to play around with all the select component variations tested for this article, they can be found in three separate codepens here:
+
+1. [All select-only variations](https://codepen.io/smhigley/pen/JjoKgxb)
+2. [All editable combobox variations](https://codepen.io/smhigley/pen/BayzXbO)
+3. [All multi-select variations](https://codepen.io/smhigley/pen/GRgjRVN)
+
+Finally, the environments for the two usability studies that were run with disabled participants are available here:
+1. [Main combobox study](https://select-study-epxfpuejic.now.sh/studies/combobox)
+2. [Additional mini ARIA 1.2 study](https://select-study-epxfpuejic.now.sh/studies/combobox-apg)
