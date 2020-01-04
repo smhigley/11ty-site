@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	<link href="https://sarahmhigley.com/feed.xml" rel="self"/>
 	<link href="https://sarahmhigley.com/"/>
-	<updated>2019-11-03T18:00:00-06:00</updated>
+	<updated>2020-01-02T16:00:00-08:00</updated>
 	<id>https://sarahmhigley.com</id>
 	<author>
     <name>Sarah Higley</name>
@@ -14,7 +14,7 @@
   <entry>
     <title>Tooltips in the time of WCAG 2.1</title>
     <link href="https://sarahmhigley.com/writing/tooltips-in-wcag-21/"/>
-    <updated>2019-08-16T19:00:00-05:00</updated>
+    <updated>2019-08-16T17:00:00-07:00</updated>
     <id>https://sarahmhigley.com/writing/tooltips-in-wcag-21/</id>
     <content type="html"><![CDATA[
       <p>TL;DR recommendation: Narrow down your definition of &quot;tooltip,&quot; and jump to <a href="#best-practices-summary">the last section</a>.</p>
@@ -133,7 +133,7 @@
   <entry>
     <title>Escaping 101</title>
     <link href="https://sarahmhigley.com/writing/escaping-101/"/>
-    <updated>2019-10-10T19:00:00-05:00</updated>
+    <updated>2019-10-10T17:00:00-07:00</updated>
     <id>https://sarahmhigley.com/writing/escaping-101/</id>
     <content type="html"><![CDATA[
       <p>Earlier this week when filling out an expense report -- a tedious chore that nearly everyone wishes would be over roughly five minutes before starting -- I got about halfway through before inadvertently deleting all my progress and forcing myself to start over.</p>
@@ -207,7 +207,7 @@ Start by putting yourself in your users' frame of mind</p>
   <entry>
     <title>Playing with state</title>
     <link href="https://sarahmhigley.com/writing/playing-with-state/"/>
-    <updated>2019-11-03T18:00:00-06:00</updated>
+    <updated>2019-11-03T16:00:00-08:00</updated>
     <id>https://sarahmhigley.com/writing/playing-with-state/</id>
     <content type="html"><![CDATA[
       <p>In an effort to convince everyone (who reads these blog posts) that I don't only obsess over tooltips, let's talk about another seemingly simple concept and make it unexpectedly complex. This time, we're tackling the play/pause toggle button.</p>
@@ -344,6 +344,29 @@ Start by putting yourself in your users' frame of mind</p>
 <li><a href="https://www.smashingmagazine.com/2017/09/building-inclusive-toggle-buttons/">Building Inclusive Toggle Buttons</a> from Heydon Pickering</li>
 <li><a href="https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/toggles">UWP Toggle Switch description</a>: a Windows desktop toggle pattern, for reference</li>
 </ul>
+
+    ]]></content>
+  </entry>
+	
+  
+  <entry>
+    <title>&lt;select&gt; your poison</title>
+    <link href="https://sarahmhigley.com/writing/select-your-poison/"/>
+    <updated>2020-01-02T16:00:00-08:00</updated>
+    <id>https://sarahmhigley.com/writing/select-your-poison/</id>
+    <content type="html"><![CDATA[
+      <p>I've been thinking, testing, and talking about custom select components and comboboxes a lot over the past year, and finally condensed all of it into a two-part series of articles written for <a href="https://twitter.com/24accessibility">24 Accessibility</a>. It covers both why this whole mess is so difficult and what patterns are out there, including the new ARIA 1.2 pattern in part 1, and then goes into the results of usability testing and concrete implementation recommendations in part 2.</p>
+<ol>
+<li>Part 1: <a href="https://www.24a11y.com/2019/select-your-poison/">24a11y.com/2019/select-your-poison</a></li>
+<li>Part 2: [<a href="http://24a11y.com/2019/select-your-poison-part-2">24a11y.com/2019/select-your-poison-part-2</a>]<a href="https://www.24a11y.com/2019/select-your-poison-part-2/">https://www.24a11y.com/2019/select-your-poison-part-2/</a>)</li>
+</ol>
+<p>The end result is a set of three recommended implementations for a select-only or read-only <code>&lt;select&gt;</code> variant, an editable combobox, and an editable multiselect combobox. While I highly recommend reading the recommendations in the context of the second article to get the nuances of why choices were made and what other options there are, here's the quick cheat sheet:</p>
+<p>The links each go to a github repository of web components written using <a href="https://stenciljs.com/">StencilJS</a> and Typescript. There is a <a href="https://codepen.io/smhigley/pen/gObMVzv">Codepen implementation</a> with all three implementations written in vanilla JS.</p>
+<ol>
+<li><a href="https://github.com/microsoft/sonder-ui/tree/master/src/components/select">Select-only combobox</a></li>
+<li><a href="https://github.com/microsoft/sonder-ui/tree/master/src/components/combobox">Editable combobox</a></li>
+<li><a href="https://github.com/microsoft/sonder-ui/tree/master/src/components/multiselect">Multi-select</a></li>
+</ol>
 
     ]]></content>
   </entry>
