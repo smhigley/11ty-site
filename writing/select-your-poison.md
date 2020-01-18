@@ -8,7 +8,7 @@ summary: "The omnibus guide to understanding and making select components and co
 I've been thinking, testing, and talking about custom select components and comboboxes a lot over the past year, and finally condensed all of it into a two-part series of articles written for [24 Accessibility](https://twitter.com/24accessibility). It covers both why this whole mess is so difficult and what patterns are out there, including the new ARIA 1.2 pattern in part 1, and then goes into the results of usability testing and concrete implementation recommendations in part 2.
 
 1. Part 1: [24a11y.com/2019/select-your-poison](https://www.24a11y.com/2019/select-your-poison/)
-2. Part 2: [24a11y.com/2019/select-your-poison-part-2]https://www.24a11y.com/2019/select-your-poison-part-2/)
+2. Part 2: [24a11y.com/2019/select-your-poison-part-2](https://www.24a11y.com/2019/select-your-poison-part-2/)
 
 The end result is a set of three recommended implementations for a select-only or read-only `<select>` variant, an editable combobox, and an editable multiselect combobox. While I highly recommend reading the recommendations in the context of the second article to get the nuances of why choices were made and what other options there are, here's the quick cheat sheet:
 
