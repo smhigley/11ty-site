@@ -15,7 +15,7 @@ module.exports = function(config) {
   config.addFilter('dateFilter', formatDate);
 
   config.addPassthroughCopy("assets");
-  config.addPassthroughCopy("**/assets");
+  config.addPassthroughCopy("writing/assets");
 
   /* Markdown Plugins */
   const options = {
