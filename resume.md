@@ -25,7 +25,7 @@ I 'm a web developer currently based in Seattle, WA. Professionally, I focus on 
 
 2. **Sitepen**
   Software Engineer, 2016 - 2018
-    - Worked on a variety of JavaScript app develop projects and support tickets for clients
+    - Worked on a variety of JavaScript app development projects and support tickets for clients
     - Spearheaded accessibility efforts for the Dojo widget library
     - Contributed to open source efforts for the Dojo framework
 

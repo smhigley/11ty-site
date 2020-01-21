@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	<link href="https://sarahmhigley.com/feed.xml" rel="self"/>
 	<link href="https://sarahmhigley.com/"/>
-	<updated>2020-01-03T02:00:00+02:00</updated>
+	<updated>2020-01-21T02:00:00+02:00</updated>
 	<id>https://sarahmhigley.com</id>
 	<author>
     <name>Sarah Higley</name>
@@ -379,6 +379,120 @@ Start by putting yourself in your users' frame of mind</p>
 <li><a href="https://select-study-epxfpuejic.now.sh/studies/combobox">Main combobox study</a></li>
 <li><a href="https://select-study-epxfpuejic.now.sh/studies/combobox-apg">Additional mini ARIA 1.2 study</a></li>
 </ol>
+
+    ]]></content>
+  </entry>
+	
+  
+  <entry>
+    <title>Roles and relationships</title>
+    <link href="https://sarahmhigley.com/writing/roles-and-relationships/"/>
+    <updated>2020-01-21T02:00:00+02:00</updated>
+    <id>https://sarahmhigley.com/writing/roles-and-relationships/</id>
+    <content type="html"><![CDATA[
+      <p>Sometimes after dabbling in gateway ARIA semantics like <code>aria-current</code>, landmark roles, and link-button hybrids, a budding accessibility practitioner might find themselves experimenting with more serious roles like <code>menu</code>, <code>listbox</code>, or even <code>treegrid</code>. These are tantalizing, powerful patterns that allow you to create experiences that are not supported by only vanilla HTML. Unfortunately, they are also brittle; even small mistakes in using these roles can take a user on a very bad trip.</p>
+<p>Talk to your kids about ARIA before it's too late.</p>
+<h2 id="basic-vs.-composite-patterns">Basic vs. composite patterns</h2>
+<p>Composite widget patterns like trees and grids differ from basic controls in both expectations for keyboard behavior and semantic structure. Re: keyboard interaction, they generally contain multiple interactive elements, but are only one stop in the tab order. <a href="https://w3c.github.io/aria/#managingfocus">Custom key handling</a> (primarily arrow keys) is required to provide access to all interactive descendants of the container widget.</p>
+<p>Composite widgets also have much more rigid requirements for semantic structure. While a button or a checkbox will have rules regarding what ARIA states and properties they support, they function as single isolated interactive elements. A composite widget role will also determine the allowed roles, states, and properties of its descendants. For instance, a tablist must contain only tabs, and those tabs must be its direct children. In contrast, a set of links within a navigation region could be marked up with or without a list, or four levels deep in divs without interfering with parsing the semantics of either the navigation region or the links.</p>
+<p>We're not going to spend any time here on when and why to use a composite widget role over a group of simple interactive elements, though that is certainly an important discussion to have. Instead, let's dive straight into the accessibility tree.</p>
+<h3 id="the-accessibility-tree%3A-a-quick-definition">The Accessibility tree: a quick definition</h3>
+<p>The accessibility tree is an internal browser construct that is used as an intermediate step between converting the DOM into the low-level <a href="https://alistapart.com/article/semantics-to-screen-readers/">accessibility APIs</a> that screen readers (and potentially other assistive tech) consume. It is also currently distinct from the <a href="https://www.24a11y.com/2019/web-components-and-the-aom/">Accessibility Object Model (AOM)</a>, which is a proposed spec for an API similar to the DOM.</p>
+<p>The per-browser instructions for inspecting the accessibility tree are below:</p>
+<ul>
+<li><a href="https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane">Chrome and Chromium Edge</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector">Firefox</a></li>
+<li><a href="https://support.apple.com/guide/safari-developer/view-node-properties-for-a-dom-node-dev160f70435/mac">Safari</a></li>
+</ul>
+<p>Since the accessibility tree is an internal browser abstraction, there are some minor differences between browsers. For example, a plain <code>&lt;div&gt;</code> is represented as a <code>GenericContainer</code> in Chrome, and a <code>section</code> in Firefox. Still, the differences are minor and all implementations allow you to inspect which nodes exist in the accessibility tree, as well as check their calculated names, roles, values, states, and properties.</p>
+<figure>
+  <img src="/writing/assets/chrome-a11ytools.png" alt="Chrome Elements inspector showing accessibility information about a list on a blog post on this site">
+  <figcaption>Chrome shows a subset of the accessibility tree in the Elements pane when inspecting DOM nodes</figcaption>
+</figure>
+<figure>
+  <img src="/writing/assets/firefox-a11ytools.png" alt="Firefox accessibility inspector pane showing the same list">
+  <figcaption>Firefox has a separate devtools pane showing the entire accessibility tree</figcaption>
+</figure>
+<p>I personally prefer the Firefox Accessibility inspector, since it allows you to pick nodes from the rendered page and walk the entire accessibility tree, much like inspecting the DOM in the Elements pane.</p>
+<h2 id="relationships-between-nodes">Relationships between nodes</h2>
+<p>Composite widgets like listbox, grid, tree, etc. rely on strict parent/child and sibling relationships between accessibility nodes<br>
+to communicate calculated information about those relationships to screen reader users. Information like item position within a list, column and row information in a table or grid, and level information in a tree may be missing or incorrect if node hierarchy is not properly defined. The practical impact varies based on browser and screen reader.</p>
+<p>Inserting an extra <code>&lt;div&gt;</code> between a table element and a row, or a row and a table cell, can break screen reader shortcuts, column header/row header/cell association, and indexing of columns and rows. This is easy to debug by inspecting the table's generated accessibility tree in the Firefox devtools accessibility pane:</p>
+<figure>
+  <img src="/writing/assets/table-incorrect-semantics.png" alt="accessibility pane in Firefox devtools showing a broken table structure">
+  <figcaption>Grid and row nodes are separate by extra section nodes caused by <code>&lt;div&gt;</code> elements in the DOM</figcaption>
+</figure>
+<figure>
+  <img src="/writing/assets/table-correct-semantics.png" alt="devtools accessibility tree showing a clean table structure">
+  <figcaption>No non-grid roles are present between grid/row/cell roles</figcaption>
+</figure>
+<h3 id="all-composite-widget-roles">All composite widget roles</h3>
+<p>Here's a list of all roles that require specific parent/child relationships to function correctly (as of ARIA 1.2):</p>
+<ul>
+<li><code>combobox</code> - <code>listbox</code> - <code>option</code> (this one is slightly different, see the <a href="https://sarahmhigley.com/writing/select-your-poison/">combobox post</a> for specifics)</li>
+<li><code>grid</code> - <code>caption</code> (optional, must be first child if used) / <code>rowgroup</code> (optional) - <code>row</code> - <code>gridcell</code> / <code>columnheader</code> / <code>rowheader</code></li>
+<li><code>listbox</code> - <code>group</code> (optional) - <code>option</code></li>
+<li><code>menu</code> / <code>menubar</code> - <code>group</code> (optional) - <code>menuitem</code> / <code>menuitemcheckbox</code> / <code>menuitemradio</code></li>
+<li><code>radiogroup</code> - <code>radio</code></li>
+<li><code>tablist</code> - <code>tab</code></li>
+<li><code>tree</code> - <code>group</code> (optional) - <code>treeitem</code></li>
+<li><code>treegrid</code> - <code>rowgroup</code> (optional) - <code>row</code> - <code>gridcell</code> / <code>columnheader</code> / <code>rowheader</code></li>
+</ul>
+<p>These document structure roles are not interactive, but also rely on a strict semantic hierarchy:</p>
+<ul>
+<li><code>associationlist</code> - <code>associationlistitemkey</code> / <code>associationlistitemvalue</code></li>
+<li><code>feed</code> - <code>article</code></li>
+<li><code>figure</code> - <code>caption</code> (optional, must be first or last child)</li>
+<li><code>list</code> - <code>listitem</code></li>
+<li><code>table</code> - <code>caption</code> (optional, must be first child if used) / <code>rowgroup</code> (optional) - <code>row</code> - <code>cell</code> / <code>columnheader</code> / <code>rowheader</code></li>
+</ul>
+<h3 id="looking-up-correct-semantics">Looking up correct semantics</h3>
+<p>The <a href="https://w3c.github.io/aria/">ARIA spec</a> details which roles need specific parent or child relationships, though it's easy to miss. When looking up the documentation for a role, check for entries for <a href="https://w3c.github.io/aria/#mustContain">Required Owned Elements</a> and <a href="https://w3c.github.io/aria/#scope">Required Context Role</a> in the role's Characteristics table. If present, the role in question must be the direct child of a required context role, and its own children must have one of the roles in required owned elements.</p>
+<p>For example, the entry for <a href="https://w3c.github.io/aria/#grid">grid</a> notes that it can either have <code>row</code> or <code>rowgroup -&gt; row</code> as required owned elements. Follow those links, and you can piece together what the role heirarchy should be:</p>
+<ul>
+<li><code>grid</code>
+<ul>
+<li>optional: <code>caption</code></li>
+<li>optional: <code>rowgroup</code>
+<ul>
+<li><code>row</code>
+<ul>
+<li>optional: <code>rowheader</code></li>
+<li>optional: <code>columnheader</code></li>
+<li><code>gridcell</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="fixing-an-incorrect-accessibility-tree">Fixing an incorrect accessibility tree</h2>
+<p>A few techniques for repairing accessibility tree issues, once found.</p>
+<h3 id="1.-fix-the-dom-hierarchy">1. Fix the DOM hierarchy</h3>
+<p>No ARIA is always the best ARIA. If it's possible to make the DOM structure match the desired accessibility tree structure, that is always the best and most robust solution.</p>
+<h3 id="2.-role%3D%22presentation%22-or-role%3D%22none%22">2. <code>role=&quot;presentation&quot;</code> or <code>role=&quot;none&quot;</code></h3>
+<p>Sometimes it isn't possible to alter the DOM structure, whether because of styling needs, support requirements, or use of external UI libraries. In those cases, it can be possible to clean up the accessibility tree through the judicious use of `role=&quot;presentation/none&quot;.</p>
+<p>For example, the following broken tree structure:</p>
+<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tree<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item-wrapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>treeitem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">      Item 1</span><br><span class="highlight-line">      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>group<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sub-items<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>treeitem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Sub-Item 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>treeitem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Sub-Item 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>treeitem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>treeitem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span><br><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></span></code></pre>
+<p>Could be modified to work as follows:</p>
+<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tree<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item-wrapper<span class="token punctuation">"</span></span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>presentation<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>treeitem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">      Item 1</span><br><span class="highlight-line">      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>group<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sub-items<span class="token punctuation">"</span></span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>presentation<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>treeitem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Sub-Item 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>treeitem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Sub-Item 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>treeitem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>treeitem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Item 3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span><br><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></span></code></pre>
+<p>You can try inspecting both in the browser in <a href="https://jsfiddle.net/3yd0guk8/">this JSFiddle</a>.</p>
+<p>Note that <code>role=&quot;presentation/none&quot;</code> is only required on elements that come <em>between</em> composite widget roles. It would not be necessary to add an extra role to a <code>&lt;div&gt;</code> that is a child of <code>treeitem</code>, or parent of <code>tree</code>.</p>
+<p>The two roles, <code>presentation</code> and <code>none</code>, are synonyms. As of writing, <code>presentation</code> has better support, so is slightly preferable over <code>none</code>.</p>
+<h3 id="3.-aria-owns">3. <code>aria-owns</code></h3>
+<p>Using <code>aria-owns</code> to point to the <code>id</code> of another element entirely separated in the DOM will establish a programmatic parent/child relationship between the two nodes in the accessibility tree.</p>
+<h3 id="4.-display%3A-none-and-visibility%3A-hidden">4. <code>display: none</code> and <code>visibility: hidden</code></h3>
+<p>CSS can sometimes affect the accessibility tree. Two examples are <code>display: none</code> and <code>visibility: hidden</code>, both of which will remove a node and all its descendents from the accessibility tree, hiding it from all users equally. If this is not desired, there are <a href="https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html">CSS techniques to visually hide content</a> while keeping it accessible to screen readers.</p>
+<h2 id="common-(ish)-misconceptions">Common (ish) Misconceptions</h2>
+<ol>
+<li><code>role=&quot;presentation&quot;</code> is not <code>aria-hidden=&quot;true&quot;</code></li>
+</ol>
+<p>Applying <code>aria-hidden</code> to an element will remove that element and all its descendants from the accessibility tree entirely, while <code>role=&quot;presentation/none&quot;</code> will only remove the element's default role. Both <code>role=&quot;presentation/none&quot;</code> and <code>aria-hidden=&quot;true&quot;</code> will have the same effect on an <code>&lt;img&gt;</code> tag, but not on an element with content or children.</p>
+<ol start="2">
+<li><code>aria-controls</code> is not <code>aria-owns</code></li>
+</ol>
+<p>Even though the combobox pattern has swapped out <code>aria-owns</code> for <code>aria-controls</code>, the two are not interchangeable elsewhere. <code>aria-owns</code> will establish a parent-child relationship between the root node and the referenced node (though reading order will still follow DOM order). <code>aria-controls</code> is a bit more abstract, and has little to no practical impact; only use it for comboboxes, or optionally when the ARIA spec explicitly says it should be used.</p>
 
     ]]></content>
   </entry>

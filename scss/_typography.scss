@@ -58,11 +58,22 @@ blockquote {
 
 code {
   background: #eee;
+  border-radius: 0.2em;
   padding: 0.1em 0.2em;
 }
 
 img {
   max-width: 100%;
+}
+
+figure {
+  background: #eee;
+  margin: 0 0 1.5rem;
+  padding: 0.5rem;
+}
+
+figcaption {
+  font-size: 0.8em;
 }
 
 ul, ol, p, pre, table {
