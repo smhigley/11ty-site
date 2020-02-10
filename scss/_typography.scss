@@ -76,7 +76,7 @@ figcaption {
   font-size: 0.8em;
 }
 
-ul, ol, p, pre, table {
+ul, ol, p, pre, .table-wrapper {
   margin: 0 0 1.5rem;
 }
 
@@ -84,6 +84,11 @@ ul, ol {
   li {
     margin: 0 0 0.5rem;
   }
+}
+
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: scroll;
 }
 
 .support-table {

@@ -52,96 +52,98 @@ The conventional wisdom is to not change the name of a control while the user is
 
 Using this [button code sample](https://jsfiddle.net/czsnj9xp/show), I tested whether name changes and `aria-pressed` changes were announced using the following screen reader/browser combinations, and using a few different methods of defining the accessible name:
 
-<table class="support-table">
-  <thead>
-    <tr>
-      <th></th>
-      <th scope="col"><code>aria-label</code></th>
-      <th scope="col"><code>aria-labelledby</code></th>
-      <th scope="col">content</th>
-      <th scope="col"><code>aria-pressed</code></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">NVDA + Firefox</th>
-      <td class="true">yes</td>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">NVDA + Chrome</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">NVDA + Edge</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">JAWS + Firefox</th>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">JAWS + Chrome</th>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">JAWS + Edge</th>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">JAWS + IE 11</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Narrator + Edge</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">iOS VoiceOver + Safari</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">macOS VoiceOver + Safari</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Talkback + Chrome</th>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-wrapper">
+  <table class="support-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th scope="col"><code>aria-label</code></th>
+        <th scope="col"><code>aria-labelledby</code></th>
+        <th scope="col">content</th>
+        <th scope="col"><code>aria-pressed</code></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">NVDA + Firefox</th>
+        <td class="true">yes</td>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">NVDA + Chrome</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">NVDA + Edge</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">JAWS + Firefox</th>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">JAWS + Chrome</th>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">JAWS + Edge</th>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">JAWS + IE 11</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Narrator + Edge</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">iOS VoiceOver + Safari</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">macOS VoiceOver + Safari</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Talkback + Chrome</th>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 Side note: NVDA, you drunk?
 

@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	<link href="https://sarahmhigley.com/feed.xml" rel="self"/>
 	<link href="https://sarahmhigley.com/"/>
-	<updated>2020-01-21T02:00:00+02:00</updated>
+	<updated>2020-01-20T16:00:00-08:00</updated>
 	<id>https://sarahmhigley.com</id>
 	<author>
     <name>Sarah Higley</name>
@@ -14,7 +14,7 @@
   <entry>
     <title>Tooltips in the time of WCAG 2.1</title>
     <link href="https://sarahmhigley.com/writing/tooltips-in-wcag-21/"/>
-    <updated>2019-08-17T03:00:00+03:00</updated>
+    <updated>2019-08-16T17:00:00-07:00</updated>
     <id>https://sarahmhigley.com/writing/tooltips-in-wcag-21/</id>
     <content type="html"><![CDATA[
       <p>TL;DR recommendation: Narrow down your definition of &quot;tooltip,&quot; and jump to <a href="#best-practices-summary">the last section</a>.</p>
@@ -133,7 +133,7 @@
   <entry>
     <title>Escaping 101</title>
     <link href="https://sarahmhigley.com/writing/escaping-101/"/>
-    <updated>2019-10-11T03:00:00+03:00</updated>
+    <updated>2019-10-10T17:00:00-07:00</updated>
     <id>https://sarahmhigley.com/writing/escaping-101/</id>
     <content type="html"><![CDATA[
       <p>Earlier this week when filling out an expense report -- a tedious chore that nearly everyone wishes would be over roughly five minutes before starting -- I got about halfway through before inadvertently deleting all my progress and forcing myself to start over.</p>
@@ -207,7 +207,7 @@ Start by putting yourself in your users' frame of mind</p>
   <entry>
     <title>Playing with state</title>
     <link href="https://sarahmhigley.com/writing/playing-with-state/"/>
-    <updated>2019-11-04T02:00:00+02:00</updated>
+    <updated>2019-11-03T16:00:00-08:00</updated>
     <id>https://sarahmhigley.com/writing/playing-with-state/</id>
     <content type="html"><![CDATA[
       <p>In an effort to convince everyone (who reads these blog posts) that I don't only obsess over tooltips, let's talk about another seemingly simple concept and make it unexpectedly complex. This time, we're tackling the play/pause toggle button.</p>
@@ -240,96 +240,98 @@ Start by putting yourself in your users' frame of mind</p>
 <h2 id="name-changes">Name Changes</h2>
 <p>The conventional wisdom is to not change the name of a control while the user is interacting with it. It turns out this is pretty good conventional wisdom: upon testing, I found that while a name change is sometimes announced, it is not nearly consistent enough to be relied upon.</p>
 <p>Using this <a href="https://jsfiddle.net/czsnj9xp/show">button code sample</a>, I tested whether name changes and <code>aria-pressed</code> changes were announced using the following screen reader/browser combinations, and using a few different methods of defining the accessible name:</p>
-<table class="support-table">
-  <thead>
-    <tr>
-      <th></th>
-      <th scope="col"><code>aria-label</code></th>
-      <th scope="col"><code>aria-labelledby</code></th>
-      <th scope="col">content</th>
-      <th scope="col"><code>aria-pressed</code></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">NVDA + Firefox</th>
-      <td class="true">yes</td>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">NVDA + Chrome</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">NVDA + Edge</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">JAWS + Firefox</th>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">JAWS + Chrome</th>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">JAWS + Edge</th>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">JAWS + IE 11</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Narrator + Edge</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">iOS VoiceOver + Safari</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">macOS VoiceOver + Safari</th>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-      <td class="true">yes</td>
-    </tr>
-    <tr>
-      <th scope="row">Talkback + Chrome</th>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="false">no</td>
-      <td class="true">yes</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-wrapper">
+  <table class="support-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th scope="col"><code>aria-label</code></th>
+        <th scope="col"><code>aria-labelledby</code></th>
+        <th scope="col">content</th>
+        <th scope="col"><code>aria-pressed</code></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">NVDA + Firefox</th>
+        <td class="true">yes</td>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">NVDA + Chrome</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">NVDA + Edge</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">JAWS + Firefox</th>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">JAWS + Chrome</th>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">JAWS + Edge</th>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">JAWS + IE 11</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Narrator + Edge</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">iOS VoiceOver + Safari</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">macOS VoiceOver + Safari</th>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+        <td class="true">yes</td>
+      </tr>
+      <tr>
+        <th scope="row">Talkback + Chrome</th>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="false">no</td>
+        <td class="true">yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <p>Side note: NVDA, you drunk?</p>
 <h2 id="actual-recommendations">Actual Recommendations</h2>
 <p>You made it this far, congratulations! Time for some concrete recommendations. The big takeaway should be this:</p>
@@ -352,7 +354,7 @@ Start by putting yourself in your users' frame of mind</p>
   <entry>
     <title>&lt;select&gt; your poison</title>
     <link href="https://sarahmhigley.com/writing/select-your-poison/"/>
-    <updated>2020-01-03T02:00:00+02:00</updated>
+    <updated>2020-01-02T16:00:00-08:00</updated>
     <id>https://sarahmhigley.com/writing/select-your-poison/</id>
     <content type="html"><![CDATA[
       <p>I've been thinking, testing, and talking about custom select components and comboboxes a lot over the past year, and finally condensed all of it into a two-part series of articles written for <a href="https://twitter.com/24accessibility">24 Accessibility</a>. It covers both why this whole mess is so difficult and what patterns are out there, including the new ARIA 1.2 pattern in part 1, and then goes into the results of usability testing and concrete implementation recommendations in part 2.</p>
@@ -387,7 +389,7 @@ Start by putting yourself in your users' frame of mind</p>
   <entry>
     <title>Roles and relationships</title>
     <link href="https://sarahmhigley.com/writing/roles-and-relationships/"/>
-    <updated>2020-01-21T02:00:00+02:00</updated>
+    <updated>2020-01-20T16:00:00-08:00</updated>
     <id>https://sarahmhigley.com/writing/roles-and-relationships/</id>
     <content type="html"><![CDATA[
       <p>Sometimes after dabbling in gateway ARIA semantics like <code>aria-current</code>, landmark roles, and link-button hybrids, a budding accessibility practitioner might find themselves experimenting with more serious roles like <code>menu</code>, <code>listbox</code>, or even <code>treegrid</code>. These are tantalizing, powerful patterns that allow you to create experiences that are not supported by only vanilla HTML. Unfortunately, they are also brittle; even small mistakes in using these roles can take a user on a very bad trip.</p>
