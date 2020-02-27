@@ -109,72 +109,72 @@ Tests were run against this (extremely simple and not otherwise very accessible)
 <tr>
 <td>NVDA</td>
 <td>Firefox</td>
-<td style="background-color: #aadaa1;">Yes</td>
-<td style="background-color: #aadaa1;">Yes</td>
-<td style="background-color: #f8bd9f;">No</td>
+<td class="true"Yes</td>
+<td class="true"Yes</td>
+<td class="false">No</td>
 </tr>
 <tr>
 <td>NVDA</td>
 <td>Chrome</td>
-<td style="background-color: #aadaa1;">Yes</td>
-<td style="background-color: #f8bd9f;">No</td>
-<td style="background-color: #f8bd9f;">No</td>
+<td class="true"Yes</td>
+<td class="false">No</td>
+<td class="false">No</td>
 </tr>
 <tr>
 <td>NVDA</td>
 <td>Edge</td>
-<td style="background-color: #aadaa1;">Yes</td>
-<td style="background-color: #f8bd9f;">No</td>
-<td style="background-color: #f8bd9f;">No</td>
+<td class="true"Yes</td>
+<td class="false">No</td>
+<td class="false">No</td>
 </tr>
 <tr>
 <td>JAWS</td>
 <td>All</td>
-<td style="background-color: #aadaa1;">Yes</td>
-<td style="background-color: #f8bd9f;">No</td>
-<td style="background-color: #f8bd9f;">No</td>
+<td class="true"Yes</td>
+<td class="false">No</td>
+<td class="false">No</td>
 </tr>
 <tr>
 <td>Narrator</td>
 <td>Edge</td>
-<td style="background-color: #aadaa1;">Yes</td>
-<td style="background-color: #f8bd9f;">No</td>
-<td style="background-color: #f8bd9f;">No</td>
+<td class="true"Yes</td>
+<td class="false">No</td>
+<td class="false">No</td>
 </tr>
 <tr>
 <td>Narrator</td>
 <td>Edge (pre-Chromium)</td>
-<td style="background-color: #f8bd9f;">No</td>
-<td style="background-color: #aadaa1;">Yes</td>
-<td style="background-color: #f8bd9f;">No</td>
+<td class="false">No</td>
+<td class="true"Yes</td>
+<td class="false">No</td>
 </tr>
 <tr>
 <td>VoiceOver</td>
 <td>iOS Safari</td>
 <td>-</td>
-<td style="background-color: #f8bd9f;">No</td>
-<td style="background-color: #f8bd9f;">No</td>
+<td class="false">No</td>
+<td class="false">No</td>
 </tr>
 <tr>
 <td>VoiceOver</td>
 <td>macOS Safari</td>
-<td style="background-color: #aadaa1;">Yes</td>
-<td style="background-color: #aadaa1;">Yes</td>
-<td style="background-color: #aadaa1;">Yes</td>
+<td class="true"Yes</td>
+<td class="true"Yes</td>
+<td class="true"Yes</td>
 </tr>
 <tr>
 <td>Talkback</td>
 <td>Chrome</td>
 <td>-</td>
-<td style="background-color: #f8bd9f;">No</td>
-<td style="background-color: #f8bd9f;">No</td>
+<td class="false">No</td>
+<td class="false">No</td>
 </tr>
 <tr>
 <td>ZoomText</td>
 <td>All</td>
-<td style="background-color: #aadaa1;">Yes</td>
+<td class="true"Yes</td>
 <td>N/A</td>
-<td style="background-color: #f8bd9f;">No</td>
+<td class="false">No</td>
 </tr>
 </tbody>
 </table>
