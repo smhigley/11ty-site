@@ -194,6 +194,8 @@ Tests were run against this (extremely simple and not otherwise very accessible)
 
 As is (hopefully) clear, there is absolutely no consistency in how screen readers handle lost focus. At worst, the user gets no feedback about the change of context on close, and then the screen reader starts over from the top of the page. ZoomText (and potentially other assistive tech that wasn't tested) is also affected, with the screen failing to re-center somewhere useful to the user.
 
+Scott O'hara also has support results for [testing skip link focus and virtual cursor](https://scottaohara.github.io/testing/skip-link/testing.html).
+
 ## Solutions
 The fix is easy: always manage focus when you remove the active element from the DOM!
 
