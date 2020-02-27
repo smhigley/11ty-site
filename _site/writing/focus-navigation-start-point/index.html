@@ -1,0 +1,239 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="alternate" type="application/rss+xml" title="Sarah Higley" href="https://sarahmhigley.com/feed.xml" />
+  <title>Focus management still matters | Sarah Higley</title>
+  <link rel="canonical" href="https://sarahmhigley.com/writing/focus-navigation-start-point/" />
+
+  <meta property="og:site_name" content="Sarah Higley" />
+  <meta property="og:title" content="Focus management still matters | Sarah Higley" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sarahmhigley.com/writing/focus-navigation-start-point/" />
+  <meta name="twitter:creator" content="@codingchaos" />
+  <meta property="og:image" content="https://sarahmhigley.com/assets/avatar.png" />
+  <meta name="twitter:image" content="https://sarahmhigley.com/assets/avatar.png" />
+  <meta property="og:image:alt" content="Illustrated avatar of Sarah" />
+  <meta name="twitter:image:alt" content="Illustrated avatar of Sarah" />
+
+  
+    <meta name="description" content="A look at sequential-focus-navigation-starting-point and what it means for focus handling" />
+    <meta name="twitter:description" content="A look at sequential-focus-navigation-starting-point and what it means for focus handling" />
+    <meta property="og:description" content="A look at sequential-focus-navigation-starting-point and what it means for focus handling" />
+  
+
+  <style type="text/css">/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;font-family:Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2b2b2b}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:#d4d0ab}.token.punctuation{color:#fefefe}.token.property,.token.tag,.token.constant,.token.symbol,.token.deleted{color:#ffa07a}.token.boolean,.token.number{color:#00e0e0}.token.selector,.token.attr-name,.token.string,.token.char,.token.builtin,.token.inserted{color:#abe338}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string,.token.variable{color:#00e0e0}.token.atrule,.token.attr-value,.token.function{color:gold}.token.keyword{color:#00e0e0}.token.regex,.token.important{color:gold}.token.important,.token.bold{font-weight:bold}.token.italic{font-style:italic}.token.entity{cursor:help}@media screen and (-ms-high-contrast: active){code[class*=language-],pre[class*=language-]{color:windowText;background:window}:not(pre)>code[class*=language-],pre[class*=language-]{background:window}.token.important{background:highlight;color:window;font-weight:normal}.token.atrule,.token.attr-value,.token.function,.token.keyword,.token.operator,.token.selector{font-weight:bold}.token.attr-value,.token.comment,.token.doctype,.token.function,.token.keyword,.token.operator,.token.property,.token.string{color:highlight}.token.attr-value,.token.url{font-weight:normal}}html{font-size:calc(1em + 0.5vw)}body{font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;word-wrap:break-word}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-family:"Josefin Slab",Garamond,serif;font-weight:bold;margin:0 0 1.5rem}h1,.h1{font-size:2.5rem;line-height:1.15}h2,.h2{font-size:1.75rem;line-height:1.2}h3,.h3{font-size:1.5rem;line-height:1.2}h4,.h4{font-size:1.15rem}a{color:#3c128f;text-decoration:underline}a:focus{outline:3px dashed #3c128f;outline-offset:3px}blockquote{border-left:4px solid #ccc;font-size:1.1rem;line-height:1.8;margin:1.5rem 0;padding:.5rem 2rem}blockquote p:last-child{margin-bottom:0}code{background:#eee;border-radius:.2em;padding:.1em .2em}img{max-width:100%}figure{background:#eee;margin:0 0 1.5rem;padding:.5rem}figcaption{font-size:.8em}ul,ol,p,pre,.table-wrapper{margin:0 0 1.5rem}ul li,ol li{margin:0 0 .5rem}.table-wrapper{max-width:100%;overflow-x:scroll}.support-table{border:1px solid #9d9d9d;border-collapse:collapse;border-spacing:0}.support-table tr{background-color:#fff;border-bottom:1px solid #9d9d9d}.support-table tr:nth-child(even){background-color:#f4f6f7}.support-table th{text-align:left}.support-table th,.support-table td{border-left:1px solid #9d9d9d;padding:.5em 1em}.support-table th:first-child,.support-table td:first-child{border-left:0}.support-table .false{background-color:#ffc3bf}.support-table .true{background-color:#caf4c6}body{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}*,*::before,*::after{box-sizing:inherit}.container{display:flex;min-height:100vh}@media screen and (max-width: 800px){.container{display:block}}.header{flex:0 0 260px;border-right:3px solid #28164a;min-height:100%;outline:10px solid rgba(60,18,143,.5);padding:1em}@media screen and (max-width: 800px){.header{border-bottom:3px solid #28164a;border-right:none;margin-bottom:1.5rem}}.profile-info{border-bottom:1px solid #ccc;font-family:"Josefin Slab",Garamond,serif;font-size:1.5rem;line-height:1.2;margin-bottom:1rem;padding-bottom:1rem;text-transform:uppercase;text-align:center}.profile-info img{display:block;margin:0 auto;max-width:250px;width:100%}.main{flex:1 1 auto;max-width:1000px;overflow-x:auto;padding:1em 1em 1em 2.5em}.main-nav ul{list-style-type:none;margin:0;padding:0}@media screen and (max-width: 800px){.main-nav ul{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}}.main-nav li{margin:0}@media screen and (max-width: 800px){.main-nav li{margin:0 .5rem}}.main-nav a{color:#000;display:inline-block;font-weight:bold;overflow:hidden;padding:0 5px 6px;position:relative;text-decoration:none;text-transform:uppercase}.main-nav a::after{content:"";position:absolute;left:0;bottom:0;width:200%;height:5px;background:#ccc;background:linear-gradient(90deg, #3c128f 0%, #3c128f 50%, #ccc 50%, #ccc 100%);transform:translateX(-50%);transition:transform .3s ease-out}.main-nav a:hover::after,.main-nav a.active::after{transform:translateX(0)}.item-list{list-style-type:none;padding:0}.item-list .meta{font-size:.8rem;margin:0 0 .5rem}.meta{display:block;color:#666;margin:-1.5rem 0 1.5rem}.post-footer{border-top:1px solid #ccc;display:flex;justify-content:space-between;padding:1em}.post-footer a{align-items:center;background-color:#ccc;border-radius:3px;color:#000;display:flex;padding:.5em 1em .5em 1.25em;text-decoration:none}.post-footer a:hover,.post-footer a:focus{background-color:#28164a;color:#fff}.post-footer a::before{content:"";border-left:2px solid currentColor;border-bottom:2px solid currentColor;display:inline-block;height:.5em;transform:translateX(-0.25em) rotate(45deg);width:.5em}.post-footer a.top-link::before{transform:translateX(-0.4em) rotate(135deg)}/*# sourceMappingURL=site.css.map */
+</style>
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="profile-info">
+        <img src="/assets/sarah-avatar.svg" role="img" alt="Illustrated avatar of Sarah with a cat" class="profile-pic">
+        Sarah Higley
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/" >Home</a></li>
+          <li><a href="/writing" class="active" aria-current="page">Writing</a></li>
+          <li><a href="/speaking"  >Speaking</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title" id="page-top">Focus management still matters</h1>
+
+      
+  <div class="meta">February 27, 2020</div>
+  <p>The most difficult challenges in programming are:</p>
+<ol>
+<li>Debating framework choices with a dogmatic fan, and</li>
+<li>Naming things</li>
+</ol>
+<p>There is seemingly no solution for the first problem; you must accept it, adopt a zen-like calm when faced with invocations of bundle sizes and performance benchmarks, and silently plan your backup career doing literally anything else.</p>
+<p>For the second problem, naming things, it's generally best to just pick something and move on. After all, any name is better than wasting hours agonizing over whether <code>toggleMenuItemSelection</code> is adequately understandable, descriptive, and concise.</p>
+<p>And then, as a counterpoint, we have sequential-focus-navigation-starting-point.</p>
+<p><em>You</em> try saying &quot;sequential focus navigation starting point&quot; five times over the course of two minutes, while also trying to explain to someone exactly why they still need to handle focus after closing their dropdown, even though &quot;tabbing works in Chrome.&quot; To prove my point, here is a brief list of names I would much rather use in said calls:</p>
+<ul>
+<li>focus-start-point</li>
+<li>focus-bookmark</li>
+<li>starty-focus-party</li>
+<li>fast-focus</li>
+<li>2-focus-2-furious</li>
+<li>fate-of-the-focus</li>
+</ul>
+<p><img src="/writing/assets/focus-party-parrot.gif" alt="The party parrot meme, with overlaid text: starty focus party"></p>
+<p>Thank you for reviewing my application to name all future HTML features</p>
+<h2 id="why-are-we-talking-about-something-focus-something-point%3F">Why are we talking about Something Focus Something Point?</h2>
+<p>The sequential focus navigation starting point is a browser feature that enables three types of interaction that were not possible without it:</p>
+<ol>
+<li>You can follow an internal link to a section or heading, and then start tabbing from that section/heading</li>
+<li>You can click anywhere on the page, and begin tabbing from that point</li>
+<li>You can hide an element with focus, e.g. by removing it from the DOM or applying <code>display: none</code>, without breaking tabbing.</li>
+</ol>
+<p>All three behaviors enhance user experience, but the last one in particular has sometimes lured developers into a false sense of security about not handling focus when closing their popups, dropdown menus, or accordions. Although tabbing seems to work fine in these cases, the sequenced-focus-starts-somewhere-around-here-point is only a bandaid; manual focus handling is still necessary for robust accessibility.</p>
+<h2 id="where-did-sequential-focus-whatever-come-from%3F">Where did Sequential Focus Whatever come from?</h2>
+<p>The idea of a sequential focus navigation starting point began with the need to make same-page anchors work with keyboard navigation. Although same-page linking has been available for as long as <code>&lt;a&gt;</code> elements, keyboard support has often <a href="https://sarahmhigley.com/writing/tooltips-in-wcag-21/">lagged behind visual mouse support</a>, even at a platform level. So although sighted users would immediately have access to the linked section via scroll and mouse users could then interact with it, keyboard users would have a different experience. As soon as an internal link was activated, focus would jump to the top of the document, and the next tab press would bring you back to the first focusable element in the page.</p>
+<p>To fix this, browsers (<a href="https://www.dhs.state.il.us/IITAA/IITAAWebImplementationGuidelines.html#web9.4">possibly starting with IE5</a>) began to send focus to the link target when following a same-page link. This only works if the target is focusable, though. Thus began the long period of recommending <code>tabindex=&quot;-1&quot;</code> be added to to every heading, named anchor, or other static element targeted by an internal link.</p>
+<p>The problem is, the visual behavior of internal links still works when the link target isn't focusable, and -- let's be honest -- that's all most developers test for. There was still an opportunity for browsers to improve the keyboard accessibility of this common built-in feature.</p>
+<p>Firefox had a solution for this in place <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=262171">as early as 2013</a>, which implemented starting-something-focus-whatsit-navigation-point in all but name. Although keyboard focus would still reset to <code>&lt;body&gt;</code> after activating a link with an unfocusable target, the next tab press would move focus as if the link target had been the active element.</p>
+<p><a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=26907#c0">Internet Explorer was the only other browser</a> that handled non-focusable link targets, though it took a different approach and simply forced the target element to receive keyboard focus even if it was otherwise unfocusable.</p>
+<p>Chrome took a bit longer (read: three years) to come around, but did <a href="https://chromium.googlesource.com/chromium/src/+/8870612f01ca55a123efbd7bf7024b236d6c12a6">finally implement the same focus behavior</a> as Firefox in February 2016, with one addition:</p>
+<blockquote>
+<p>If the element pointed by sequential focus navigation starting point is removed from the document tree, a point where there was the element at would be the starting point.</p>
+</blockquote>
+<p>Around the same time, Rob Dodson wrote what is still the most thorough, reader-friendly explanation of sequential focus navigation starting point: <a href="https://developers.google.com/web/updates/2016/03/focus-start-point">Removing Headaches from Focus Management</a>, in which he also mentioned the side benefit of gracefully handling focus when active element was hidden.</p>
+<p>Incidentally, the phrase &quot;sequential focus navigation why is this so long starting point&quot; first appeared in the HTML specification in <a href="https://github.com/whatwg/html/commit/7456ed7a11c5e205eb795fba0e1583d5939761ab">November 2014</a>, where it was defined as an optional user agent behavior.</p>
+<h2 id="how-sfnsp-works-today">How SFNSP works today</h2>
+<p>The <a href="https://html.spec.whatwg.org/multipage/interaction.html#sequential-focus-navigation-starting-point">HTML spec for starting focus sequentially point</a> still notes that it is optional, but if it exists it does the following (simplified slightly):</p>
+<ul>
+<li>Is set to the position of a user's click (or more broadly &quot;when the user indicates that it should be moved&quot;)</li>
+<li>Is used to determine which element should get focus when the user presses the tab key</li>
+<li>When a user navigates to a fragment (e.g. by clicking on a same-page link, or visiting a URL with a &quot;#&quot; identifier), the start point is set to the target element.</li>
+</ul>
+<p>There is no mention in the spec of using focus-nav-start-point to handle keyboard navigation when the currently focused element is hidden or removed from the DOM. Despite the lack of official sanction, this behavior seems to be increasingly relied upon by web developers when closing open dialogs, dropdowns, accordions, or any other toggleable region. This conflicts with the prevailing wisdom that when removing a focused element from the DOM, an author must manually set focus on another (logical) node. However, if browsers save focus-navigation-starts-here-point where the removed element used to be, keyboard navigation seems to work fine even if focus is not handled.</p>
+<p>As of writing, the following browsers have copied Chrome's behavior and set the sequential focus navigation starting point when the currently focused element is removed or hidden:</p>
+<ul>
+<li>Chrome</li>
+<li>Safari</li>
+<li>Firefox</li>
+<li>Edge (Chromium)</li>
+</ul>
+<p>Of all the browsers on Windows and Mac that I have access to, only Internet Explorer and Edge (pre-Chromium) do not do this. You can try it out now by <a href="#assistive-tech-support">jumping to the next section</a> and then hitting tab.</p>
+<p>Overall, this is a win for accessibility. For someone relying on keyboard navigation (or any other assistive tech that navigates via focus, like switch devices), getting sent back to the top of the page every single time a developer forgot to handle focus is an enormous pain. The drawback comes when developers don't fully understand exactly what sequential-focus-belaboring-the-point does and doesn't do, or they don't notice focus bugs when keyboard testing.</p>
+<p>Focus navigation starting point is not the same as actual keyboard focus. When focus is lost, through following an internal link or hiding a dialog, keyboard focus moves to the <code>&lt;body&gt;</code> tag. If you query <code>document.activeElement</code> in either of these cases, you can observe this. Alternatively, paste the following snippet into your browser console, <a href="#assistive-tech-support">jump to the next section</a> and watch every focus update in real time:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="highlight-line">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'focusin'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Focus moved to:'</span><span class="token punctuation">,</span> document<span class="token punctuation">.</span>activeElement<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span></code></pre>
+<p>That difference is extremely important when using assistive tech, since screen readers (for example) do not pay attention to the internal browser concept of focus-starts-here-point. While testing with a keyboard alone may make everything seem fine, trying the same interaction while running a screen reader exposes some rough edges.</p>
+<h2 id="assistive-tech-support">Assistive Tech support</h2>
+<p>Tests were run against this (extremely simple and not otherwise very accessible) example that contains a few accordions and a dialog, only one of which handles focus on dismissal: <a href="https://jsfiddle.net/eo8x3pcu/show">https://jsfiddle.net/eo8x3pcu/show</a>.</p>
+<h3 id="results">Results</h3>
+<div class="table-wrapper">
+  <table class="support-table">
+<thead>
+<tr>
+<th>Screen Reader/AT</th>
+<th>Browser</th>
+<th>Tab Support</th>
+<th>Virtual cursor/browse mode</th>
+<th>Context change feedback</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NVDA</td>
+<td>Firefox</td>
+<td style="background-color: #aadaa1;">Yes</td>
+<td style="background-color: #aadaa1;">Yes</td>
+<td style="background-color: #f8bd9f;">No</td>
+</tr>
+<tr>
+<td>NVDA</td>
+<td>Chrome</td>
+<td style="background-color: #aadaa1;">Yes</td>
+<td style="background-color: #f8bd9f;">No</td>
+<td style="background-color: #f8bd9f;">No</td>
+</tr>
+<tr>
+<td>NVDA</td>
+<td>Edge</td>
+<td style="background-color: #aadaa1;">Yes</td>
+<td style="background-color: #f8bd9f;">No</td>
+<td style="background-color: #f8bd9f;">No</td>
+</tr>
+<tr>
+<td>JAWS</td>
+<td>All</td>
+<td style="background-color: #aadaa1;">Yes</td>
+<td style="background-color: #f8bd9f;">No</td>
+<td style="background-color: #f8bd9f;">No</td>
+</tr>
+<tr>
+<td>Narrator</td>
+<td>Edge</td>
+<td style="background-color: #aadaa1;">Yes</td>
+<td style="background-color: #f8bd9f;">No</td>
+<td style="background-color: #f8bd9f;">No</td>
+</tr>
+<tr>
+<td>Narrator</td>
+<td>Edge (pre-Chromium)</td>
+<td style="background-color: #f8bd9f;">No</td>
+<td style="background-color: #aadaa1;">Yes</td>
+<td style="background-color: #f8bd9f;">No</td>
+</tr>
+<tr>
+<td>VoiceOver</td>
+<td>iOS Safari</td>
+<td>-</td>
+<td style="background-color: #f8bd9f;">No</td>
+<td style="background-color: #f8bd9f;">No</td>
+</tr>
+<tr>
+<td>VoiceOver</td>
+<td>macOS Safari</td>
+<td style="background-color: #aadaa1;">Yes</td>
+<td style="background-color: #aadaa1;">Yes</td>
+<td style="background-color: #aadaa1;">Yes</td>
+</tr>
+<tr>
+<td>Talkback</td>
+<td>Chrome</td>
+<td>-</td>
+<td style="background-color: #f8bd9f;">No</td>
+<td style="background-color: #f8bd9f;">No</td>
+</tr>
+<tr>
+<td>ZoomText</td>
+<td>All</td>
+<td style="background-color: #aadaa1;">Yes</td>
+<td>N/A</td>
+<td style="background-color: #f8bd9f;">No</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="detailed-notes%3A">Detailed Notes:</h3>
+<ul>
+<li>NVDA + Firefox: both tab and cursor navigation work from the start point, but nothing was announced on close.</li>
+<li>NVDA + Chrome: tab works from the start point; scan mode is flaky, and seems to start from whatever is nearest the last (x, y) position of the dismissed focused element. Nothing is announced on close.</li>
+<li>NVDA + Edge Chromium: tab works, but NVDA reads &quot;document&quot; when focus is lost.</li>
+<li>Narrator + Edge (pre-Chromium): tab starts again from the top, though cursor navigation starts from where the hidden content used to be. Nothing is announced on close</li>
+<li>Narrator + Edge Chromium: tab works, but Narrator reads &quot;document&quot; when focus is lost and cursor navigation starts over from the top of the page</li>
+<li>JAWS with all Windows browsers: tab works, but the virtual cursor starts over from the top of the page. JAWS with Firefox reads &quot;frame&quot; when focus is lost, and was silent with other browsers.</li>
+<li>VoiceOver + Safari on iOS: the VoiceOver cursor jumps somewhere weird and inconsistent (seems to track (x, y) position on screen like NVDA and Chrome), and immediately begins reading from that point. The example that handled focus works as expected.</li>
+<li>VoiceOver + Safari on macOS: both tab and the VoiceOver cursor both start where they should, from where focus was lost.</li>
+<li>Talkback on Android: the screen reader cursor jumps to the top of the page, and begins reading it from the start.</li>
+<li>ZoomText (without a screen reader): When focus is lost, the screen does not re-center on the correct place (most noticeable with the dialog). It works correctly when focus is actively managed.</li>
+</ul>
+<p>As is (hopefully) clear, there is absolutely no consistency in how screen readers handle lost focus. At worst, the user gets no feedback about the change of context on close, and then the screen reader starts over from the top of the page. ZoomText (and potentially other assistive tech that wasn't tested) is also affected, with the screen failing to re-center somewhere useful to the user.</p>
+<h2 id="solutions">Solutions</h2>
+<p>The fix is easy: always manage focus when you remove the active element from the DOM!</p>
+<p>Supplemental links:</p>
+<ul>
+<li><a href="https://html.spec.whatwg.org/multipage/interaction.html#sequential-focus-navigation-starting-point">https://html.spec.whatwg.org/multipage/interaction.html#sequential-focus-navigation-starting-point</a></li>
+<li><a href="https://developers.google.com/web/updates/2016/03/focus-start-point">https://developers.google.com/web/updates/2016/03/focus-start-point</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>sequential focus navigation starting point<br>
+sequential focus navigation starting point<br>
+sequential focus navigation starting point<br>
+sequential foction navigatus starting point<br>
+sequential focusing navigation start point<br>
+sequential focal navigation startus point<br>
+sequential fo-cat nappigation flop point</p>
+</blockquote>
+<img src="/writing/assets/cat-flop.jpg" alt="kitten flopped over, face down, sleeping">
+
+  <div class="post-footer">
+    <a href="/writing" class="back-link">All Posts</a>
+    <a href="#page-top" class="top-link">Back to top</a>
+  </div>
+
+    </main>
+  </div>
+</body>
+</html>
