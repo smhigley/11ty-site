@@ -24,9 +24,10 @@ _You_ try saying "sequential focus navigation starting point" five times over th
 * 2-focus-2-furious
 * fate-of-the-focus
 
-![The party parrot meme, with overlaid text: starty focus party](/writing/assets/focus-party-parrot.gif)
-
-Thank you for reviewing my application to name all future HTML features
+<figure>
+  <img src="/writing/assets/focus-party-parrot.gif" alt="The party parrot meme, with overlaid text: starty focus party">
+  <figcaption>Thank you for reviewing my application to name all future HTML features</figcaption>
+</figure>
 
 ## Why are we talking about Something Focus Something Point?
 
@@ -40,7 +41,7 @@ All three behaviors enhance user experience, but the last one in particular has 
 
 ## Where did Sequential Focus Whatever come from?
 
-The idea of a sequential focus navigation starting point began with the need to make same-page anchors work with keyboard navigation. Although same-page linking has been available for as long as `<a>` elements, keyboard support has often [lagged behind visual mouse support](https://sarahmhigley.com/writing/tooltips-in-wcag-21/), even at a platform level. So although sighted users would immediately have access to the linked section via scroll and mouse users could then interact with it, keyboard users would have a different experience. As soon as an internal link was activated, focus would jump to the top of the document, and the next tab press would bring you back to the first focusable element in the page.
+The idea of a sequential focus navigation starting point began with the need to make same-page anchors work with keyboard navigation. Although same-page linking has been available for as long as `<a>` elements, keyboard support has often [lagged behind visual mouse support](https://sarahmhigley.com/writing/tooltips-in-wcag-21/), even at a platform level. So although sighted users would immediately have access to the linked section via scroll and could then interact with it using a mouse, keyboard users would have a different experience. As soon as an internal link was activated, focus would jump to the top of the document, and the next tab press would bring you back to the first focusable element in the page.
 
 To fix this, browsers ([possibly starting with IE5](https://www.dhs.state.il.us/IITAA/IITAAWebImplementationGuidelines.html#web9.4)) began to send focus to the link target when following a same-page link. This only works if the target is focusable, though. Thus began the long period of recommending `tabindex="-1"` be added to to every heading, named anchor, or other static element targeted by an internal link.
 
@@ -54,7 +55,9 @@ Chrome took a bit longer (read: three years) to come around, but did [finally im
 
 > If the element pointed by sequential focus navigation starting point is removed from the document tree, a point where there was the element at would be the starting point.
 
-Around the same time, Rob Dodson wrote what is still the most thorough, reader-friendly explanation of sequential focus navigation starting point: [Removing Headaches from Focus Management](https://developers.google.com/web/updates/2016/03/focus-start-point), in which he also mentioned the side benefit of gracefully handling focus when active element was hidden.
+To summarize: when Chrome fixed tab order for internal links, they also used the same mechanism to save the location of the last focused item, if that item was removed from the page.
+
+Around the same time, Rob Dodson wrote what is still the most thorough, reader-friendly explanation of sequential focus navigation starting point: [Removing Headaches from Focus Management](https://developers.google.com/web/updates/2016/03/focus-start-point), in which he also mentioned that side benefit of gracefully handling focus when active element was hidden.
 
 Incidentally, the phrase "sequential focus navigation why is this so long starting point" first appeared in the HTML specification in [November 2014](https://github.com/whatwg/html/commit/7456ed7a11c5e205eb795fba0e1583d5939761ab), where it was defined as an optional user agent behavior.
 
@@ -68,7 +71,7 @@ The [HTML spec for starting focus sequentially point](https://html.spec.whatwg.o
 
 There is no mention in the spec of using focus-nav-start-point to handle keyboard navigation when the currently focused element is hidden or removed from the DOM. Despite the lack of official sanction, this behavior seems to be increasingly relied upon by web developers when closing open dialogs, dropdowns, accordions, or any other toggleable region. This conflicts with the prevailing wisdom that when removing a focused element from the DOM, an author must manually set focus on another (logical) node. However, if browsers save focus-navigation-starts-here-point where the removed element used to be, keyboard navigation seems to work fine even if focus is not handled.
 
-As of writing, the following browsers have copied Chrome's behavior and set the sequential focus navigation starting point when the currently focused element is removed or hidden:
+As of writing, the following browsers match Chrome's behavior and set the sequential focus navigation starting point when the currently focused element is removed or hidden:
 * Chrome
 * Safari
 * Firefox
@@ -109,35 +112,35 @@ Tests were run against this (extremely simple and not otherwise very accessible)
 <tr>
 <td>NVDA</td>
 <td>Firefox</td>
-<td class="true"Yes</td>
-<td class="true"Yes</td>
+<td class="true">Yes</td>
+<td class="true">Yes</td>
 <td class="false">No</td>
 </tr>
 <tr>
 <td>NVDA</td>
 <td>Chrome</td>
-<td class="true"Yes</td>
+<td class="true">Yes</td>
 <td class="false">No</td>
 <td class="false">No</td>
 </tr>
 <tr>
 <td>NVDA</td>
 <td>Edge</td>
-<td class="true"Yes</td>
+<td class="true">Yes</td>
 <td class="false">No</td>
 <td class="false">No</td>
 </tr>
 <tr>
 <td>JAWS</td>
 <td>All</td>
-<td class="true"Yes</td>
+<td class="true">Yes</td>
 <td class="false">No</td>
 <td class="false">No</td>
 </tr>
 <tr>
 <td>Narrator</td>
 <td>Edge</td>
-<td class="true"Yes</td>
+<td class="true">Yes</td>
 <td class="false">No</td>
 <td class="false">No</td>
 </tr>
@@ -145,7 +148,7 @@ Tests were run against this (extremely simple and not otherwise very accessible)
 <td>Narrator</td>
 <td>Edge (pre-Chromium)</td>
 <td class="false">No</td>
-<td class="true"Yes</td>
+<td class="true">Yes</td>
 <td class="false">No</td>
 </tr>
 <tr>
@@ -158,9 +161,9 @@ Tests were run against this (extremely simple and not otherwise very accessible)
 <tr>
 <td>VoiceOver</td>
 <td>macOS Safari</td>
-<td class="true"Yes</td>
-<td class="true"Yes</td>
-<td class="true"Yes</td>
+<td class="true">Yes</td>
+<td class="true">Yes</td>
+<td class="true">Yes</td>
 </tr>
 <tr>
 <td>Talkback</td>
@@ -172,7 +175,7 @@ Tests were run against this (extremely simple and not otherwise very accessible)
 <tr>
 <td>ZoomText</td>
 <td>All</td>
-<td class="true"Yes</td>
+<td class="true">Yes</td>
 <td>N/A</td>
 <td class="false">No</td>
 </tr>
