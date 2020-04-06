@@ -1,6 +1,7 @@
 ---
 layout: home.njk
 title: Home
+summary: "Hello, World! I'm Sarah."
 heading: Hello, World! I'm Sarah.
 ---
 
