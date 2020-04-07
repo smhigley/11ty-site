@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	<link href="https://sarahmhigley.com/feed.xml" rel="self"/>
 	<link href="https://sarahmhigley.com/"/>
-	<updated>2020-02-26T16:00:00-08:00</updated>
+	<updated>2020-04-12T17:00:00-07:00</updated>
 	<id>https://sarahmhigley.com</id>
 	<author>
     <name>Sarah Higley</name>
@@ -689,6 +689,185 @@ sequential focal navigation startus point<br>
 sequential fo-cat nappigation flop point</p>
 </blockquote>
 <img src="/writing/assets/cat-flop.jpg" alt="kitten flopped over, face down, sleeping">
+    ]]></content>
+  </entry>
+	
+  
+  <entry>
+    <title>What&#39;s in a name?</title>
+    <link href="https://sarahmhigley.com/writing/whats-in-a-name/"/>
+    <updated>2020-04-12T17:00:00-07:00</updated>
+    <id>https://sarahmhigley.com/writing/whats-in-a-name/</id>
+    <content type="html"><![CDATA[
+      <p>Often when we talk about accessibility problems, we end up talking about different types of missing names: form fields without labels, images without <code>alt</code>s, icon buttons without readable text, and so on. More recently, a greater awareness of accessibility and an increase in the use of <a href="https://www.w3.org/TR/wai-aria-1.2/">ARIA attributes</a> has resulted in a sort of reverse naming problem: <code>&lt;div&gt;</code>s and <code>&lt;span&gt;</code>s with <code>aria-label</code>s, and links or buttons whose programmatic name has been manually defined to be more verbose than their visible text.</p>
+<p>While an improperly added name is a step up from a missing one, they are both a result of not understanding when and how to give an element a name.</p>
+<p><img src="/writing/assets/give-a-div-a-name.jpg" alt="An illustrated mouse with a cookie, with the text: if you give a div a name, it'll ask for a role to go with it"></p>
+<h2 id="what-is-a-%22name%22%3F">What is a &quot;name&quot;?</h2>
+<p>There are many different terms that are used to talk about a missing or incorrect accessible name, depending on context. For images, it can be &quot;alternative text&quot; or &quot;the <code>alt</code> attribute&quot;; for tables, &quot;caption&quot;; and for form fields, we usually talk about labels. Here's a non-comprehensive list of terms and concepts that all boil down to talking about names:</p>
+<ul>
+<li>labels, the <label> element, and associating labels with form fields</li>
+<li>table captions</li>
+<li>image alt text</li>
+<li>the <code>&lt;legend&gt;</code> element</li>
+<li>an SVG <code>&lt;title&gt;</code> element</li>
+<li><code>aria-label</code> and <code>aria-labelledby</code></li>
+</ul>
+<p>The reason I'm using &quot;name&quot; or &quot;accessible name&quot; to refer to all of these different concepts is because although they differ in HTML, they all end up mapping to the &quot;name&quot; property (or equivalent) in accessibility APIs and the browser's internal accessibility tree. For example, this screenshot shows how an <code>&lt;img&gt;</code> element's alt attribute is represented in Microsoft Edge's accessibility dev tools:</p>
+<figure>
+  <img src="/writing/assets/edge-name-a11y.png" alt="A screenshot of a party parrot meme in a previous article, next to the dev tools pane showing computed name and role">
+  <figcaption>The computed name that a browser will expose to accessibility APIs can be viewed in dev tools.</figcaption>
+</figure>
+<p>Most browsers will also let you view exactly where that computed name came from; in this case, the alt attribute:</p>
+<figure>
+  <img src="/writing/assets/edge-name-a11y-expanded.png" alt="the same party parrot screenshot, with the computed name in dev tools expanded to show the alt attribute defined underneath">
+  <figcaption>This can be helpful if the accessible name is not what you think it should be.</figcaption>
+</figure>
+<p>If you wished to open up <a href="https://accessibilityinsights.io/docs/en/windows/overview">Accessibility Insights for Windows</a>, you would see the same string defined in the image node's Name property in the <a href="https://docs.microsoft.com/en-us/windows/win32/winauto/ui-automation-specification">underlying accessibility API</a>.</p>
+<h2 id="what-needs-a-name%3F">What needs a name?</h2>
+<p>Not every element can support an accessible name, and even among those that can, not every one should. For example, a <code>&lt;section&gt;</code> element can be named with <code>aria-label</code> or <code>aria-labelledby</code> but doing so will promote it to being a landmark, which isn't always desired. A list can also be named, though doing so is uncommon and not needed unless there's some context-specific reason for doing so. So, if some elements always need names, others may or may not benefit from a name, and others can't have them at all, how do you know which is which?</p>
+<p>There are a few general categories of elements that should always be named:</p>
+<ol>
+<li>
+<p><strong>Interactive elements</strong>:<br>
+These include all form controls, links, buttons, and also complex interactive widgets like tabs, menus, listboxes, and so on.</p>
+</li>
+<li>
+<p><strong>Other focusable elements</strong>:<br>
+Although generally non-interactive elements should not be focusable, there are some exceptions like <a href="https://www.gatsbyjs.org/blog/2019-07-11-user-testing-accessible-client-routing/">client-side routing with focus management</a>, a modal dialog, or the target of a skip link. Anything that can receive keyboard focus, whether through tabbing or scripting, should have an accessible name.</p>
+</li>
+<li>
+<p><strong>Charts and graphics</strong>:<br>
+Meaningful images, graphs, canvas visuals, and other graphical content needs to be labelled with alternative text. Images and graphics that are not meaningful should be removed from the accessibility tree; with an <code>&lt;img&gt;</code> tag, this is done with an empty alt: <code>alt=&quot;&quot;</code>, and <code>aria-hidden=&quot;true&quot;</code> works for other elements.</p>
+</li>
+<li>
+<p><strong>Landmarks and labelled form groups</strong>:<br>
+Form groups include things like sets of checkboxes and radio buttons, or multiple related text inputs for something like a credit card. They should always have an accessible name that matches the visible group label. Traditionally this is done with the <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> elements, but can also be accomplished with <code>role=&quot;group&quot;</code> and <code>aria-label</code>/<code>aria-labelledby</code>.</p>
+<p>Landmarks need an accessible name when there are multiple instances of the same type of landmark on a page, such as a main navigation region together with a supplementary navigation region. Generic landmarks (with <code>role=&quot;region&quot;</code>) always need an accessible name.</p>
+</li>
+</ol>
+<p>There are multiple different WCAG criteria that cover failing to give an accessible name to an element that needs one. There's <a href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html">Name, Role, Value</a> for interactive controls lacking a name, <a href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html">Non-text content</a> for naming, well, non-text content, <a href="https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html">Link Purpose (in context)</a> for links with missing or poorly written names, and the catch-all <a href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html">Info and Relationships</a> for any other scenario where meaning is implied by visual cues or context but not present programmatically.</p>
+<h2 id="how-do-you-name-an-element%3F">How do you name an element?</h2>
+<p>Contrary to what you may think, naming an element involves neither a birth certificate nor the HTML <code>name</code> attribute. The <code>name</code> attribute is never directly exposed to the user, and is used only when submitting forms. Birth certificates have thus far been ignored by spec authors as a potential method for naming controls, but perhaps when web UI becomes sentient and self-propagating, we'll need to revisit that.</p>
+<p>Right now, there are four different types of ways an element can be assigned a name: from author, from content, from encapsulation, and from legend. The last two are highly specific to certain form elements:</p>
+<p>Name from encapsulation, using the <code>&lt;label&gt;</code> element:</p>
+<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">    This text will be the checkbox input's name</span><br><span class="highlight-line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span></span></code></pre>
+<p>Name from legend, which sounds epic but ultimately only refers to <a href="https://html.spec.whatwg.org/multipage/form-elements.html#the-legend-element">the <code>&lt;legend&gt;</code> element</a>:</p>
+<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>legend</span><span class="token punctuation">></span></span>This text will name the fieldset element, as long as the legend is the first child<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>legend</span><span class="token punctuation">></span></span></span><br><span class="highlight-line">    <span class="token comment">&lt;!-- some form elements go here --></span></span><br><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">></span></span></span></code></pre>
+<p>Most of the time when naming elements, you'll be using either a name from author, or name from content. Both of these techniques are likely familiar, even if the particular phrases &quot;name from author&quot; and &quot;name from content&quot; sound more like they belong in a dry spec somewhere than actual words actual people say to each other (which is accurate).</p>
+<p>&quot;Name from content&quot; in its simplest form means an element's accessible name comes from its text content. Take the following example of a submit button that reads, because I am a creative person, &quot;Submit&quot;:</p>
+<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Submit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></span></code></pre>
+<p>If you were to view that in a browser, you would see that the calculated name of the button is &quot;Submit&quot;, and that the source is the button's contents:</p>
+<p><img src="/writing/assets/name-from-contents.png" alt="Edge's accessibility developer tools show the submit button's name is Submit, and that the name comes from its contents"></p>
+<p>A button with text content is a simple example; it's also possible to have non-text content contribute to an element's accessible name. In the following example, a link contains both text and an image with alt text. In it, the image gets its name from the <code>alt</code> attribute, and the link is named by the combination of all plain text and other named elements within it:</p>
+<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>images/twitter-icon.png<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Twitter.<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Your daily source of all current-events-related anxiety.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span></span><br><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></span></code></pre>
+<figure style="max-width:450px">
+  <img src="/writing/assets/twitter-link.png" alt="Visual rendering of a styled block link with an image above a short line of text">
+  <figcaption>The accessible name of the link is "Twitter. Your daily source of all current-events-related anxiety"</figcaption>
+</figure>
+<p>The image's <code>alt</code> attribute is actually an example of a name from author, nested inside the link's name from content. &quot;Name from author&quot; refers to assigning a name to an element directly, either by passing a string to an attribute like <code>alt</code> or <code>aria-label</code>, or through the use of an associated labeling element, like <code>&lt;label for=&quot;input-id&quot;&gt;</code>.</p>
+<p>Some examples of defining a name from author include:</p>
+<ul>
+<li>aria-label</li>
+<li>aria-labelledby</li>
+<li>the <code>&lt;label&gt;</code> element, associated with an <code>&lt;input&gt;</code> by <code>id</code></li>
+<li>the <code>alt</code> attribute on an <code>&lt;img&gt;</code></li>
+<li>the <code>&lt;caption&gt;</code> element in a <code>&lt;table&gt;</code></li>
+</ul>
+<p>Some elements with roles such as <code>table</code> and <code>list</code>, or landmark roles like <code>navigation</code> and <code>main</code>, only support name from author. If these elements are given a name through <code>aria-label</code> or <code>aria-labelledby</code>, screen readers will generally read that name when the user first enters the element, and then go on to read the element's content. This is because the content exists separately from the accessible name, so both the content and the name (if provided) are read separately.</p>
+<p>In contrast, roles that support both name from author and name from content will only ever read one or the other. If a name from author is provided, the element's content will be entirely ignored. So if we were to consider the following extremely realistic example snippet:</p>
+<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Cats are the best<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Dogs are the best<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></span></code></pre>
+<p>The resulting button would have an accessible name of &quot;Cats are the best&quot;, and someone using a screen reader would not encounter the string &quot;Dogs are the best&quot;. A name from author will always override name from content, when both are supported.</p>
+<p>There is an <a href="https://www.w3.org/TR/accname-1.1/#mapping_additional_nd_te">entire spec</a> governing the full set of steps that browsers must take to determine the accessible name and description for any nameable or describeable element. It is arcane and complex, and can generally be ignored by web developers. Here is a reduced summary of accessible name methods, ordered from what will override everything else (1) to what will only be used if no other methods are present (4):</p>
+<ol>
+<li>aria-labelledby</li>
+<li>aria-label</li>
+<li>Native HTML methods: alt, the <code>&lt;label&gt;</code> element, text content</li>
+<li>Fallback attributes: title and placeholder</li>
+</ol>
+<p>Ideally, a single control will only be named using one method, so the exact way browsers calculate an accessible name should not matter much (unless you work on browser accessibility, in which case, thank you). Generally when in doubt, consult the <a href="https://sarahmhigley.com/writing/roles-and-relationships/#the-accessibility-tree%3A-a-quick-definition">accessibility information in your browser's developer tools</a>. That will tell you both the calculated accessible name, and where it's coming from.</p>
+<p>While there are a good number of possible ways to name a control, not all options are created equal. Rather than go into the nuances of why to choose a <code>&lt;label&gt;</code> element over <code>aria-label</code> here, I'd rather link to the article Adrian Roselli has already written on his <a href="https://adrianroselli.com/2020/01/my-priority-of-methods-for-labeling-a-control.html">priority of methods for labeling a control</a>. The TL;DR is:</p>
+<ol>
+<li>Native HTML techniques (the <code>&lt;label&gt;</code> element, text content, <code>alt</code>, etc.)</li>
+<li><code>aria-labelledby</code></li>
+<li>visually hidden text content</li>
+<li><code>aria-label</code></li>
+</ol>
+<p>His article goes into more of the reasons around why some methods are better than others, which I won't duplicate.</p>
+<h2 id="which-elements-and-roles-can-be-named%3F">Which elements and roles can be named?</h2>
+<p>Any given role that an element can have falls into one of three naming possibilities: either it must have a name, it can optionally be named, or it cannot be named at all . Throw in the different possibilities for naming (from author, from content, from encapsulation, and from legend), and it gets to be a bit too much to keep track of.</p>
+<p>Luckily, the ARIA spec has a section listing every single role that can be named, broken down by the naming method. Roles that require names are designated with &quot;(name required)&quot;. Here are the sections where you can find the naming information:</p>
+<ul>
+<li><a href="https://w3c.github.io/aria/#namefromauthor">Name from author</a></li>
+<li><a href="https://w3c.github.io/aria/#namefromcontent">Name from content</a></li>
+<li><a href="https://w3c.github.io/aria/#namefromencapsulation">Name from encapsulation</a></li>
+<li><a href="https://w3c.github.io/aria/#namefromlegend">Name from legend</a></li>
+<li><a href="https://w3c.github.io/aria/#namefromprohibited">Name prohibited</a></li>
+</ul>
+<p>The ARIA spec lists these only by role and not by element, but if you're not sure which role an element has by default, you can look it up in the <a href="https://w3c.github.io/html-aam/#html-element-role-mappings">HTML AAM spec</a>. If an explicit <code>role</code> attribute is present, it will override the default role mapping in HTML AAM. For example:</p>
+<ul>
+<li><code>&lt;button&gt;</code>: look up the <code>button</code> role</li>
+<li><code>&lt;button role=&quot;tab&quot;&gt;</code>: look up the <code>tab</code> role</li>
+</ul>
+<p>While the most common problem is for one of the &quot;name required&quot; roles to lack an accessible name, sometimes the reverse occurs and an element that cannot be named -- e.g. a <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code> -- is given an <code>aria-label</code> or <code>aria-labelledby</code>. A couple cases I've seen this happen include a <code>&lt;span aria-label=&quot;some text&quot;&gt;</code> wrapping a font icon, or putting an <code>aria-label</code> on a div that wraps a <a href="https://inclusive-components.design/cards/">card pattern</a>.</p>
+<p>Both of these come from good intentions and an active attempt to create better accessibility, and a few extra attempts at naming unnameable elements won't cause any negative side effects. The main danger is that the illusion of having given something an accessible name will obscure underlying issues. Usually the fix is to revisit which elements and roles were used, or to reconsider what really needs a name.</p>
+<p>In the case of the font icon example, the best solution would likely be to treat it as an image, which can be given a name:</p>
+<pre><code>&lt;span aria-label=&quot;name of icon&quot; role=&quot;img&quot;&gt;&amp;#xe900;&lt;/span&gt;
+</code></pre>
+<p>A generic wrapping <code>&lt;div&gt;</code> for something like a card pattern is more complex. Does that section of content really need its own name, separate from the content within it? If this grouping of content is important enough to be named, then it should probably be exposed as some sort of group. Would an existing HTML pattern like a list fit your use case? Is there another element or role that would fit better?</p>
+<p>A card pattern could be exposed as a list item within a list (as Heydon does in his <a href="https://inclusive-components.design/cards/">card pattern</a>), or perhaps as an <a href="https://w3c.github.io/aria/#article">article role</a>. Both those roles (<code>listitem</code> and <code>article</code>) can be given a name from author, but that doesn't mean they need one. To decide whether a name-optional element would benefit from a name in this case as in others, the best thing to do is to consider how a programmatic name will translate into actual user experience. And, of course, to then check those assumptions with people who rely on assistive technologies.</p>
+<h2 id="how-is-the-accessible-name-used-by-assistive-tech%3F">How is the accessible name used by assistive tech?</h2>
+<p>The programmatically exposed accessible name is primarily used by screen readers (including screen readers with braille displays) and voice control software. Voice control software can vary a lot in whether it uses the accessible name, text content, or some combination of the two. It is not presented directly to the user, but consumed under the hood when a user issues a command like &quot;press submit button.&quot;</p>
+<p>Screen readers do present the accessible name directly to the user, in a number of different ways depending on the mode of interaction and the type of element that is named.</p>
+<p>The most straightforward way a screen reader exposes the accessible name is when the user interacts directly with the named element. This can come in the form of tabbing to a focusable element like a form field, link, or button, which is often the most beginner-friendly way of using a screen reader. Another way to directly interact with an element is to use the screen reader's virtual cursor to move through a page, using sets of commands specific to each screen reader. This will present either the accessible name of a nameable control (heading, link, button, etc.), or a text string in the case of unnameable elements (divs, paragraphs, and so on).</p>
+<p>There is another type of nameable element that I'm going to call container roles, which include landmark regions, forms, lists, dialogs, tables, tabpanels, and generic groups. Usually when a screen reader user navigates the page, they will enter and exit these elements without interacting with them directly (emphasis on &quot;usually&quot;). If named, the name will generally be read when the screen reader first enters the container role, depending on the screen reader's support for that role (always test).</p>
+<p>One last way of consuming an accessible name is in an elements list. With an elements list, a screen reader user can review all elements of a particular type (e.g. links) out of context. Here's an example of what that looks like in NVDA:</p>
+<p><img src="/writing/assets/nvda-links-list.png" alt="Screenshot of NVDA's links list on an A11y Project article"></p>
+<p>The elements list is one example of when it is important to write unique, descriptive accessible names. Multiple duplicate buttons under different headings, or link names that only make sense in context will be confusing and unhelpful in the elements list.</p>
+<h2 id="how-do-you-write-a-good-name%3F">How do you write a good name?</h2>
+<p>A developer's blog (or at least this developer's blog) is probably not the best place to look for advice on the writing process. I personally have enough trouble trying to name variables in code that no one else will ever read. Instead, try this page of <a href="https://developer.apple.com/videos/play/wwdc2019/254/">writing tips from the Web Accessibility Initiative (WAI)</a>, or this <a href="https://developer.apple.com/videos/play/wwdc2019/254/">video on writing good labels</a> from Jordyn Castor at Apple.</p>
+<p>Instead, let's go over some accessibility-specific tips to writing a good name:</p>
+<ul>
+<li><strong>Avoid including the type of control in the name</strong><br>
+The type of control will already be communicated by screen readers. For example, naming a submit button &quot;Submit button&quot; will result in an announcement along the lines of &quot;Submit button button&quot;.</li>
+<li><strong>Make names unique</strong><br>
+Unique names help screen reader users scanning controls directly without needing to examine surrounding context, and they also help sighted users by reducing the cognitive load required to determine the purpose of a control. Visually scanning an online store's buttons is easier when each has a unique name like &quot;shop computers&quot;, &quot;shop laptops&quot;, etc. than why all of them read &quot;shop now&quot;. The exception is when multiple controls do the exact same thing. For example, there are two links named &quot;card pattern&quot; on this page, but they both go to the same URL.</li>
+<li><strong>Make names easy to skim</strong><br>
+Concise, descriptive names are easier to quickly skim, and reduce the time required to process and comprehend each individual control. This is particularly important when many similar named items appear grouped together, such as row headers in a table, or options in a listbox. If all the names share a common string, such as dates in a month, putting the most unique, relevant information first will make them faster to skim. So &quot;13 April 2020&quot; rather than &quot;April 13, 2020&quot;.</li>
+</ul>
+<h3 id="when-should-you-override-the-visual-name%3F">When should you override the visual name?</h3>
+<p>Sometimes the desire to provide a unique, descriptive name to screen readers can conflict with an existing design, or others' opinions that are not entirely based in a desire for accessibility. In those cases, it can be tempting to accept less-than-ideal visual labels while modifying the accessible name behind the scenes. For example, a developer tasked with improving the accessibility of an online storefront with 10 &quot;Shop now&quot; links ends up putting a more descriptive <code>aria-label</code> on each while keeping the visual text the same:</p>
+<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token comment">&lt;!-- Don't do this --></span></span><br><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/shop/dresses<span class="token punctuation">"</span></span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Shop Dresses<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Shop Now<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></span></code></pre>
+<p>This is not ideal for a number of reasons, even though on first consideration it seems to improve the screen reader experience without the uncomfortable messiness of revisiting design. Unfortunately, creating separate visual and programmatic names causes its own new set of problems.</p>
+<p>To start with, not all screen reader users are blind. People with low vision who use some form of magnification or high contrast might use a screen reader as a supplement. Others with no visual impairments might prefer to listen to information rather than look at it for cognitive or sensory reasons. It is not all that unusual for someone to listen to the programmatic name with a screen reader while also looking at the visual label. If those two diverge, it could be jarring and cause confusion. Even fully blind screen reader users sometimes need to communicate with tech support or sighted colleagues, and separate content can make that difficult.</p>
+<p>Different names can also cause problems for someone using a voice control software like Dragon Naturally Speaking. A Dragon user confronted with 10 &quot;shop now&quot; links would not be able to take advantage of the unique but invisible &quot;shop dresses&quot; programmatic name. In WCAG 2.1 there is a new criterion, <a href="https://www.w3.org/WAI/standards-guidelines/wcag/new-in-21/#253-label-in-name-a">Label in Name</a> specifically for improving this experience.</p>
+<p>All this doesn't mean that there are never good reasons to create separate programmatic and visual names. In cases where the visual name is an icon or graphic, or the visual context is conveying information that cannot be easily captured as a text label, a custom programmatic name might make sense.</p>
+<p>A good time to use hidden text or an <code>aria-label</code> is when you have no visible text labeling an element, but where a visual user gets that information through context. One concrete example is for landmark regions of the page: you might have a main navigation menu at the visual top of the page, and a secondary sidebar navigation for something like content categories. The position and visual style of each navigation tells the user its importance, adding short accessible names like &quot;main&quot; and &quot;category&quot; communicate that same information programmatically. Some other examples of good use cases for hidden text, an <code>aria-label</code>, or other non-visual label include:</p>
+<ul>
+<li>Alt text for images</li>
+<li>Naming an icon button</li>
+<li>Naming a container widget like a dialog, feed, tabpanel, or list. If a heading or other text exists that visually labels the container, <code>aria-labelledby</code> is a better choice than <code>aria-label</code></li>
+</ul>
+<p>Practical accessibility doesn't always match ideal accessibility, and there will almost certainly be times when a design or content change just isn't happening, for whatever reason. In those cases, improving the accessible name is better than nothing. Just take care to include the visual label within the accessible name (ideally at the start), and try to write something that will not cause confusion when used together with the visual text.</p>
+<h2 id="tooltips%2C-placeholders%2C-names%2C-and-duplicate-announcements">Tooltips, placeholders, names, and duplicate announcements</h2>
+<p>A while back, I wrote a ~rant~ small article about some of the accessibility challenges of tooltips. One section dealt with whether the tooltip should form <a href="/writing/tooltips-in-wcag-21/#semantics">the name or the description</a> of the control it is attached to. Essentially, sometimes a tooltip will function visually as the accessible name (common with icon buttons) and sometimes it will provide additional descriptive text. The danger here is that using a <code>title</code> attribute to provide a tooltip that is the same as the control's accessible name can create <a href="https://www.scottohara.me/testing/title-attr/results.html">duplicate announcements</a>. Sometimes. It depends.</p>
+<p>The same inconsistent double announcements exist with a name and placeholder, although the specifics of which screen readers and browsers double up may differ. (Full disclosure: I only tested in a few screen readers to verify inconsistency, and testing results go out of date quickly in any case). Both the <code>title</code> and <code>placeholder</code> attributes will be used as fallback sources for the accessible name, so using them that way can be a tempting way to resolve the duplicate announcement problem. However, relying on either <code>title</code> or <code>placeholder</code> as the label for a control causes many, many accessibility problems that go beyond simple programmatic support.</p>
+<p>Seriously, don't do it:</p>
+<ul>
+<li><a href="https://www.24a11y.com/2017/the-trials-and-tribulations-of-the-title-attribute/">The Trials and Tribulations of the Title Attribute</a> by Scott O'Hara</li>
+<li><a href="https://www.mediacurrent.com/blog/dont-rely-title-attribute-accessibility-seo/">Don't Rely on the Title Attribute for Accessibility</a> by the mediacurrent team</li>
+<li><a href="https://developer.paciellogroup.com/blog/2013/01/using-the-html-title-attribute-updated/">Using the HTML title attribute – updated March 2020</a> by Steve Faulkner</li>
+<li><a href="https://www.smashingmagazine.com/2018/06/placeholder-attribute/">Don’t Use The Placeholder Attribute</a> by Eric Bailey</li>
+<li><a href="https://a11yproject.com/posts/placeholder-input-elements/">How-to: Use placeholder attributes</a> from the A11y Project</li>
+<li><a href="https://codepen.io/stevef/post/placeholder-the-piss-take-label">placeholder - the piss-take label</a> by Steve Faulkner</li>
+<li><a href="https://www.w3.org/WAI/GL/low-vision-a11y-tf/wiki/Placeholder_Research">Placeholder research</a> from the Web Accessibility Initiative's low vision accessibility task force</li>
+<li><a href="https://www.nngroup.com/articles/form-design-placeholders/">Placeholders in Form Fields Are Harmful</a> by Kate Sherwin</li>
+</ul>
+<h2 id="further-reading">Further reading</h2>
+<ul>
+<li><a href="https://adrianroselli.com/2020/01/my-priority-of-methods-for-labeling-a-control.html">Priority of methods for labeling a control</a> from Adrian Roselli</li>
+<li><a href="https://w3c.github.io/accname/">Accessible name and description comuptation</a></li>
+</ul>
+
     ]]></content>
   </entry>
 	
