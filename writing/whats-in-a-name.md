@@ -7,7 +7,7 @@ summary: "That which we call a combobox by any other name would have as many bug
 
 Often when we talk about accessibility problems, we end up talking about a number of different errors that all boil down to a missing accessible name: form fields without labels, images without `alt`s, icon buttons without readable text, and many more. A missing or incorrect accessible name in some form or other is right up there with poor color contrast in the list of [most common accessibility errors](https://webaim.org/projects/million/#wcag) across the web.
 
-More recently, a greater awareness of accessibility and an increase in the use of [ARIA attributes](https://www.w3.org/TR/wai-aria-1.2/) has resulted in a sort of reverse naming problem, where elements that cannot or should not be named get artifial names through ARIA. You see this in `<div>`'s and `<span>`'s with `aria-label`'s, or links and buttons whose programmatic name has been manually defined to be different than their visible text.
+More recently, a greater awareness of accessibility and an increase in the use of [ARIA attributes](https://www.w3.org/TR/wai-aria-1.2/) has resulted in a sort of reverse naming problem, where elements that cannot or should not be named get artificial names through ARIA. You see this in `<div>`'s and `<span>`'s with `aria-label`'s, or links and buttons whose programmatic name has been manually defined to be different than their visible text.
 
 While an improperly added name is a step up from a missing one, it will often give the illusion of accessibility while masking an underlying problem that remains unaddressed. Both forgetting a name entirely and adding too many names result from not understanding when and how to properly give an element a name.
 
