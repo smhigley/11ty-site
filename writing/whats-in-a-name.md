@@ -68,16 +68,16 @@ Name from encapsulation, using the `<label>` element:
 
 ```html
 <label>
-    This text will be the checkbox input's name
-    <input type="checkbox">
+  <input type="checkbox">
+  This text will be the checkbox input's name
 </label>
 ```
 
 Name from legend, which sounds epic but ultimately only refers to [the `<legend>` element](https://html.spec.whatwg.org/multipage/form-elements.html#the-legend-element):
 ```html
 <fieldset>
-    <legend>This text will name the fieldset element, as long as the legend is the first child</legend>
-    <!-- some form elements go here -->
+  <legend>This text will name the fieldset element, as long as the legend is the first child</legend>
+  <!-- some form elements go here -->
 </fieldset>
 ```
 
@@ -126,7 +126,7 @@ In contrast, roles that support both name from author and name from content will
 
 The resulting button would have an accessible name of "Cats are the best", and someone using a screen reader would not encounter the string "Dogs are the best". A name from author will always override name from content, when both are supported. 
 
-There is an [entire spec](https://www.w3.org/TR/accname-1.1/#mapping_additional_nd_te) governing the full set of steps that browsers must take to determine the accessible name and description for any nameable or describeable element. It is arcane and complex, and can generally be ignored by web developers. Here is a reduced summary of accessible name methods, ordered from what will override everything else (1) to what will only be used if no other methods are present (4):
+There is an [entire spec](https://www.w3.org/TR/accname-1.1/#mapping_additional_nd_te) governing the full set of steps that browsers must take to determine the accessible name and description for any nameable or describable element. It is arcane and complex, and can generally be ignored by web developers. Here is a reduced summary of accessible name methods, ordered from what will override everything else (1) to what will only be used if no other methods are present (4):
 1. `aria-labelledby`
 1. `aria-label`
 1. Native HTML methods: alt, the `<label>` element, text content
@@ -260,7 +260,7 @@ Seriously, don't do it:
 
 ## Further reading
 
-Thanks for reading this all the way to the end! I highly recommend also reading Adrian's naming article, and the AccName specification for particiularly intrepid and detail-oriented developers.
+Thanks for reading this all the way to the end! I highly recommend also reading Adrian's naming article, and the AccName specification for particularly intrepid and detail-oriented developers.
 
 - [Priority of methods for labeling a control](https://adrianroselli.com/2020/01/my-priority-of-methods-for-labeling-a-control.html) from Adrian Roselli
-- [Accessible name and description comuptation](https://w3c.github.io/accname/)
+- [Accessible name and description computation](https://w3c.github.io/accname/)
