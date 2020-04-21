@@ -163,7 +163,7 @@ The ARIA spec lists these only by role and not by element, but if you're not sur
 
 While the most common problem is for one of the "name required" roles to lack an accessible name, sometimes the reverse occurs and an element that [cannot be named](https://w3c.github.io/aria/#namefromprohibited) -- e.g. a `<div>` or `<span>` -- is given an `aria-label` or `aria-labelledby`. A couple cases where I've seen this happen include a `<span aria-label="some text">` wrapping a font icon, or an `aria-label` added to a div in a [card pattern](https://inclusive-components.design/cards/).
 
-Both of these examples come from good intentions, and an active attempt to create better accessibility. On the plus side, few extra `aria-label`'s on unnameable elements like this won't cause any negative side effects. The main danger is that the illusion of having given something an accessible name will obscure underlying issues. Usually the fix is to revisit which elements and roles should be used, or to reconsider what really needs a name.
+Both of these examples come from good intentions, and an active attempt to create better accessibility. On the plus side, a few extra `aria-label`'s on unnameable elements like this won't cause any negative side effects. The main danger is that the illusion of having given something an accessible name will obscure underlying issues. Usually the fix is to revisit which elements and roles should be used, or to reconsider what really needs a name.
 
 In the case of the font icon example, the best solution would likely change the element into an image with `role="img"`, which can then be given a name:
 

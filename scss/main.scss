@@ -129,14 +129,15 @@ body {
 }
 
 .post-footer {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #666;
   display: flex;
   justify-content: space-between;
   padding: 1em;
 
   a {
     align-items: center;
-    background-color: #ccc;
+    background-color: #eee;
+    border: 1px solid #666;
     border-radius: 3px;
     color: #000;
     display: flex;
