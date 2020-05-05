@@ -264,3 +264,4 @@ Thanks for reading this all the way to the end! I highly recommend also reading 
 
 - [Priority of methods for labeling a control](https://adrianroselli.com/2020/01/my-priority-of-methods-for-labeling-a-control.html) from Adrian Roselli
 - [Accessible name and description computation](https://w3c.github.io/accname/)
+- [What's in a Name](https://www.interactiveaccessibility.com/blog/whats-name), an article by the same name from Glen Walker
