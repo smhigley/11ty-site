@@ -34,7 +34,7 @@ Since that's a bit of a mouthful, what I mean is that the information in each ce
 ![A table of pandemic event listings including a concert, restaurant week, and hamilton the musical, all at home](/writing/assets/event-simple-table.png)
 
 **Example 2:**
-<img src="/writing/assets/event-simple-cards.png" alt="The same events, formatted as a semantic list and styled as cards." style="max-width:500px">
+<img src="/writing/assets/event-simple-cards.png" alt="The same events, formatted as a semantic list and styled as cards." style="width:500px">
 
 The first example makes it easy for users to skim times and locations by organizing the information as tabular data, and the second example makes it easier to skim event titles by using a simpler list structure with headings. Both are valid choices, depending on what is deemed most important for a user in the context in which the events are displayed.
 
