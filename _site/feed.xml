@@ -212,10 +212,10 @@ Start by putting yourself in your users' frame of mind</p>
     <content type="html"><![CDATA[
       <p>In an effort to convince everyone (who reads these blog posts) that I don't only obsess over tooltips, let's talk about another seemingly simple concept and make it unexpectedly complex. This time, we're tackling the play/pause toggle button.</p>
 <p>By a play/pause toggle, I mean this thing:</p>
-<p><img src="https://user-images.githubusercontent.com/3819570/67927236-ff256480-fbaf-11e9-8aec-55a4353bfe5b.jpg" alt="Screenshot of the youtube player with the play button highlighted. Maru is staring at a box in the backgroud."></p>
+<p><img src="/writing/assets/play-video.jpg" alt="Screenshot of the youtube player with the play button highlighted. Maru is staring at a box in the backgroud."></p>
 <p>i.e. that thing you click on (or key press/touch/switch/etc) to get your daily cute cat fix. You press it, it switches from a play icon to a pause icon, Maru jumps into a box, and bliss ensues.</p>
 <p>That's where I barge in and ask about that middle part -- switching from play to pause -- and ruin it all (sorry Maru). The thing is, a play/pause button is effectively a <a href="https://inclusive-components.design/toggle-button/">toggle button</a>, by which I mean it switches between two binary states based on user interaction. The established pattern for accomplishing this is by updating the <code>aria-pressed</code> state attribute, which accepts a true/false value.</p>
-<p><img src="https://user-images.githubusercontent.com/3819570/67974752-ded6c380-fc0a-11e9-98a4-5024af40d294.png" alt="two side by side bookmark buttons, one grey with aria-pressed set to false, and one blue with aria-pressed set to true"></p>
+<p><img src="/writing/assets/toggle-buttons.png" alt="two side by side bookmark buttons, one grey with aria-pressed set to false, and one blue with aria-pressed set to true"></p>
 <p>Play/pause buttons (and by extension, start/stop buttons) are the black sheep of the toggle button family. They generally do not have any <code>aria-pressed</code> on/off state defined, and instead change their accessible name from &quot;play&quot; to &quot;pause&quot; when activated. When I say &quot;generally,&quot; I mean this was true for the following sites, chosen for no formal reason other than that I happened to know they would contain media players:</p>
 <ul>
 <li><a href="https://www.youtube.com/">Youtube</a>: dynamically changes <code>aria-label</code></li>

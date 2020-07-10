@@ -9,13 +9,13 @@ In an effort to convince everyone (who reads these blog posts) that I don't only
 
 By a play/pause toggle, I mean this thing:
 
-![Screenshot of the youtube player with the play button highlighted. Maru is staring at a box in the backgroud.](https://user-images.githubusercontent.com/3819570/67927236-ff256480-fbaf-11e9-8aec-55a4353bfe5b.jpg)
+![Screenshot of the youtube player with the play button highlighted. Maru is staring at a box in the backgroud.](/writing/assets/play-video.jpg)
 
 i.e. that thing you click on (or key press/touch/switch/etc) to get your daily cute cat fix. You press it, it switches from a play icon to a pause icon, Maru jumps into a box, and bliss ensues.
 
 That's where I barge in and ask about that middle part -- switching from play to pause -- and ruin it all (sorry Maru). The thing is, a play/pause button is effectively a [toggle button](https://inclusive-components.design/toggle-button/), by which I mean it switches between two binary states based on user interaction. The established pattern for accomplishing this is by updating the `aria-pressed` state attribute, which accepts a true/false value.
 
-![two side by side bookmark buttons, one grey with aria-pressed set to false, and one blue with aria-pressed set to true](https://user-images.githubusercontent.com/3819570/67974752-ded6c380-fc0a-11e9-98a4-5024af40d294.png)
+![two side by side bookmark buttons, one grey with aria-pressed set to false, and one blue with aria-pressed set to true](/writing/assets/toggle-buttons.png)
 
 Play/pause buttons (and by extension, start/stop buttons) are the black sheep of the toggle button family. They generally do not have any `aria-pressed` on/off state defined, and instead change their accessible name from "play" to "pause" when activated. When I say "generally," I mean this was true for the following sites, chosen for no formal reason other than that I happened to know they would contain media players:
 
