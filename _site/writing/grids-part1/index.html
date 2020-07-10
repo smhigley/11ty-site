@@ -1,0 +1,171 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="alternate" type="application/rss+xml" title="Sarah Higley" href="https://sarahmhigley.com/feed.xml" />
+  <title>Grids Part 1: To grid or not to grid | Sarah Higley</title>
+  <link rel="canonical" href="https://sarahmhigley.com/writing/grids-part1/" />
+  <link rel="icon" type="image/png" href="https://sarahmhigley.com/assets/avatar-round.png">
+  <link rel="preload" href="https://fonts.gstatic.com/s/josefinslab/v10/lW-5wjwOK3Ps5GSJlNNkMalnqg6vBMjoPg.woff2" as="font" type="font/woff2" crossorigin>
+
+  <meta property="og:site_name" content="Sarah Higley" />
+  <meta property="og:title" content="Grids Part 1: To grid or not to grid | Sarah Higley" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sarahmhigley.com/writing/grids-part1/" />
+  <meta name="twitter:creator" content="@codingchaos" />
+  <meta property="og:image" content="https://sarahmhigley.com/assets/avatar.png" />
+  <meta name="twitter:image" content="https://sarahmhigley.com/assets/avatar.png" />
+  <meta property="og:image:alt" content="Illustrated avatar of Sarah" />
+  <meta name="twitter:image:alt" content="Illustrated avatar of Sarah" />
+
+  
+    <meta name="description" content="The beginning of a series on interactive grid accessibility, starting with a look at when you need a grid, a table, or neither." />
+    <meta name="twitter:description" content="The beginning of a series on interactive grid accessibility, starting with a look at when you need a grid, a table, or neither." />
+    <meta property="og:description" content="The beginning of a series on interactive grid accessibility, starting with a look at when you need a grid, a table, or neither." />
+  
+
+  <style type="text/css">/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;font-family:Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2b2b2b}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:#d4d0ab}.token.punctuation{color:#fefefe}.token.property,.token.tag,.token.constant,.token.symbol,.token.deleted{color:#ffa07a}.token.boolean,.token.number{color:#00e0e0}.token.selector,.token.attr-name,.token.string,.token.char,.token.builtin,.token.inserted{color:#abe338}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string,.token.variable{color:#00e0e0}.token.atrule,.token.attr-value,.token.function{color:gold}.token.keyword{color:#00e0e0}.token.regex,.token.important{color:gold}.token.important,.token.bold{font-weight:bold}.token.italic{font-style:italic}.token.entity{cursor:help}@media screen and (-ms-high-contrast: active){code[class*=language-],pre[class*=language-]{color:windowText;background:window}:not(pre)>code[class*=language-],pre[class*=language-]{background:window}.token.important{background:highlight;color:window;font-weight:normal}.token.atrule,.token.attr-value,.token.function,.token.keyword,.token.operator,.token.selector{font-weight:bold}.token.attr-value,.token.comment,.token.doctype,.token.function,.token.keyword,.token.operator,.token.property,.token.string{color:highlight}.token.attr-value,.token.url{font-weight:normal}}@font-face{font-family:"Josefin Slab";font-style:normal;font-weight:400;font-display:optional;src:local("Josefin Slab Regular"),local("JosefinSlab-Regular"),url(https://fonts.gstatic.com/s/josefinslab/v10/lW-5wjwOK3Ps5GSJlNNkMalnqg6vBMjoPg.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}html{font-size:calc(1em + 0.5vw)}body{font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;word-wrap:break-word}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-family:"Josefin Slab",Garamond,serif;font-weight:bold;margin:0 0 1.5rem}h1,.h1{font-size:2.5rem;line-height:1.15}h2,.h2{font-size:1.75rem;line-height:1.2}h3,.h3{font-size:1.5rem;line-height:1.2}h4,.h4{font-size:1.15rem}a{color:#3c128f;text-decoration:underline}a:focus{outline:3px dashed #3c128f;outline-offset:3px}blockquote{border-left:4px solid #ccc;font-size:1.1rem;line-height:1.8;margin:1.5rem 0;padding:.5rem 2rem}blockquote p:last-child{margin-bottom:0}code{background:#eee;border-radius:.2em;padding:.1em .2em}img{max-width:100%}figure{background:#eee;margin:0 0 1.5rem;padding:.5rem;width:max-content;max-width:100%}figcaption{font-size:.8em}ul,ol,p,pre,.table-wrapper{margin:0 0 1.5rem}ul li,ol li{margin:0 0 .5rem}.table-wrapper{max-width:100%;overflow-x:scroll}.support-table{border:1px solid #9d9d9d;border-collapse:collapse;border-spacing:0}.support-table tr{background-color:#fff;border-bottom:1px solid #9d9d9d}.support-table tr:nth-child(even){background-color:#f4f6f7}.support-table th{text-align:left}.support-table th,.support-table td{border-left:1px solid #9d9d9d;padding:.5em 1em}.support-table th:first-child,.support-table td:first-child{border-left:0}.support-table .false{background-color:#ffc3bf}.support-table .true{background-color:#caf4c6}body{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}*,*::before,*::after{box-sizing:inherit}.container{display:flex;min-height:100vh}@media screen and (max-width: 800px){.container{display:block}}.header{flex:0 0 260px;border-right:3px solid #28164a;min-height:100%;outline:10px solid rgba(60,18,143,.5);padding:1em}@media screen and (max-width: 800px){.header{border-bottom:3px solid #28164a;border-right:none;margin-bottom:1.5rem}}.profile-info{border-bottom:1px solid #ccc;font-family:"Josefin Slab",Garamond,serif;font-size:1.5rem;line-height:1.2;margin-bottom:1rem;padding-bottom:1rem;text-transform:uppercase;text-align:center}.profile-info img{display:block;margin:0 auto;max-width:250px;width:100%}.main{flex:1 1 auto;max-width:1000px;overflow-x:auto;padding:1em 1em 1em 2.5em}.main-nav ul{list-style-type:none;margin:0;padding:0}@media screen and (max-width: 800px){.main-nav ul{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}}.main-nav li{margin:0}@media screen and (max-width: 800px){.main-nav li{margin:0 .5rem}}.main-nav a{color:#000;display:inline-block;font-weight:bold;overflow:hidden;padding:0 5px 6px;position:relative;text-decoration:none;text-transform:uppercase}.main-nav a::after{content:"";position:absolute;left:0;bottom:0;width:200%;height:5px;background:#ccc;background:linear-gradient(90deg, #3c128f 0%, #3c128f 50%, #ccc 50%, #ccc 100%);transform:translateX(-50%);transition:transform .3s ease-out}.main-nav a:hover::after,.main-nav a.active::after{transform:translateX(0)}.item-list{list-style-type:none;padding:0}.item-list .meta{font-size:.8rem;margin:0 0 .5rem}.meta{display:block;color:#666;margin:-1.5rem 0 1.5rem}.post-footer{border-top:1px solid #666;display:flex;justify-content:space-between;padding:1em}.post-footer a{align-items:center;background-color:#eee;border:1px solid #666;border-radius:3px;color:#000;display:flex;padding:.5em 1em .5em 1.25em;text-decoration:none}.post-footer a:hover,.post-footer a:focus{background-color:#28164a;color:#fff}.post-footer a::before{content:"";border-left:2px solid currentColor;border-bottom:2px solid currentColor;display:inline-block;height:.5em;transform:translateX(-0.25em) rotate(45deg);width:.5em}.post-footer a.top-link::before{transform:translateX(-0.4em) rotate(135deg)}/*# sourceMappingURL=site.css.map */
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="profile-info">
+        <img src="/assets/sarah-avatar.svg" role="img" alt="Illustrated avatar of Sarah with a cat" class="profile-pic">
+        Sarah Higley
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/" >Home</a></li>
+          <li><a href="/writing" class="active" aria-current="page">Writing</a></li>
+          <li><a href="/speaking"  >Speaking</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title" id="page-top">Grids Part 1: To grid or not to grid</h1>
+
+      
+  <div class="meta">July 10, 2020</div>
+  <p>In my day-to-day work, I find myself talking to a lot of people who have a lot of accessibility problems with different tables and grids. Grids are right up there with <a href="https://sarahmhigley.com/writing/select-your-poison/">combobox woes</a> and <a href="https://sarahmhigley.com/writing/tooltips-in-wcag-21/">tooltip mishaps</a> in causing an outsize amount of pain to developers who are trying to get accessibility right.</p>
+<p>Part of this flood of grid accessibility questions might be caused by a quirk of where I happen to work, but I don't think that's the only reason tables and grids are over-represented in accessibility bugs. The semantics for tables and grids are relatively complex, and can unexpectedly break due to <a href="https://sarahmhigley.com/writing/roles-and-relationships/">extra <code>&lt;div&gt;</code>s</a> or CSS display values; grids can have some pretty complex keyboard interaction, and good accessibility documentation is scarce; the visual layout does not play well with mobile viewports or high levels of zoom; most out-of-the-box solutions for things like row selection, sorting, filtering, and virtualization break the screen reader experience. Actually, most out-of-the-box grid components out there have pretty poor accessibility across the board -- even the ones that claim otherwise. All of these combine to make it difficult to get tables and grids right.</p>
+<p>So, partly for fun and partly in a futile attempt to reduce my daily email load, let's use a series of posts to take a deeper look at some of the ways tables and grids can go wrong:</p>
+<ol>
+<li>Using a grid when a table is needed, or vice versa</li>
+<li>Semantics and keyboard navigation</li>
+<li>Small viewports, zoom, and other visual accessibility issues</li>
+<li>Sorting and filtering</li>
+<li>Row selection</li>
+<li>Virtualization (i.e. loading rows on demand in a very large grid or table)</li>
+</ol>
+<p>This first post is going to cover what should be the first question asked when creating a table or a grid, which is: <em>should</em> I be creating a table or grid?</p>
+<h2 id="what-is-a-table%2C-really%3F">What is a table, really?</h2>
+<figure>
+  <img src="/writing/assets/modern-table-furniture.jpg" alt="That weird-looking modern table -- the furniture -- that everyone seems to love.">
+  <figcaption>I want a version of the <a href="https://isthisasandwich.netlify.app">sandwich app</a>, but for tables.</figcaption>
+</figure>
+<p>The minimum requirement for both tables and grids is that they contain information whose structure is characterized by a two-dimensional relationship.</p>
+<p>Since that's a bit of a mouthful, what I mean is that the information in each cell of a table gains additional context from its relationship to both a row and a column. For example, here are two different ways to present the same information, one of which delivers a two-dimensional relationship, and one does not:</p>
+<p><strong>Example 1:</strong><br>
+<img src="/writing/assets/event-simple-table.png" alt="A table of pandemic event listings including a concert, restaurant week, and hamilton the musical, all at home"></p>
+<p><strong>Example 2:</strong><br>
+<img src="/writing/assets/event-simple-cards.png" alt="The same events, formatted as a semantic list and styled as cards." style="max-width:500px"></p>
+<p>The first example makes it easy for users to skim times and locations by organizing the information as tabular data, and the second example makes it easier to skim event titles by using a simpler list structure with headings. Both are valid choices, depending on what is deemed most important for a user in the context in which the events are displayed.</p>
+<p>The important thing is that if a design decision is made to structure information as a table to surface column and row relationships, then it needs to be semantically marked up as a table to provide that same experience to screen reader users.</p>
+<p>Here's another example of a good use of a table; in this case, the information would not be nearly as understandable in a list:</p>
+<p><img src="/writing/assets/inventory-table-simple.png" alt="A table of book inventory data, including Between the World and Me, So you want to talk about race, The color of law, and How to be an antiracist."></p>
+<p>I've actually used tables on this blog previously to display browser and screen reader support information in the <a href="https://sarahmhigley.com/writing/playing-with-state/#name-changes">Playing with State</a> article (this table has both column and row headers):</p>
+<p><img src="/writing/assets/name-support-table.png" alt="A screenshot of the support table used in the linked Playing with State post"></p>
+<p>So, in essence: a table is a method of displaying information to enable the easy consumption of two-dimensional relationships within that information.</p>
+<h2 id="what-is-a-grid%3F">What is a Grid?</h2>
+<p>All of the requirements around two-dimensional information structure that apply to a table also apply to a grid, but with the addition of interactivity. Visually, tables and grids can look the same or very similar, and both should support consuming information in the same way.</p>
+<p>Grids differ from tables in how they support interactivity: all cells are focusable and keyboard navigable, and the general idea is that many if not all of the cells will support some type of user action.</p>
+<p>Possible user actions within a grid could include editing a cell value (common in a spreadsheet), selecting or deselecting a cell, and reordering, inserting, and deleting rows or columns. If most of the cells are not interactive, then it seems likely that a table would be a better choice than a grid.</p>
+<p>Grids should also be a single stop in the tab order regardless of how many interactive elements they contain, since keyboard navigation is handled by the author by listening to arrow keys, home, end, page up, page down, etc. For that reason, keyboard navigation within a grid can be much more efficient than tabbing between focusable elements within a table.</p>
+<p>These semantic and interaction differences between a table pattern and a grid pattern are only really relevant to keyboard and screen reader users; there is no meaningful change in visuals or pointer interaction when switching from one to the other.</p>
+<p>An editable spreadsheet is a very straightforward use case for a grid. Sort of like an Excel-lite, like this spreadsheet for entering expenses:</p>
+<p><img src="/writing/assets/expense-grid-editable.png" alt="A grid with two rows of pre-pandemic travel expenses, one row of post-pandemic home office expenses, and one empty row with the cursor in the first cell"></p>
+<p>The following example of a grid for managing virtual machines doesn't involve editing cell values, but does provide multiple actions per row:</p>
+<p><img src="/writing/assets/vm-actions-grid.png" alt="A grid with two Linux VMs and one Windows VM, each with a start or stop button, an edit button, and a delete button."></p>
+<p>There are even some pretty creative uses you can put to a grid, such as an online board game like bingo or chess. Cordelia McGee-Tubb explored this in her article about <a href="https://www.24a11y.com/2019/building-an-accessible-bingo-web-app/">building an accessible bingo web app</a>.</p>
+<h2 id="what-is-not-a-grid">What is not a grid</h2>
+<p>Back in ye olde days of the web, before CSS flexbox and grid, tables were sometimes used for layout since they had excellent cross-browser support and made complex layouts relatively easy to code. This littered the web (and email inboxes) with semantic <code>&lt;table&gt;</code>s that did not contain tabular data, and created some pretty long-lived headaches for browser and screen reader vendors.</p>
+<p>Luckily, those days are behind us, and now no developers ever misuse semantic HTML elements or ARIA roles.</p>
+<p><em>coughs</em>. What's that? That's not true? Ah well, guess I still need to finish this article and go to work tomorrow.</p>
+<p>So what does misusing a grid look like in modern web development, now that layout tables are passé? Generally the not-grid grids I come across fall into two general categories:</p>
+<ol>
+<li>It's not all that interactive, and should probably be a table</li>
+<li>It's highly interactive, but not tabular data. It should be something else entirely.</li>
+</ol>
+<p>Sometimes there seems to be the misconception that if a table has <em>any</em> interactivity, it must be a grid. Tables can be sortable, filterable, virtualized, and can contain links and buttons without needing to be a grid. We'll go a bit more into how to choose a table vs. a grid in the next section, but for now, remember: tables can be your friend too.</p>
+<p>Highly interactive sets of items that do not have meaningful row and column relationships are also not grids. This is still true even if they are visually laid out in rows and columns, if those rows and columns do not provide meaning. A good example is this interface that allows users to pick from a list of apps: it is visually laid out in a grid pattern, but is not semantically a grid.</p>
+<figure>
+  <img src="/writing/assets/teams-apps-list.png" alt="A screenshot of the Apps tab in Microsoft Teams, with a list of available apps laid out visually in a grid pattern.">
+  <figcaption>An excellent giveaway is that as you change the viewport width, the number of columns changes.</figcaption>
+</figure>
+<p>Then there's the unfortunate wording and example in the ARIA Authoring Practices about <a href="https://w3c.github.io/aria-practices/#grid">&quot;layout grids&quot;</a> that seems to support this misuse. I'm not going to go into it because Adrian Roselli has already written an article about it, provocatively called <a href="https://adrianroselli.com/2020/07/aria-grid-as-an-anti-pattern.html">ARIA Grid as an Anti-Pattern</a>. Suffice it to say that the rationale seems pretty similar to the layout tables of yore: it identifies a pattern that is difficult to implement with the tools we have today, and then decides the best solution is to pretend that pattern is actually a table (or grid) (spoilers: it is not).</p>
+<p>OK, now that I've burned that bridge, let's move on to the fun part --</p>
+<h2 id="when-do-you-use-a-grid-vs.-a-table%2C-and-why%3F">When do you use a grid vs. a table, and why?</h2>
+<p>The examples above were all pretty straightforward: a data table with no interactive children should pretty clearly be a table, and an editable spreadsheet absolutely needs to be a grid. There's a fair amount of grey area in between, though. For example, before reading any further ask yourself whether you'd choose a table or a grid for each of these examples:</p>
+<ol>
+<li>A table of data primarily for reading, but each row has a few actions, e.g. view details / delete</li>
+<li>A table that is primarily static content, but with multiple links per row, and over 50 rows</li>
+<li>A table whose primary purpose is to select rows, but has otherwise static, read-only data</li>
+</ol>
+<p>It's a bit of an unfair question, since both table and grid are valid answers to each of those cases, depending on other factors. I like to split those factors into two categories: purpose and context.</p>
+<h3 id="purpose">Purpose</h3>
+<p>Earlier, I mentioned that the number of interactive cells might indicate whether a table should be a grid or vice versa. That's not wrong, but there is no magic threshold where because you determine that more than 50% of cells are interactive, it must be a grid. Instead, I like to think about whether the primary purpose of the UI control is:</p>
+<p><strong>Reading:</strong><br>
+If the primary purpose is for the user to consume and understand tabular information, then it leans towards being a table. This is true even if it contains many links or buttons.</p>
+<p><strong>Interacting:</strong><br>
+If the primary purpose is to provide an interface for the user to edit, manipulate, or otherwise interact with the content it presents, then it leans towards being a grid. Even if most of the cells are static content.</p>
+<p>Using this metric, the first two theoretical examples above (the data table with view/delete buttons, and the large table with multiple links) would lean towards being implemented as tables, and the third example (where the user is expected to select rows of static data) would lean towards being a grid.</p>
+<p>Basing table vs. grid roles on primary purpose is more than just being pedantic about semantics. If a control is primarily intended to enable a user action or set of actions, it's more likely that a user will spend most of their time moving between and interacting with controls within the grid. In that case, efficiency in moving keyboard focus has a high priority.</p>
+<p>If the primary purpose is consuming information, then a user is less likely to need to shift keyboard focus frequently, and simplicity and discoverability matter more than keyboard efficiency.</p>
+<h3 id="context">Context</h3>
+<p>Table and grid controls don't exist in a vacuum (unless you get so fed up you chuck your computer into space). The surrounding UI, the type of interface you're building, and the ecosystem it lives in will all contribute to user expectations.</p>
+<p>For example, if you're building an admin interface for managing a store, you may find your app contains many highly interactive grids (inventory, employee management, finances, etc.). Then imagine a single view within that app contains a grid that is perhaps less interactive -- let's imagine a table of user accounts, each with a single &quot;Edit&quot; button.</p>
+<p>Even if that example seems like a good fit for a table role when considered on its own, in context there's a strong case for using a grid to preserve consistency and predictability across the entire app.</p>
+<p>Surrounding context is still important if the table or grid in question is the only control of its type. If the context is more like an app than a website in that it is highly interactive and uses other <a href="https://w3c.github.io/aria/#managingfocus">composite widgets</a> like menus, tabs, and trees, then a grid is less likely to confuse a user. On the other hand, a lone grid on a typical restaurant website is much more likely to surprise and confuse people.</p>
+<p>Use of a javascript framework like React or Angular, or client-side routing are not good indicators of app vs. website. Much like table vs. grid, web app vs. web site is all about whether the primary purpose is consuming static content, or enabling rich user interaction.</p>
+<p>Another piece of context to examine is how long and how frequently your average user expects to interact with your interface. The more time an average user spends using a particular interface, the more they are likely to care about how quickly they can navigate it.</p>
+<p>Grids have a steeper learning curve than tables and more support quirks across assistive tech, but they can also be significantly more efficient once learned (if built well). Table semantics have very robust support across screen readers and just about everyone knows how to mash the tab key, but a large table with many tab stops can really slow down keyboard-only navigation within it.</p>
+<p>A web app for managing store data like the one imagined earlier would likely have users who visit daily, perhaps for years. Requiring users to spend some time learning how to use grids, trees, tabs, menus, and custom keyboard shortcuts is a reasonable choice in exchange for long-term efficiency. In an app like that, any table with a significant number of interactive elements could lean towards becoming a grid.</p>
+<p>No one expects a rogue grid on your public-facing store website, though. Maybe make that a table, even if it has a lot of interactive children.</p>
+<p>Also of note: just because Gmail, Excel Online, or an online tax software (to pick a random example that has nothing to do with my weekend plans) chooses to use a grid (or menu, tree, etc.), it does not mean the same choice makes sense elsewhere.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Tables and grids just want to be your friends, so long as you approach them for the right reasons.</p>
+<p>Consider a table when:</p>
+<ul>
+<li>Displaying tabular data</li>
+<li>The primary purpose is for the user to read that data</li>
+<li>Discoverability and a low barrier to entry are more important than efficiency</li>
+<li>There are not too many interactive children, or the context is primarily other static content</li>
+</ul>
+<p>Consider a grid when:</p>
+<ul>
+<li>Displaying tabular data</li>
+<li>The primary purpose is to enable user interaction</li>
+<li>Efficiency is more important than a low barrier to entry</li>
+<li>There are many interactive children, and the context is primarily interactive and app-like</li>
+</ul>
+<p>And that's it on tables vs. grids! Next up is a more technical look at semantics and keyboard interaction within interactive grids.</p>
+<h2 id="further-reading">Further reading</h2>
+<ul>
+<li><a href="https://w3c.github.io/aria-practices/#grid">Grid description in the APG (beware the &quot;layout grid&quot;)</a></li>
+<li><a href="https://www.24a11y.com/2019/building-an-accessible-bingo-web-app/">Building an accessible bingo web app</a> - Cordelia McGee-Tubb</li>
+<li><a href="https://adrianroselli.com/2017/11/hey-its-still-ok-to-use-tables.html">Hey, It’s Still OK to Use Tables</a> and <a href="https://adrianroselli.com/2020/07/aria-grid-as-an-anti-pattern.html">ARIA Grid As an Anti-Pattern</a> - Adrian Roselli</li>
+</ul>
+
+
+  <div class="post-footer">
+    <a href="/writing" class="back-link">All Posts</a>
+    <a href="#page-top" class="top-link">Back to top</a>
+  </div>
+
+    </main>
+  </div>
+</body>
+</html>
