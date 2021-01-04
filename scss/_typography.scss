@@ -17,8 +17,8 @@ body {
   word-wrap: break-word;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+h1, h2, h3, h5,
+.h1, .h2, .h3, .h5 {
   font-family: "Josefin Slab", Garamond, serif;
   font-weight: bold;
   margin: 0 0 1.5rem;
@@ -40,7 +40,12 @@ h3, .h3 {
 }
 
 h4, .h4 {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+h6, .h6 {
+  font-weight: bold;
 }
 
 a {
