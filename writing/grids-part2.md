@@ -185,10 +185,10 @@ You may already have noticed that these are identical to the ARIA table roles, w
 
 The easiest way to create a grid is to use HTML table elements, and add `role="grid"` to the top-level `<table>`. No other roles are needed if the table is otherwise semantically correct and the CSS `display` properties are not overridden.
 
-If that is not the case, all other roles must also be explicitly declared, just as with table semantics. Using `rowgroup` is optional for both tables and grids, and can optionally be used to group header rows vs. body rows. It can also be used to group related rows within the table or grid body.
+If that is not the case, all other roles must also be explicitly declared, just as with table semantics. Using `rowgroup` is optional for both tables and grids, and can be used to group header rows vs. body rows. It can also be used to group related rows within the table or grid body.
 
 <figure>
-  <img src="/writing/assets/grids-grouped-rows.png" alt="Screenshot of table of aquarium animals, this time with grouped mammal and cephalopod categories">
+  <img src="/writing/assets/grids-grouped-rows.png" alt="Screenshot of table of aquarium animals, this time with two groups of rows under mammal and cephalopod categories">
   <figcaption>An example of when you might use named rowgroups within a table or grid body</figcaption>
 </figure>
 
