@@ -35,6 +35,15 @@ body {
   }
 }
 
+.header-minimal {
+  border-bottom: 3px solid #28164a;
+  padding: 1em;
+
+  .back-link {
+    width: max-content;
+  }
+}
+
 .profile-info {
   border-bottom: 1px solid #ccc;
   font-family: "Josefin Slab", Garamond, serif;
@@ -57,6 +66,10 @@ body {
   flex: 1 1 auto;
   max-width: 1000px;
   overflow-x: auto;
+  padding: 1em 1em 1em 2.5em;
+}
+
+.main-minimal {
   padding: 1em 1em 1em 2.5em;
 }
 
@@ -160,34 +173,35 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 1em;
+}
 
-  a {
-    align-items: center;
-    background-color: #eee;
-    border: 1px solid #666;
-    border-radius: 3px;
-    color: #000;
-    display: flex;
-    padding: 0.5em 1em 0.5em 1.25em;
-    text-decoration: none;
+.back-link,
+.top-link {
+  align-items: center;
+  background-color: #eee;
+  border: 1px solid #666;
+  border-radius: 3px;
+  color: #000;
+  display: flex;
+  padding: 0.5em 1em 0.5em 1.25em;
+  text-decoration: none;
 
-    &:hover, &:focus {
-      background-color: #28164a;
-      color: #fff;
-    }
-
-    &::before {
-      content: "";
-      border-left: 2px solid currentColor;
-      border-bottom: 2px solid currentColor;
-      display: inline-block;
-      height: 0.5em;
-      transform: translateX(-0.25em) rotate(45deg);
-      width: 0.5em;
-    }
-
-    &.top-link::before {
-      transform: translateX(-0.4em) rotate(135deg);
-    }
+  &:hover, &:focus {
+    background-color: #28164a;
+    color: #fff;
   }
+
+  &::before {
+    content: "";
+    border-left: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    display: inline-block;
+    height: 0.5em;
+    transform: translateX(-0.25em) rotate(45deg);
+    width: 0.5em;
+  }
+}
+
+.top-link::before {
+  transform: translateX(-0.4em) rotate(135deg);
 }

@@ -53,7 +53,7 @@ The conventional wisdom is to not change the name of a control while the user is
 Using this [button code sample](https://jsfiddle.net/czsnj9xp/show), I tested whether name changes and `aria-pressed` changes were announced using the following screen reader/browser combinations, and using a few different methods of defining the accessible name:
 
 <div class="table-wrapper">
-  <table class="support-table">
+  <table class="table support-table">
     <thead>
       <tr>
         <th></th>

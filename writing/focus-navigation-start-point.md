@@ -98,7 +98,7 @@ Tests were run against this (extremely simple and not otherwise very accessible)
 ### Results
 
 <div class="table-wrapper">
-  <table class="support-table">
+  <table class="table support-table">
 <thead>
 <tr>
 <th>Screen Reader/AT</th>
