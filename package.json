@@ -2,20 +2,26 @@
   "name": "smhigley-site",
   "version": "1.0.0",
   "description": "Personal website of Sarah Higley",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:smhigley/11ty-site.git"
+  },
+  "author": {
+    "name": "Sarah Higley",
+    "url": "https://sarahmhigley.com/"
+  },
   "scripts": {
     "build": "eleventy",
     "compile": "npm run sass && eleventy",
     "sass": "sass scss/main.scss assets/site.css --style=compressed",
     "serve": "eleventy --serve",
-    "start": "concurrently 'npm run sass -- --watch' 'npm run serve'"
-  },
-  "dependencies": {
-    "normalize.css": "^8.0.1"
+    "start": "concurrently 'npm run sass -- --watch' 'npm run serve'",
+    "watch": "eleventy --watch"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.10.0",
-    "@11ty/eleventy-plugin-rss": "^1.0.6",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^2.0.3",
+    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy-plugin-rss": "^1.1.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.6",
     "concurrently": "^5.3.0",
     "markdown-it": "^9.1.0",
     "markdown-it-anchor": "^5.2.4",
