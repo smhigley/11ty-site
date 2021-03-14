@@ -27,5 +27,8 @@
     "markdown-it-anchor": "^5.2.4",
     "sass": "^1.22.9"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
 }

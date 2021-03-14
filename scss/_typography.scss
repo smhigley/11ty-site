@@ -49,19 +49,19 @@ h6, .h6 {
 }
 
 a {
-  color: #3c128f;
+  color: var(--link);
   text-decoration: underline;
 
   &:focus {
-    outline: 3px dashed #3c128f;
+    outline: 3px dashed var(--link);
     outline-offset: 3px;
   }
 }
 
 blockquote {
-  border-left: 4px solid #ccc;
+  border-left: 4px solid var(--accent-faded);
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.6;
   margin: 1.5rem 0;
   padding: 0.5rem 2rem;
 
@@ -71,7 +71,7 @@ blockquote {
 }
 
 code {
-  background: #eee;
+  background: var(--background-faded);
   border-radius: 0.2em;
   padding: 0.1em 0.2em;
 }
@@ -81,7 +81,7 @@ img {
 }
 
 figure {
-  background: #eee;
+  background: var(--background-faded);
   margin: 0 0 1.5rem;
   padding: 0.5rem;
   width: max-content;
@@ -113,20 +113,20 @@ ul, ol {
 }
 
 .table {
-  border: 1px solid #9d9d9d;
+  border: 1px solid var(--border);
   border-collapse: collapse;
   border-spacing: 0;
 }
 
 .table tr,
 .table .tr {
-  background-color: #fff;
-  border-bottom: 1px solid #9d9d9d;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
 }
 
 .table tr:nth-child(even),
 .table .tr:nth-child(even) {
-  background-color: #f4f6f7;
+  background-color: var(--background-faded);
 }
 
 .table th,
@@ -138,7 +138,7 @@ ul, ol {
 .table .th,
 .table td,
 .table .td {
-  border-left: 1px solid #9d9d9d;
+  border-left: 1px solid var(--border);
   padding: .5em 1em;
 }
 
@@ -150,9 +150,9 @@ ul, ol {
 }
 
 .support-table .false {
-  background-color: #ffc3bf;
+  background-color: var(--background-failure);
 }
 
 .support-table .true {
-  background-color: #caf4c6;
+  background-color: var(--background-success);
 }

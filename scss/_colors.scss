@@ -1,0 +1,64 @@
+:root {
+  /* Main site colors */
+  --purple: #3c128f;
+  --dark-purple: #28164a;
+  --light-purple: #9d87ca;
+
+  --off-black: #3d334d;
+  --dark-grey: #666;
+  --grey: #9d9d9d;
+  --light-grey: #ccc;
+  --off-white: #ebecec;
+
+  /* Supplementary colors */
+  --dark-green: #03483e;
+  --green: #066F5E;
+  --light-green: #caf4c6;
+  --dark-red: #4d010f;
+  --red: #8F1226;
+  --light-red: #f1cdd3;
+
+  /* Main theme colors */
+  --accent: var(--purple);
+  --accent-light: var(--light-purple);
+  --accent-faded: var(--light-grey);
+
+  --background: #fff;
+  --header-background: #fff;
+  --background-inverse: var(--dark-purple);
+  --background-faded: var(--off-white);
+  --background-success: var(--light-green);
+  --background-failure: var(--light-red);
+  --border: var(--dark-grey);
+  --border-accent: var(--dark-purple);
+
+  --text: #000;
+  --text-inverse: #fff;
+  --text-faded: var(--dark-grey);
+  --text-success: var(--green);
+  --text-failure: var(--red);
+  --link: var(--purple);
+
+  /* Dark theme colors */
+  @media (prefers-color-scheme: dark) {
+    --accent: var(--light-purple);
+    --accent-light: var(--dark-purple);
+    --accent-faded: var(--dark-grey);
+
+    --background: #131313;
+    --header-background: #1a1324;
+    --background-inverse: var(--light-purple);
+    --background-faded: var(--off-black);
+    --background-success: var(--dark-green);
+    --background-failure: var(--dark-red);
+    --border: var(--dark-grey);
+    --border-accent: #000;
+
+    --text: var(--off-white);
+    --text-inverse: #000;
+    --text-faded: var(--light-grey);
+    --text-success: var(--green);
+    --text-failure: var(--red);
+    --link: var(--light-purple);
+  }
+}

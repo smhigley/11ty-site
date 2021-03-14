@@ -1,11 +1,14 @@
 @import '../node_modules/normalize.css/normalize';
 @import 'prism-a11y-dark.scss';
 @import '_typography';
+@import '_colors';
 
 body {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  background-color: var(--background);
+  color: var(--text);
 }
 
 *, *::before, *::after {
@@ -23,20 +26,21 @@ body {
 
 .header {
   flex: 0 0 260px;
-  border-right: 3px solid #28164a;
+  border-right: 3px solid var(--border-accent);
   min-height: 100%;
-  outline: 10px solid rgba(#3c128f, 0.5);
+  outline: 10px solid var(--accent-light);
   padding: 1em;
+  background-color: var(--header-background);
 
   @media screen and (max-width: 800px) {
-    border-bottom: 3px solid #28164a;
+    border-bottom: 3px solid var(--border-accent);
     border-right: none;
     margin-bottom: 1.5rem;
   }
 }
 
 .header-minimal {
-  border-bottom: 3px solid #28164a;
+  border-bottom: 3px solid var(--border-accent);
   padding: 1em;
 
   .back-link {
@@ -45,7 +49,7 @@ body {
 }
 
 .profile-info {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--accent-faded);
   font-family: "Josefin Slab", Garamond, serif;
   font-size: 1.5rem;
   line-height: 1.2;
@@ -96,7 +100,7 @@ body {
   }
 
   a {
-    color: #000;
+    color: var(--text);
     display: inline-block;
     font-weight: bold;
     overflow: hidden;
@@ -112,8 +116,8 @@ body {
       bottom: 0;
       width: 200%;
       height: 5px;
-      background: #ccc;
-      background: linear-gradient(90deg, #3c128f 0%, #3c128f 50%, #ccc 50%, #ccc 100%);
+      background: var(--accent-faded);
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 50%, var(--accent-faded) 50%, var(--accent-faded) 100%);
       transform: translateX(-50%);
       transition: transform 0.3s ease-out;
     }
@@ -137,21 +141,21 @@ body {
 
 .meta {
   display: block;
-  color: #666;
+  color: var(--text-faded);
   margin: -1.5rem 0 1.5rem;
 }
 
 .note {
   display: block;
-  background-color: #d4e3e1;
-  border-left: 4px solid #066F5E;
+  background-color: var(--background-faded);
+  border-left: 4px solid var(--text-success);
   font-size: 1.1rem;
   margin: 1.5rem 0;
   padding: 0.5rem 2rem 1rem 1.5rem;
 
   &.alert {
-    background-color: #f1cdd3;
-    border-left-color: #8F1226;
+    background-color: var(--background-failure);
+    border-left-color: var(--text-failure);
   }
 
   p:last-child {
@@ -160,16 +164,16 @@ body {
 }
 
 .note-title {
-  color:#066F5E;
+  color: var(--text-success);
   font-weight: bold;
 
   .alert & {
-    color: #8F1226;
+    color: var(--text-failure);
   }
 }
 
 .post-footer {
-  border-top: 1px solid #666;
+  border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   padding: 1em;
@@ -178,17 +182,17 @@ body {
 .back-link,
 .top-link {
   align-items: center;
-  background-color: #eee;
-  border: 1px solid #666;
+  background-color: var(--background-faded);
+  border: 1px solid var(--border);
   border-radius: 3px;
-  color: #000;
+  color: var(--text);
   display: flex;
   padding: 0.5em 1em 0.5em 1.25em;
   text-decoration: none;
 
   &:hover, &:focus {
-    background-color: #28164a;
-    color: #fff;
+    background-color: var(--background-inverse);
+    color: var(--text-inverse);
   }
 
   &::before {
