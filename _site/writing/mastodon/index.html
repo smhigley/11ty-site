@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="alternate" type="application/rss+xml" title="Sarah Higley" href="https://sarahmhigley.com/feed.xml" />
-  <title>Writing | Sarah Higley</title>
-  <link rel="canonical" href="https://sarahmhigley.com/writing/" />
+  <title>An oversimplified guide to setting up Mastodon | Sarah Higley</title>
+  <link rel="canonical" href="https://sarahmhigley.com/writing/mastodon/" />
   <link rel="icon" type="image/png" href="https://sarahmhigley.com/assets/avatar-round.png">
   <link rel="preload" href="https://fonts.gstatic.com/s/josefinslab/v10/lW-5wjwOK3Ps5GSJlNNkMalnqg6vBMjoPg.woff2" as="font" type="font/woff2" crossorigin>
 
   <meta property="og:site_name" content="Sarah Higley" />
-  <meta property="og:title" content="Writing | Sarah Higley" />
+  <meta property="og:title" content="An oversimplified guide to setting up Mastodon | Sarah Higley" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sarahmhigley.com/writing/" />
+  <meta property="og:url" content="https://sarahmhigley.com/writing/mastodon/" />
   <meta name="twitter:creator" content="@codingchaos" />
   <meta property="og:image" content="https://sarahmhigley.com/assets/avatar.png" />
   <meta name="twitter:image" content="https://sarahmhigley.com/assets/avatar.png" />
@@ -20,9 +20,9 @@
   <meta name="twitter:image:alt" content="Illustrated avatar of Sarah" />
 
   
-    <meta name="description" content="Archive of all blog posts" />
-    <meta name="twitter:description" content="Archive of all blog posts" />
-    <meta property="og:description" content="Archive of all blog posts" />
+    <meta name="description" content="A very simple step-by-step guide to creating a Mastodon account, with a focus on accessibility." />
+    <meta name="twitter:description" content="A very simple step-by-step guide to creating a Mastodon account, with a focus on accessibility." />
+    <meta property="og:description" content="A very simple step-by-step guide to creating a Mastodon account, with a focus on accessibility." />
   
 
   <style type="text/css">/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;font-family:Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2b2b2b}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:#d4d0ab}.token.punctuation{color:#fefefe}.token.property,.token.tag,.token.constant,.token.symbol,.token.deleted{color:#ffa07a}.token.boolean,.token.number{color:#00e0e0}.token.selector,.token.attr-name,.token.string,.token.char,.token.builtin,.token.inserted{color:#abe338}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string,.token.variable{color:#00e0e0}.token.atrule,.token.attr-value,.token.function{color:gold}.token.keyword{color:#00e0e0}.token.regex,.token.important{color:gold}.token.important,.token.bold{font-weight:bold}.token.italic{font-style:italic}.token.entity{cursor:help}@media screen and (-ms-high-contrast: active){code[class*=language-],pre[class*=language-]{color:windowText;background:window}:not(pre)>code[class*=language-],pre[class*=language-]{background:window}.token.important{background:highlight;color:window;font-weight:normal}.token.atrule,.token.attr-value,.token.function,.token.keyword,.token.operator,.token.selector{font-weight:bold}.token.attr-value,.token.comment,.token.doctype,.token.function,.token.keyword,.token.operator,.token.property,.token.string{color:highlight}.token.attr-value,.token.url{font-weight:normal}}@font-face{font-family:"Josefin Slab";font-style:normal;font-weight:400;font-display:optional;src:local("Josefin Slab Regular"),local("JosefinSlab-Regular"),url(https://fonts.gstatic.com/s/josefinslab/v10/lW-5wjwOK3Ps5GSJlNNkMalnqg6vBMjoPg.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}html{font-size:calc(1em + 0.5vw)}body{font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;word-wrap:break-word}h1,h2,h3,h5,.h1,.h2,.h3,.h5{font-family:"Josefin Slab",Garamond,serif;font-weight:bold;margin:0 0 1.5rem}h1,.h1{font-size:2.5rem;line-height:1.15}h2,.h2{font-size:1.75rem;line-height:1.2}h3,.h3{font-size:1.5rem;line-height:1.2}h4,.h4{font-size:1.2rem;font-weight:bold}h6,.h6{font-weight:bold}a{color:var(--link);text-decoration:underline}a:focus{outline:3px dashed var(--link);outline-offset:3px}blockquote{border-left:4px solid var(--accent-faded);font-size:1.1rem;line-height:1.6;margin:1.5rem 0;padding:.5rem 2rem}blockquote p:last-child{margin-bottom:0}code{background:var(--background-faded);border-radius:.2em;padding:.1em .2em}img{max-width:100%}figure{background:var(--background-faded);margin:0 0 1.5rem;padding:.5rem;width:max-content;max-width:100%}figcaption{font-size:.8em}.video-embed{margin-bottom:1.5rem;max-width:100%}ul,ol,p,pre,.table-wrapper{margin:0 0 1.5rem}ul li,ol li{margin:0 0 .5rem}.table-wrapper{max-width:100%;overflow-x:scroll}.table{border:1px solid var(--border);border-collapse:collapse;border-spacing:0}.table tr,.table .tr{background-color:var(--background);border-bottom:1px solid var(--border)}.table tr:nth-child(even),.table .tr:nth-child(even){background-color:var(--background-faded)}.table th,.table .th{text-align:left}.table th,.table .th,.table td,.table .td{border-left:1px solid var(--border);padding:.5em 1em}.table th:first-child,.table .th:first-child,.table td:first-child,.table .td:first-child{border-left:0}.support-table .false{background-color:var(--background-failure)}.support-table .true{background-color:var(--background-success)}:root{--purple: #3c128f;--dark-purple: #28164a;--light-purple: #9d87ca;--off-black: #3d334d;--dark-grey: #666;--grey: #9d9d9d;--light-grey: #ccc;--off-white: #ebecec;--dark-green: #03483e;--green: #066F5E;--light-green: #caf4c6;--dark-red: #4d010f;--red: #8F1226;--light-red: #f1cdd3;--accent: var(--purple);--accent-light: var(--light-purple);--accent-faded: var(--light-grey);--background: #fff;--header-background: #fff;--background-inverse: var(--dark-purple);--background-faded: var(--off-white);--background-success: var(--light-green);--background-failure: var(--light-red);--border: var(--dark-grey);--border-accent: var(--dark-purple);--text: #000;--text-inverse: #fff;--text-faded: var(--dark-grey);--text-success: var(--green);--text-failure: var(--red);--link: var(--purple)}@media(prefers-color-scheme: dark){:root{--accent: var(--light-purple);--accent-light: var(--dark-purple);--accent-faded: var(--dark-grey);--background: #131313;--header-background: #1a1324;--background-inverse: var(--light-purple);--background-faded: var(--off-black);--background-success: var(--dark-green);--background-failure: var(--dark-red);--border: var(--dark-grey);--border-accent: #000;--text: var(--off-white);--text-inverse: #000;--text-faded: var(--light-grey);--text-success: var(--green);--text-failure: var(--red);--link: var(--light-purple)}}body{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;background-color:var(--background);color:var(--text)}*,*::before,*::after{box-sizing:inherit}.container{display:flex;min-height:100vh}@media screen and (max-width: 800px){.container{display:block}}.header{flex:0 0 260px;border-right:3px solid var(--border-accent);min-height:100%;outline:10px solid var(--accent-light);padding:1em;background-color:var(--header-background)}@media screen and (max-width: 800px){.header{border-bottom:3px solid var(--border-accent);border-right:none;margin-bottom:1.5rem}}.header-minimal{border-bottom:3px solid var(--border-accent);padding:1em}.header-minimal .back-link{width:max-content}.profile-info{border-bottom:1px solid var(--accent-faded);font-family:"Josefin Slab",Garamond,serif;font-size:1.5rem;line-height:1.2;margin-bottom:1rem;padding-bottom:1rem;text-transform:uppercase;text-align:center}.profile-info img{display:block;margin:0 auto;max-width:250px;width:100%}.main{flex:1 1 auto;max-width:1000px;overflow-x:auto;padding:1em 1em 1em 2.5em}.main-minimal{padding:1em 1em 1em 2.5em}.main-nav ul{list-style-type:none;margin:0;padding:0}@media screen and (max-width: 800px){.main-nav ul{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}}.main-nav li{margin:0}@media screen and (max-width: 800px){.main-nav li{margin:0 .5rem}}.main-nav a{color:var(--text);display:inline-block;font-weight:bold;overflow:hidden;padding:0 5px 6px;position:relative;text-decoration:none;text-transform:uppercase}.main-nav a::after{content:"";position:absolute;left:0;bottom:0;width:200%;height:5px;background:var(--accent-faded);background:linear-gradient(90deg, var(--accent) 0%, var(--accent) 50%, var(--accent-faded) 50%, var(--accent-faded) 100%);transform:translateX(-50%);transition:transform .3s ease-out}.main-nav a:hover::after,.main-nav a.active::after{transform:translateX(0)}.item-list{list-style-type:none;padding:0}.item-list .meta{font-size:.8rem;margin:0 0 .5rem}.meta{display:block;color:var(--text-faded);margin:-1.5rem 0 1.5rem}.note{display:block;background-color:var(--background-faded);border-left:4px solid var(--text-success);font-size:1.1rem;margin:1.5rem 0;padding:.5rem 2rem 1rem 1.5rem}.note.alert{background-color:var(--background-failure);border-left-color:var(--text-failure)}.note p:last-child{margin-bottom:0}.note-title{color:var(--text-success);font-weight:bold}.alert .note-title{color:var(--text-failure)}.post-footer{border-top:1px solid var(--border);display:flex;justify-content:space-between;padding:1em}.back-link,.top-link{align-items:center;background-color:var(--background-faded);border:1px solid var(--border);border-radius:3px;color:var(--text);display:flex;padding:.5em 1em .5em 1.25em;text-decoration:none}.back-link:hover,.back-link:focus,.top-link:hover,.top-link:focus{background-color:var(--background-inverse);color:var(--text-inverse)}.back-link::before,.top-link::before{content:"";border-left:2px solid currentColor;border-bottom:2px solid currentColor;display:inline-block;height:.5em;transform:translateX(-0.25em) rotate(45deg);width:.5em}.top-link::before{transform:translateX(-0.4em) rotate(135deg)}/*# sourceMappingURL=site.css.map */
@@ -45,80 +45,101 @@
     </header>
 
     <main class="main">
-      <h1 class="page-title" id="page-top">Writing</h1>
+      <h1 class="page-title" id="page-top">An oversimplified guide to setting up Mastodon</h1>
 
       
-  
-  <ul class="item-list">
-    
-      <li class="item">
-        <a href="/writing/mastodon/" class="h3">An oversimplified guide to setting up Mastodon</a>
-        <span class="meta">November 12, 2022</span>
-        <p class="summary">A very simple step-by-step guide to creating a Mastodon account, with a focus on accessibility.</p>
-      </li>
-    
-      <li class="item">
-        <a href="/writing/grids-part2/" class="h3">Grids Part 2: Semantics</a>
-        <span class="meta">January 7, 2021</span>
-        <p class="summary">A dive into table and grid semantics, why they matter so much to screen readers, and your options for repairing or augmenting basic table markup.</p>
-      </li>
-    
-      <li class="item">
-        <a href="/writing/grids-part1/" class="h3">Grids Part 1: To grid or not to grid</a>
-        <span class="meta">July 10, 2020</span>
-        <p class="summary">The beginning of a series on interactive grid accessibility, starting with a look at when you need a grid, a table, or neither.</p>
-      </li>
-    
-      <li class="item">
-        <a href="/writing/whcm-quick-tips/" class="h3">Quick Tips for High Contrast Mode</a>
-        <span class="meta">May 26, 2020</span>
-        <p class="summary">A short article, as a contrast. Just a few simple tips to improve Windows High Contrast Mode experience.</p>
-      </li>
-    
-      <li class="item">
-        <a href="/writing/whats-in-a-name/" class="h3">What&#39;s in a name?</a>
-        <span class="meta">April 13, 2020</span>
-        <p class="summary">That which we call a combobox by any other name would have as many bugs.</p>
-      </li>
-    
-      <li class="item">
-        <a href="/writing/focus-navigation-start-point/" class="h3">Focus management still matters</a>
-        <span class="meta">February 27, 2020</span>
-        <p class="summary">A look at sequential-focus-navigation-starting-point and what it means for focus handling</p>
-      </li>
-    
-      <li class="item">
-        <a href="/writing/roles-and-relationships/" class="h3">Roles and relationships</a>
-        <span class="meta">January 21, 2020</span>
-        <p class="summary">Menus, trees, and grids, oh my! Debugging composite widget semantics with browser devtools.</p>
-      </li>
-    
-      <li class="item">
-        <a href="/writing/select-your-poison/" class="h3">&lt;select&gt; your poison</a>
-        <span class="meta">January 3, 2020</span>
-        <p class="summary">The omnibus guide to understanding and making select components and comboboxes</p>
-      </li>
-    
-      <li class="item">
-        <a href="/writing/playing-with-state/" class="h3">Playing with state</a>
-        <span class="meta">November 4, 2019</span>
-        <p class="summary">A closer look at play/pause buttons</p>
-      </li>
-    
-      <li class="item">
-        <a href="/writing/escaping-101/" class="h3">Escaping 101</a>
-        <span class="meta">October 11, 2019</span>
-        <p class="summary">Did you ever want to escape from the humdrum confines of daily life, but weren&#39;t sure how? Focus on this article, and learn how to escape a whole plethora of situations! (results not guaranteed, may have unintended side effects)</p>
-      </li>
-    
-      <li class="item">
-        <a href="/writing/tooltips-in-wcag-21/" class="h3">Tooltips in the time of WCAG 2.1</a>
-        <span class="meta">August 17, 2019</span>
-        <p class="summary">A review of the history and current state of tooltip accessibility. Or: everything you didn&#39;t know you needed to know before making a tooltip.</p>
-      </li>
-    
-  </ul>
+  <div class="meta">November 12, 2022</div>
+  <p>This is a guide for anyone who, like me, is casting about for alternatives to Twitter and would like an absolute minimum, bare-bones walkthrough for getting started with Mastodon. No evangelizing or attempted explanations of the &quot;fediverse&quot; will be involved.</p>
+<blockquote>
+<p><strong>Disclaimer:</strong> although I made an account years ago, I never used it until now. I'm not interesting in convincing anyone to use Mastodon, or to leave Twitter. Do what works for you, in this hellscape of the 2020s.</p>
+</blockquote>
+<h2 id="getting-started">Getting started</h2>
+<p>I will do my best to fully describe the steps with semantic accuracy for anyone using a screen reader, or anyone struggling with some of the contrast issues present on the site. If you run into any specific issues creating an account that are not covered here and want to share info, DM me.</p>
+<h3 id="step-1%3A-pick-a-server">Step 1: Pick a server</h3>
+<p>This can sound daunting, since there are so many options. Don't overthink it -- you can move your account later without losing followers. You can also follow anyone on any server, and search for people across all servers.</p>
+<p>Here are four options, primarily geared towards web accessibility or disability folks:</p>
+<ol>
+<li>A big general server like <a href="https://mastodon.social/explore">mastodon.social</a> or <a href="https://mas.to/explore">mas.to</a>: these are large enough and old enough to be reliable. The drawback is they're so large that the server-specific &quot;Local&quot; feed isn't going to be helpful.</li>
+<li><a href="https://toot.cafe/explore">toot.cafe</a>: a number of web and accessibility folks are on here. Slightly smaller, and as of writing is not accepting new users (though that may easily change, it's a weird time right now).</li>
+<li><a href="https://a11y.info/explore">a11y.info</a>: a very small server with almost exclusively web accessibility folks. Run by <a href="https://a11y.info/@spellacy">Michael Spellacy</a>.</li>
+<li><a href="https://dragonscave.space/explore">dragonscave.space</a>: another very small server, run by a blind admin. Lots of blind folks and accessibility experts on here. If you're looking for advice on using Mastodon with a screen reader, there are almost certainly people who can help on this instance.</li>
+</ol>
+<p>If you're not happy with those, you can browse a list of servers on <a href="https://joinmastodon.org/servers">joinmastodon.org</a> or, I dunno, ask someone else for recommendations.</p>
+<h3 id="step-2%3A-sign-up">Step 2: Sign up</h3>
+<p>If you're already using an app, you can probably sign up through there. If not, go to the <code>/about</code> path of the server you've picked, or use one of the following links for the servers I recommended:</p>
+<ul>
+<li><a href="https://mastodon.social/about">mastodon.social signup</a> (not accepting new users as of writing)</li>
+<li><a href="https://mas.to/about">mas.to signup</a></li>
+<li><a href="https://toot.cafe/about">toot.cafe signup</a> (not accepting new users as of writing)</li>
+<li><a href="https://a11y.info/about">a11y.info signup</a></li>
+<li><a href="https://dragonscave.space/about/">dragonscave.space signup</a></li>
+</ul>
+<p>When you do this on a server accepting new users, you will encounter one of a two things:</p>
+<ol>
+<li>A page with a heading for the name of the server, immediately followed by a form with four fields and a checkbox.</li>
+</ol>
+<p><img src="/writing/assets/mastodon-account-form.png" alt="The Dragon's Cave signup page linked above, with a heading of the server name, to the left immediately after the heading is the signup form described below; to the right is a login form, followed by a brief text description of the server."></p>
+<p>The fields are:</p>
+<ul>
+<li>Username</li>
+<li>Email address</li>
+<li>Password</li>
+<li>Confirm password</li>
+<li>A checkbox to confirm that you agree to server rules and terms of service (the exact wording can vary by server)</li>
+</ul>
+<p>Some servers may have additional custom fields. There is a large button with the text like &quot;Sign up&quot; or &quot;Request an invite&quot; immediately following the checkbox.</p>
+<blockquote>
+<p>Warning for people using screen readers: when a server is not accepting new users, the fields in the sign up form are not disabled. Before you begin filling out the form, verify that the submit button has a label like &quot;sign up&quot; or request an invite&quot;, and not &quot;X server is not accepting new members&quot;.</p>
+</blockquote>
+<ol start="2">
+<li>Some servers ask you to agree to terms and conditions before signing up. For these servers, you might not reach the form directly. Look for a &quot;Create account&quot; link. It is in different places on desktop vs. mobile:</li>
+</ol>
+<p><img src="/writing/assets/mastodon-create-account-btn.png" alt="Screenshot of the desktop version of the mas.to signup page linked above, with a presentational banner image of the mas.to logo above a heading of the server name. The Create Account button is in the left sidebar under the sign in button. It is effectively at the end of the page and not under any headings."></p>
+<p><img src="/writing/assets/mastodon-create-account-mobile.png" alt="Screenshot of the mobile version of the mas.to signup page. The button is in the site header immediately after an image link to mastodon and the sign in button. It is the third interactive element on the page."></p>
+<p>After agreeing to any server-specific terms, you should reach the same form described earlier.</p>
+<h3 id="step-3%3A-email-confirmation">Step 3: Email confirmation</h3>
+<p>After submitting the form, you should receive an email with a title like &quot;Mastodon: Confirmation instructions for [server name]&quot;.</p>
+<p>Follow the &quot;Verify email address&quot; link, and you should get to your new profile.</p>
+<h3 id="step-4%3A-you-have-an-account%2C-and-can-follow-people!">Step 4: You have an account, and can follow people!</h3>
+<p>You can use the very low-contrast search field to find people across all of Mastodon (not just your server) It's in the left sidebar on desktop, or under an magnifying glass icon button labelled &quot;Search&quot; on mobile.</p>
+<p><img src="/writing/assets/mastodon-search.png" alt="Screenshot of the left sidebar on the web client at a desktop width. The input has a label of Search, and is the first form field on the page. Below it are links for your profile and the textarea to create a new post, with the label, What's on your mind"></p>
+<p>Here's a list of web a11y people I think are worth following to start out (not comprehensive, I haven't been here long myself and I'll probably keep adding to it, if I remember). Eric Eggert has a longer and better-curated list in his very good <a href="https://yatil.net/blog/accessibility-in-the-fediverse-and-mastodon">article on accessibility in the fediverse</a>.</p>
+<p>In no particular order:</p>
+<ul>
+<li>Me! I'm here :) <a href="https://vis.social/@codingchaos">@codingchaos@vis.social</a></li>
+<li>Frank Elavsky <a href="https://vis.social/web/@frankelavsky">@frankelavsky@vis.social</a></li>
+<li>Léonie Watson <a href="https://front-end.social/@tink">@tink@front-end.social</a></li>
+<li>Scott O'Hara <a href="https://mastodon.social/@scottohara">@scottohara@mastodon.social</a></li>
+<li>Adrian Roselli <a href="https://vis.social/web/@aardrian@toot.cafe">@aardrian@toot.cafe</a></li>
+<li>Eric Bailey <a href="https://front-end.social/@ericwbailey">@ericwbailey@front-end.social</a></li>
+<li>Sam Kapila <a href="https://vis.social/web/@samkap@front-end.social">@samkap@front-end.social</a></li>
+<li>Sara Soueidan <a href="https://front-end.social/@SaraSoueidan">@SaraSoueidan@front-end.social</a></li>
+<li>Alice Boxhall <a href="https://mastodon.social/@sundress">@sundress@mastodon.social</a></li>
+<li>Eric Wright <a href="https://mastodon.social/@ewaccess">@ewaccess@mastodon.social</a></li>
+<li>Chancey Fleet <a href="https://mas.to/@ChanceyFleet">@ChanceyFleet@mas.to</a></li>
+<li>Doug Schepers <a href="https://mastodon.social/@shepazu">@shepazu@mastodon.social</a></li>
+<li>Crystal Preston-Watson <a href="https://mstdn.social/@ScopicEngineer">@ScopicEngineer@mstdn.social</a></li>
+</ul>
+<h3 id="step-5-(optional)%3A-find-an-app">Step 5 (optional): Find an app</h3>
+<p>There is an official Mastodon app available for Apple and Android, with links to both in the <a href="https://joinmastodon.org/apps">JoinMastodon apps page</a>. There is also a list of alternative apps further down the same page, under the &quot;Browse third-party apps&quot; header.</p>
+<p>I have no personal recommendations, but have anecdotally heard good things about Toot! (paid), and that some blind folks have been able to use <a href="https://tweesecake.app/">Tweesecake</a> on Windows and macOS.</p>
+<p>If I find out more info, especially on clients with good contrast, distraction-related settings, and animation prevention, I'll update here.</p>
+<h2 id="coda%3A-some-resources">Coda: some resources</h2>
+<ul>
+<li><a href="https://fedi.tips/">Fedi.tips</a>: an unofficial and non-technical guide to using Mastodon. Has some really good tips, and some basic accessibility info.</li>
+<li><a href="https://yatil.net/blog/accessibility-in-the-fediverse-and-mastodon">Eric Eggert's Mastodon a11y post</a>: includes a long list of web accessibility people to follow</li>
+<li><a href="https://www.starshipchangeling.net/mastodon/">A screen reader guide to Mastodon</a>: note -- this may have some info that is out of date, at least regarding the web interface.</li>
+<li><a href="https://midrange.tedium.co/issues/how-mastodon-search-works/">How Mastodon search works</a> -- also goes into why it works the way it does, despite seeming unclear when coming from Twitter</li>
+<li>There are some good tips in <a href="https://twitter.com/LFLegal/status/1586876400262414339?s=20&amp;t=sRhxsBY66HV7a9NrvQlk8Q">this twitter thread</a> from Lainey Feingold, and the <a href="https://twitter.com/HabenGirma/status/1586829640827404288">original tweet from Haben Girma</a></li>
+</ul>
+<hr>
+<p>That's it! I'll probably keep my account on twitter till the bitter end, but I hope the wonderful people who have stitched together a community on the bluebird hellsite will still have a place to gather in the coming years, on Mastodon or elsewhere.</p>
 
+
+  <div class="post-footer">
+    <a href="/writing" class="back-link">All Posts</a>
+    <a href="#page-top" class="top-link">Back to top</a>
+  </div>
 
     </main>
   </div>

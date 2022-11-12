@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	<link href="https://sarahmhigley.com/feed.xml" rel="self"/>
 	<link href="https://sarahmhigley.com/"/>
-	<updated>2021-01-07T00:00:00Z</updated>
+	<updated>2022-11-12T00:00:00Z</updated>
 	<id>https://sarahmhigley.com</id>
 	<author>
     <name>Sarah Higley</name>
@@ -1229,6 +1229,102 @@ If the primary purpose is to provide an interface for the user to edit, manipula
 <li><a href="https://adrianroselli.com/2018/02/tables-css-display-properties-and-aria.html">Tables, CSS Display Properties, and ARIA</a> - Adrian Roselli (he also has other worthwhile articles related to table semantics on his site)</li>
 <li><a href="https://tink.uk/accessible-svg-tables/">A practical example of creating a semantic table in SVG</a> - Léonie Watson</li>
 </ul>
+
+    ]]></content>
+  </entry>
+	
+  
+  <entry>
+    <title>An oversimplified guide to setting up Mastodon</title>
+    <link href="https://sarahmhigley.com/writing/mastodon/"/>
+    <updated>2022-11-12T00:00:00Z</updated>
+    <id>https://sarahmhigley.com/writing/mastodon/</id>
+    <content type="html"><![CDATA[
+      <p>This is a guide for anyone who, like me, is casting about for alternatives to Twitter and would like an absolute minimum, bare-bones walkthrough for getting started with Mastodon. No evangelizing or attempted explanations of the &quot;fediverse&quot; will be involved.</p>
+<blockquote>
+<p><strong>Disclaimer:</strong> although I made an account years ago, I never used it until now. I'm not interesting in convincing anyone to use Mastodon, or to leave Twitter. Do what works for you, in this hellscape of the 2020s.</p>
+</blockquote>
+<h2 id="getting-started">Getting started</h2>
+<p>I will do my best to fully describe the steps with semantic accuracy for anyone using a screen reader, or anyone struggling with some of the contrast issues present on the site. If you run into any specific issues creating an account that are not covered here and want to share info, DM me.</p>
+<h3 id="step-1%3A-pick-a-server">Step 1: Pick a server</h3>
+<p>This can sound daunting, since there are so many options. Don't overthink it -- you can move your account later without losing followers. You can also follow anyone on any server, and search for people across all servers.</p>
+<p>Here are four options, primarily geared towards web accessibility or disability folks:</p>
+<ol>
+<li>A big general server like <a href="https://mastodon.social/explore">mastodon.social</a> or <a href="https://mas.to/explore">mas.to</a>: these are large enough and old enough to be reliable. The drawback is they're so large that the server-specific &quot;Local&quot; feed isn't going to be helpful.</li>
+<li><a href="https://toot.cafe/explore">toot.cafe</a>: a number of web and accessibility folks are on here. Slightly smaller, and as of writing is not accepting new users (though that may easily change, it's a weird time right now).</li>
+<li><a href="https://a11y.info/explore">a11y.info</a>: a very small server with almost exclusively web accessibility folks. Run by <a href="https://a11y.info/@spellacy">Michael Spellacy</a>.</li>
+<li><a href="https://dragonscave.space/explore">dragonscave.space</a>: another very small server, run by a blind admin. Lots of blind folks and accessibility experts on here. If you're looking for advice on using Mastodon with a screen reader, there are almost certainly people who can help on this instance.</li>
+</ol>
+<p>If you're not happy with those, you can browse a list of servers on <a href="https://joinmastodon.org/servers">joinmastodon.org</a> or, I dunno, ask someone else for recommendations.</p>
+<h3 id="step-2%3A-sign-up">Step 2: Sign up</h3>
+<p>If you're already using an app, you can probably sign up through there. If not, go to the <code>/about</code> path of the server you've picked, or use one of the following links for the servers I recommended:</p>
+<ul>
+<li><a href="https://mastodon.social/about">mastodon.social signup</a> (not accepting new users as of writing)</li>
+<li><a href="https://mas.to/about">mas.to signup</a></li>
+<li><a href="https://toot.cafe/about">toot.cafe signup</a> (not accepting new users as of writing)</li>
+<li><a href="https://a11y.info/about">a11y.info signup</a></li>
+<li><a href="https://dragonscave.space/about/">dragonscave.space signup</a></li>
+</ul>
+<p>When you do this on a server accepting new users, you will encounter one of a two things:</p>
+<ol>
+<li>A page with a heading for the name of the server, immediately followed by a form with four fields and a checkbox.</li>
+</ol>
+<p><img src="/writing/assets/mastodon-account-form.png" alt="The Dragon's Cave signup page linked above, with a heading of the server name, to the left immediately after the heading is the signup form described below; to the right is a login form, followed by a brief text description of the server."></p>
+<p>The fields are:</p>
+<ul>
+<li>Username</li>
+<li>Email address</li>
+<li>Password</li>
+<li>Confirm password</li>
+<li>A checkbox to confirm that you agree to server rules and terms of service (the exact wording can vary by server)</li>
+</ul>
+<p>Some servers may have additional custom fields. There is a large button with the text like &quot;Sign up&quot; or &quot;Request an invite&quot; immediately following the checkbox.</p>
+<blockquote>
+<p>Warning for people using screen readers: when a server is not accepting new users, the fields in the sign up form are not disabled. Before you begin filling out the form, verify that the submit button has a label like &quot;sign up&quot; or request an invite&quot;, and not &quot;X server is not accepting new members&quot;.</p>
+</blockquote>
+<ol start="2">
+<li>Some servers ask you to agree to terms and conditions before signing up. For these servers, you might not reach the form directly. Look for a &quot;Create account&quot; link. It is in different places on desktop vs. mobile:</li>
+</ol>
+<p><img src="/writing/assets/mastodon-create-account-btn.png" alt="Screenshot of the desktop version of the mas.to signup page linked above, with a presentational banner image of the mas.to logo above a heading of the server name. The Create Account button is in the left sidebar under the sign in button. It is effectively at the end of the page and not under any headings."></p>
+<p><img src="/writing/assets/mastodon-create-account-mobile.png" alt="Screenshot of the mobile version of the mas.to signup page. The button is in the site header immediately after an image link to mastodon and the sign in button. It is the third interactive element on the page."></p>
+<p>After agreeing to any server-specific terms, you should reach the same form described earlier.</p>
+<h3 id="step-3%3A-email-confirmation">Step 3: Email confirmation</h3>
+<p>After submitting the form, you should receive an email with a title like &quot;Mastodon: Confirmation instructions for [server name]&quot;.</p>
+<p>Follow the &quot;Verify email address&quot; link, and you should get to your new profile.</p>
+<h3 id="step-4%3A-you-have-an-account%2C-and-can-follow-people!">Step 4: You have an account, and can follow people!</h3>
+<p>You can use the very low-contrast search field to find people across all of Mastodon (not just your server) It's in the left sidebar on desktop, or under an magnifying glass icon button labelled &quot;Search&quot; on mobile.</p>
+<p><img src="/writing/assets/mastodon-search.png" alt="Screenshot of the left sidebar on the web client at a desktop width. The input has a label of Search, and is the first form field on the page. Below it are links for your profile and the textarea to create a new post, with the label, What's on your mind"></p>
+<p>Here's a list of web a11y people I think are worth following to start out (not comprehensive, I haven't been here long myself and I'll probably keep adding to it, if I remember). Eric Eggert has a longer and better-curated list in his very good <a href="https://yatil.net/blog/accessibility-in-the-fediverse-and-mastodon">article on accessibility in the fediverse</a>.</p>
+<p>In no particular order:</p>
+<ul>
+<li>Me! I'm here :) <a href="https://vis.social/@codingchaos">@codingchaos@vis.social</a></li>
+<li>Frank Elavsky <a href="https://vis.social/web/@frankelavsky">@frankelavsky@vis.social</a></li>
+<li>Léonie Watson <a href="https://front-end.social/@tink">@tink@front-end.social</a></li>
+<li>Scott O'Hara <a href="https://mastodon.social/@scottohara">@scottohara@mastodon.social</a></li>
+<li>Adrian Roselli <a href="https://vis.social/web/@aardrian@toot.cafe">@aardrian@toot.cafe</a></li>
+<li>Eric Bailey <a href="https://front-end.social/@ericwbailey">@ericwbailey@front-end.social</a></li>
+<li>Sam Kapila <a href="https://vis.social/web/@samkap@front-end.social">@samkap@front-end.social</a></li>
+<li>Sara Soueidan <a href="https://front-end.social/@SaraSoueidan">@SaraSoueidan@front-end.social</a></li>
+<li>Alice Boxhall <a href="https://mastodon.social/@sundress">@sundress@mastodon.social</a></li>
+<li>Eric Wright <a href="https://mastodon.social/@ewaccess">@ewaccess@mastodon.social</a></li>
+<li>Chancey Fleet <a href="https://mas.to/@ChanceyFleet">@ChanceyFleet@mas.to</a></li>
+<li>Doug Schepers <a href="https://mastodon.social/@shepazu">@shepazu@mastodon.social</a></li>
+<li>Crystal Preston-Watson <a href="https://mstdn.social/@ScopicEngineer">@ScopicEngineer@mstdn.social</a></li>
+</ul>
+<h3 id="step-5-(optional)%3A-find-an-app">Step 5 (optional): Find an app</h3>
+<p>There is an official Mastodon app available for Apple and Android, with links to both in the <a href="https://joinmastodon.org/apps">JoinMastodon apps page</a>. There is also a list of alternative apps further down the same page, under the &quot;Browse third-party apps&quot; header.</p>
+<p>I have no personal recommendations, but have anecdotally heard good things about Toot! (paid), and that some blind folks have been able to use <a href="https://tweesecake.app/">Tweesecake</a> on Windows and macOS.</p>
+<p>If I find out more info, especially on clients with good contrast, distraction-related settings, and animation prevention, I'll update here.</p>
+<h2 id="coda%3A-some-resources">Coda: some resources</h2>
+<ul>
+<li><a href="https://fedi.tips/">Fedi.tips</a>: an unofficial and non-technical guide to using Mastodon. Has some really good tips, and some basic accessibility info.</li>
+<li><a href="https://yatil.net/blog/accessibility-in-the-fediverse-and-mastodon">Eric Eggert's Mastodon a11y post</a>: includes a long list of web accessibility people to follow</li>
+<li><a href="https://www.starshipchangeling.net/mastodon/">A screen reader guide to Mastodon</a>: note -- this may have some info that is out of date, at least regarding the web interface.</li>
+<li><a href="https://midrange.tedium.co/issues/how-mastodon-search-works/">How Mastodon search works</a> -- also goes into why it works the way it does, despite seeming unclear when coming from Twitter</li>
+<li>There are some good tips in <a href="https://twitter.com/LFLegal/status/1586876400262414339?s=20&amp;t=sRhxsBY66HV7a9NrvQlk8Q">this twitter thread</a> from Lainey Feingold, and the <a href="https://twitter.com/HabenGirma/status/1586829640827404288">original tweet from Haben Girma</a></li>
+</ul>
+<hr>
+<p>That's it! I'll probably keep my account on twitter till the bitter end, but I hope the wonderful people who have stitched together a community on the bluebird hellsite will still have a place to gather in the coming years, on Mastodon or elsewhere.</p>
 
     ]]></content>
   </entry>
