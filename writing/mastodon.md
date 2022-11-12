@@ -85,6 +85,7 @@ In no particular order:
 - Sara Soueidan [@SaraSoueidan@front-end.social](https://front-end.social/@SaraSoueidan)
 - Alice Boxhall [@sundress@mastodon.social](https://mastodon.social/@sundress)
 - Eric Wright [@ewaccess@mastodon.social](https://mastodon.social/@ewaccess)
+- Eric Eggert [@yatil@micro.yatil.net](https://micro.yatil.net/activitypub/yatil)
 - Chancey Fleet [@ChanceyFleet@mas.to](https://mas.to/@ChanceyFleet)
 - Doug Schepers [@shepazu@mastodon.social](https://mastodon.social/@shepazu)
 - Crystal Preston-Watson [@ScopicEngineer@mstdn.social](https://mstdn.social/@ScopicEngineer)
