@@ -7,7 +7,7 @@ summary: "A very simple step-by-step guide to creating a Mastodon account, with 
 
 This is a guide for anyone who, like me, is casting about for alternatives to Twitter and would like an absolute minimum, bare-bones walkthrough for getting started with Mastodon. No evangelizing or attempted explanations of the "fediverse" will be involved.
 
-> **Disclaimer:** although I made an account years ago, I never used it until now. I'm not interesting in convincing anyone to use Mastodon, or to leave Twitter. Do what works for you, in this hellscape of the 2020s.
+> **Disclaimer:** although I made an account years ago, I never used it until now. I'm not interested in convincing anyone to use Mastodon, or to leave Twitter. Do what works for you, in this hellscape of the 2020s.
 
 ## Getting started
 
