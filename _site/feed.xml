@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	<link href="https://sarahmhigley.com/feed.xml" rel="self"/>
 	<link href="https://sarahmhigley.com/"/>
-	<updated>2023-09-17T00:00:00Z</updated>
+	<updated>2022-11-12T00:00:00Z</updated>
 	<id>https://sarahmhigley.com</id>
 	<author>
     <name>Sarah Higley</name>
@@ -1326,18 +1326,6 @@ If the primary purpose is to provide an interface for the user to edit, manipula
 </ul>
 <hr>
 <p>That's it! I'll probably keep my account on twitter till the bitter end, but I hope the wonderful people who have stitched together a community on the bluebird hellsite will still have a place to gather in the coming years, on Mastodon or elsewhere.</p>
-
-    ]]></content>
-  </entry>
-	
-  
-  <entry>
-    <title><![CDATA[Focus events and document.activeElement removal]]></title>
-    <link href="https://sarahmhigley.com/writing/focusout-on-removal/"/>
-    <updated>2023-09-17T00:00:00Z</updated>
-    <id>https://sarahmhigley.com/writing/focusout-on-removal/</id>
-    <content type="html"><![CDATA[
-      <p>aargh</p>
 
     ]]></content>
   </entry>
