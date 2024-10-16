@@ -41,7 +41,7 @@ For example, if focus enters a button within an iframe, querying the top-level d
 There are of course other nuances to tracking focus changes that also have the potential to cause premature hair loss in developers:
 - If `document.activeElement` is queried in a blur event handler, it will return `document.body`.
 - Pressing the tab key does not always move focus starting from `document.activeElement`. There are times when the [sequential focus navigation starting point](https://sarahmhigley.com/writing/focus-navigation-start-point/) diverges from the currently focused element.
-- When navigating the web using a keyboard paired with an iOS device, the web page receives focus events, but _no keyboard or pointer events_. Someday I will write 5000 words about the focus-handling implications for this that will never be published because of all the swearing.
+- When navigating the web using a keyboard paired with an iOS device, the web page receives focus events, but _no keyboard or pointer events_. Someday I will write 5000 words about the focus-handling implications for this and it will never be published because of all the swearing.
 - Some other weird edge case that I either can't remember or blissfully have yet to encounter.
 
 As with many things, focus is simple right up until it isn't.
@@ -108,6 +108,8 @@ The value of `aria-activedescendant` should not point to some random element on 
 <button id="button">nope</button>
 ```
 
+## How does aria-activedescendant work?
+
 Knowing that `aria-activedescendant` is an ARIA construct is helpful in one additional way: we can look at the [Core AAM spec](https://w3c.github.io/core-aam/#ariaActiveDescendant) (the accessibility API mapping spec for ARIA) to determine what is going on under the hood.
 
 Since `aria-activedescendant` exists for the benefit of screen reader users, and accessibility APIs mediate most of the DOM-to-screen reader translation, looking at the API mapping can tell us a lot about the intended functionality of `aria-activedescendant`.
@@ -151,13 +153,14 @@ The mappings:
 
 So, uh, about that second focus thing...
 
-![A two-frame still of Pippin getting hit in the head with an apple after asking for second breakfast](/writing/assets/second-focus-hits.jpg)
-
-Much like Pippin, those expecting a true second focus will still be disappointed.
+<figure>
+  <img src="/writing/assets/second-focus-hits.jpg" alt="A two-frame still of Pippin getting hit in the head with an apple after asking for second breakfast">
+  <figcaption>Much like Pippin, those expecting a true second focus will still be disappointed.</figcaption>
+</figure>
 
 ## Why use focus vs. aria-activedescendant
 
-The thing about ARIA is that it does not affect browser behavior or functionality -- only semantics and accessibility API mappings. All keyboard events will still fire on the true focused element, and there are no DOM methods to query the currently relevant active descendant in the manner of `document.activeElement`. The only context in which the active descendant behaves like a second focus is when it comes to a screen reader's virtual cursor.
+The thing about ARIA is that it does not affect browser behavior or functionality -- only semantics and accessibility API mappings. All keyboard events will still fire on the true focused element, and there are no global DOM methods to query the currently relevant active descendant in the manner of `document.activeElement`. The only context in which the active descendant behaves like a second focus is when it comes to a screen reader's virtual cursor.
 
 Even for screen readers, `aria-activedescendant` is not entirely the same as a second focus. As an example, let's look at what happens if a Windows screen reader users toggles between [browse mode and forms mode](https://tink.uk/understanding-screen-reader-interaction-modes/) after navigating through elements using `aria-activedescendant` vs. focus:
 
@@ -176,7 +179,7 @@ One way in which `aria-activedescendant` is similar to focus is that the `role` 
 <button id="button">nope</button>
 ```
 
-Updating `aria-activedescendant` to point to that button will also switch the user to browse mode. Subsequent keyboard interactions will thereafter be handled by NVDA instead of by the page, at which point the script updating `aria-activedescendant` in response to keyboard events will stop doing anything. This is the primary reason to avoid having `aria-activedescendant` point to elements that are not part of a composite widget like options in a listbox.
+Updating `aria-activedescendant` to point to that button while the input is in focus will also switch the user to browse mode. Subsequent keyboard interactions will thereafter be handled by NVDA instead of by the page, at which point the script updating `aria-activedescendant` in response to keyboard events will stop doing anything. The user will also no longer be able to type without manually switching back to forms mode. This is the primary reason to avoid having `aria-activedescendant` point to elements that are not part of a composite widget like options in a listbox.
 
 <figure>
   <img src="/writing/assets/combobox-load-more.png" alt="A screenshot of an open combobox with two options, group one and group two. Below the two options in the popup is a highlighted option with the text Load all results.">
@@ -203,7 +206,7 @@ There are a few text editing use cases for `aria-activedescendant` beyond just c
 - @-mentions inside a chat input. This usually involves a floating listbox or menu anchored to your text insertion cursor. Focus remains in the chat input to enable continued typing, and `aria-activedescendant` makes the popup accessible. The entire pattern is very similar to a combobox, but without the combobox role.
 - Any floating suggestions in a document canvas editing experience (not sure what to call this exactly). Think Google Docs, Word Online, website creation canvases, etc. You might have something like a spelling or grammar suggestions popup appear without pulling the user's focus away from where they currently are in the document.
 
-Generally the theme is to consider `aria-activedescendant` in any use case where you need to some sort of immediately relevant supplemental actions related to current user text input.
+Generally the theme is to consider `aria-activedescendant` in any use case where you need to present some immediately relevant supplemental actions related to user input.
 
 ## Where to use aria-activedescendant
 
