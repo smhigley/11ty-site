@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	<link href="https://sarahmhigley.com/feed.xml" rel="self"/>
 	<link href="https://sarahmhigley.com/"/>
-	<updated>2022-11-12T00:00:00Z</updated>
+	<updated>2024-10-16T00:00:00Z</updated>
 	<id>https://sarahmhigley.com</id>
 	<author>
     <name>Sarah Higley</name>
@@ -1326,6 +1326,153 @@ If the primary purpose is to provide an interface for the user to edit, manipula
 </ul>
 <hr>
 <p>That's it! I'll probably keep my account on twitter till the bitter end, but I hope the wonderful people who have stitched together a community on the bluebird hellsite will still have a place to gather in the coming years, on Mastodon or elsewhere.</p>
+
+    ]]></content>
+  </entry>
+	
+  
+  <entry>
+    <title><![CDATA[Aria-activedescendant is not focus]]></title>
+    <link href="https://sarahmhigley.com/writing/activedescendant/"/>
+    <updated>2024-10-16T00:00:00Z</updated>
+    <id>https://sarahmhigley.com/writing/activedescendant/</id>
+    <content type="html"><![CDATA[
+      <p>For anyone who has not found themselves wading waist-deep through the nigh-unintelligible morass of accessible <a href="https://www.w3.org/WAI/ARIA/apg/patterns/combobox/">combobox patterns</a>, <code>aria-activedescendant</code> might seem like yet another esoteric line item in the ARIA spec, or might be wholly unfamiliar. For those unfortunate souls who <em>have</em> peered into the vortex of combobox accessibility long enough for their eyes to bleed and their ears to echo with the distant chanting of 1,000 cursèd <code>&lt;div&gt;</code>s, <code>aria-activedescendant</code> can feel a little magical.</p>
+<p>This is an attribute that is entirely concerned with screen reader accessibility. Specifically, it allows certain scoped exceptions to the screen reader behavior of only enabling interaction with a single element at a time.</p>
+<p>Even more specifically, you probably want to start reaching for <code>aria-activedescendant</code> whenever you want to provide a user with immediately relevant actions, autocomplete suggestions, or matching options while they are typing text.</p>
+<p>For example: if the user's keyboard focus is on a text input, their screen reader will normally only pass along information and updates about that one text input. Any changes happening elsewhere on the page will not be communicated, with two notable exceptions:</p>
+<ol>
+<li>Live regions. I'm not going to elaborate on these here, but I have <a href="https://www.youtube.com/watch?v=W5YAaLLBKhQ&amp;t=1497s">talked about them before</a>.</li>
+<li>If the focused element has an <code>aria-activedescendant</code> attribute: changes to the element referenced by that attribute, or changing which element is referenced by <code>aria-activedescendant</code>.</li>
+</ol>
+<p>Diving more into the text input example, <code>aria-activedescendant</code> makes it possible to have screen readers expose both changes to the text input (e.g. the value, valid/invalid state, expand/collapse state, etc.) and also changes to one other associated element, usually in a popup. In other words, it is the primary mechanism that makes comboboxes work:</p>
+<p><img src="/writing/assets/combobox-focus-activedescendant.png" alt="image of an open combobox labeled best pet, with screaming hairy armadillo selected. The image is marked up: the input is highlighted and labeled as the focused element, and the screaming hairy armadillo option inside the open listbox popup is highlighted and labelled activedescendant"></p>
+<p>Sometimes this causes people to think of the active descendant as a second focus, or talk about the associated <code>aria-activedescendant</code> element as &quot;focused&quot;.</p>
+<p><img src="/writing/assets/second-focus.jpg" alt="Merry and Pippin ask you: we've had one, yes, but what about second focus?"></p>
+<p>While keyboard focus and <code>aria-activedescendant</code> are quite similar -- maybe even more similar than you might think -- they are still distinct in a number of ways that are important for web developers to be able to identify.</p>
+<h2 id="what-is-focus%3F">What is focus?</h2>
+<p>This is the easy one, and most developers are probably already familiar with it. A document may have exactly one focused element at a time, and that element can be queried using the <code>document.activeElement</code> DOM attribute.</p>
+<p>The focused element of the active document will be the target of any keyboard events, which makes it particularly important when creating custom keyboard interactions.</p>
+<p>A screen reader cursor is <a href="https://tink.uk/the-difference-between-keyboard-and-screen-reader-navigation/">not the same as keyboard focus</a>, although screen readers will also usually have their cursor follow any changes in the focused element. Those changes can occur either through user interaction (e.g. tabbing) or programmatic focus changes (e.g. calling <code>element.focus()</code> to move focus back to the triggering button when closing a dialog). However, certain screen readers will sometimes ignore programmatic focus changes in favor of their own internal heuristics about where the screen reader cursor should go (side-eye at VoiceOver intensifies).</p>
+<p>Identifying the currently focused element can get a little more tricky in the case of multiple documents in nested iframes, or custom web components with shadow roots.</p>
+<p>For example, if focus enters a button within an iframe, querying the top-level document's <code>activeElement</code> will return the <code>iframe</code> and not the focused element within it. Similarly, if focus is within the shadow root of a web component, <code>document.activeElement</code> will return the web component's host node. You would then need to query the iframe's <code>document.activeElement</code>, or host node's <code>shadowRoot.activeElement</code> to find the specific element that has focus.</p>
+<p>There are of course other nuances to tracking focus changes that also have the potential to cause premature hair loss in developers:</p>
+<ul>
+<li>If <code>document.activeElement</code> is queried in a blur event handler, it will return <code>document.body</code>.</li>
+<li>Pressing the tab key does not always move focus starting from <code>document.activeElement</code>. There are times when the <a href="https://sarahmhigley.com/writing/focus-navigation-start-point/">sequential focus navigation starting point</a> diverges from the currently focused element.</li>
+<li>When navigating the web using a keyboard paired with an iOS device, the web page receives focus events, but <em>no keyboard or pointer events</em>. Someday I will write 5000 words about the focus-handling implications for this that will never be published because of all the swearing.</li>
+<li>Some other weird edge case that I either can't remember or blissfully have yet to encounter.</li>
+</ul>
+<p>As with many things, focus is simple right up until it isn't.</p>
+<h2 id="what-is-an-active-descendant%3F">What is an active descendant?</h2>
+<p>It's the element identified by <code>aria-activedescendant</code>, of course.</p>
+<p><img src="/writing/assets/nailed-it.jpg" alt="A very young child holds a camera backwards, staring confidently into the lens instead of the viewfinder. The caption says Nailed It."></p>
+<p>There's actually the smallest hint of something useful in that tautology, which is that an active descendant on the web only exists with the help of ARIA; there is no way to create one using only HTML or Javascript (apart from literally using JS to set <code>element.ariaActiveDescendant</code>).</p>
+<aside class="note info">
+  <span class="note-title">Note:</span>
+<p>OK fine, <a href="https://adrianroselli.com/2023/06/under-engineered-comboboxen.html"><code>&lt;datalist&gt;</code></a> technically also has an active descendant, but it is a cursed control of which we do not speak. I only include it because leaving out known but irrelevant edge cases is physically painful. This is a personal failing.</p>
+</aside>
+<p>This means that we can look at the <a href="https://w3c.github.io/aria/#aria-activedescendant">ARIA spec</a> to tell us the allowed uses and limitations of <code>aria-activedescendant</code> -- what roles it can be used in, authoring requirements, and other limitations.</p>
+<p>Distilling the information in the spec, there are two patterns that support <code>aria-activedescendant</code>:</p>
+<ol>
+<li>Patterns similar to a combobox, where focus remains on an editable region to enable typing while <code>aria-activedescendant</code> points to a related item, often an option in a popup listbox:</li>
+</ol>
+<p><img src="/writing/assets/chat-combobox.png" alt="screenshot of the Slack chat input with the text Help I'm writing about comboboxes again @, with a popup showing two matching people, Eric Bailey and Adrian Roselli, triggered by the at-symbol."></p>
+<ol start="2">
+<li><a href="https://sarahmhigley.com/writing/roles-and-relationships#basic-vs.-composite-patterns">Composite widgets</a> like <code>tree</code> or <code>grid</code> can accept focus on their parent node, and have <code>aria-activedescendant</code> point to child <code>treeitem</code> or <code>gridcell</code> elements instead of managing focus between those child elements directly.</li>
+</ol>
+<p><img src="/writing/assets/tree-with-activedescendant.png" alt="Screenshot of a generic tree with placeholder item labels like level 2, item 1. The tree has a thick black focus outline around the entire thing, and one tree item is highlighted with a dark blue background and white text."></p>
+<p>I still have no idea why someone would choose to use <code>aria-activedescendant</code> for #2 in practice, but the important thing is that you <em>can</em>, I guess.</p>
+<h2 id="how-to-use-aria-activedescendant">How to use aria-activedescendant</h2>
+<p>The value of <code>aria-activedescendant</code> must point to the id of an element that is either:</p>
+<ol>
+<li>a descendant of the composite widget that has <code>aria-activedescendant</code>:</li>
+</ol>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>listbox<span class="token punctuation">"</span></span> <span class="token attr-name">tabindex</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">aria-activedescendant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>opt2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>option<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>opt1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Otter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>  <span class="token comment">&lt;!-- this is a descendant of the listbox, so it is OK --></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>option<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>opt2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Opossum<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>option<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>opt3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Ocelot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<ol start="2">
+<li>a descendant of a composite widget that is ponted to via <code>aria-controls</code> on a <code>combobox</code>, <code>textbox</code>, or <code>searchbox</code> with <code>aria-activedescendant</code>:</li>
+</ol>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">aria-controls</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>listbox<span class="token punctuation">"</span></span> <span class="token attr-name">aria-activedescendant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>opt2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>listbox<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>listbox<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>option<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>opt1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Otter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>  <span class="token comment">&lt;!-- this is a descendant of the listbox, which is pointed to by aria-controls, so it is OK --></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>option<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>opt2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Opossum<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>option<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>opt3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Ocelot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>The value of <code>aria-activedescendant</code> should not point to some random element on the page, even when it is defined on a role that supports it:</p>
+<pre class="language-html"><code class="language-html"><span class="token comment">&lt;!-- DON'T DO THIS --></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">aria-activedescendant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br><span class="token comment">&lt;!-- this is a random button, what is even going on here --></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>nope<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
+<p>Knowing that <code>aria-activedescendant</code> is an ARIA construct is helpful in one additional way: we can look at the <a href="https://w3c.github.io/core-aam/#ariaActiveDescendant">Core AAM spec</a> (the accessibility API mapping spec for ARIA) to determine what is going on under the hood.</p>
+<p>Since <code>aria-activedescendant</code> exists for the benefit of screen reader users, and accessibility APIs mediate most of the DOM-to-screen reader translation, looking at the API mapping can tell us a lot about the intended functionality of <code>aria-activedescendant</code>.</p>
+<p>One small side note -- while <code>aria-activedescendant</code> is specifically for screen reader users, this is not true of all ARIA attributes, and also not true for all accessibility API mappings.</p>
+<p>The mappings:</p>
+<div class="table-wrapper">
+  <table class="table">
+    <tbody>
+      <tr>
+        <th><abbr title="Microsoft Active Accessibility">MSAA</abbr> + IAccessible2 </th>
+        <td>
+          See <a href="https://w3c.github.io/core-aam/#focus_state_event_table">Focus Changes</a>.
+        </td>
+      </tr>
+      <tr>
+        <th><abbr title="User Interface Automation">UIA</abbr></th>
+        <td>
+          See <a href="https://w3c.github.io/core-aam/#focus_state_event_table">Focus Changes</a>.
+        </td>
+      </tr>
+      <tr>
+        <th><abbr title="Accessibility Toolkit">ATK</abbr>/<abbr title="Assistive Technology-Service Provider Interface">AT-SPI</abbr></th>
+        <td>
+          See <a href="https://w3c.github.io/core-aam/#focus_state_event_table">Focus Changes</a>.
+        </td>
+      </tr>
+      <tr>
+        <th><abbr title="macOS Accessibility Protocol">AX API</abbr></th>
+        <td>
+          See <a href="https://w3c.github.io/core-aam/#focus_state_event_table">Focus Changes</a>.<br>
+          <span class="property">Property: <code>AXSelectedRows</code>: pointer to active descendant node</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>...</p>
+<p>So, uh, about that second focus thing...</p>
+<p><img src="/writing/assets/second-focus-hits.jpg" alt="A two-frame still of Pippin getting hit in the head with an apple after asking for second breakfast"></p>
+<p>Much like Pippin, those expecting a true second focus will still be disappointed.</p>
+<h2 id="why-use-focus-vs.-aria-activedescendant">Why use focus vs. aria-activedescendant</h2>
+<p>The thing about ARIA is that it does not affect browser behavior or functionality -- only semantics and accessibility API mappings. All keyboard events will still fire on the true focused element, and there are no DOM methods to query the currently relevant active descendant in the manner of <code>document.activeElement</code>. The only context in which the active descendant behaves like a second focus is when it comes to a screen reader's virtual cursor.</p>
+<p>Even for screen readers, <code>aria-activedescendant</code> is not entirely the same as a second focus. As an example, let's look at what happens if a Windows screen reader users toggles between <a href="https://tink.uk/understanding-screen-reader-interaction-modes/">browse mode and forms mode</a> after navigating through elements using <code>aria-activedescendant</code> vs. focus:</p>
+<ul>
+<li>With factory settings, NVDA, Narrator, and JAWS all update keyboard focus to follow their virtual cursor when moving over focusable elements. This means that switching between browse mode and forms mode will usually keep you in the same place.</li>
+<li>Using NVDA or Narrator, the element identified through <code>aria-activedescendant</code> will not update to match the screen reader's cursor location. Switching between browse mode and forms mode may cause unintended side effects.</li>
+<li>JAWS is the one Windows screen reader to handle mode switching with <code>aria-activedescendant</code> gracefully.</li>
+</ul>
+<p>Syncing the screen reader cursor and page focus is a little more complicated than even this list would imply, but in ways that are not directly relevant here.</p>
+<h3 id="automatic-mode-switching">Automatic mode switching</h3>
+<p>One way in which <code>aria-activedescendant</code> is similar to focus is that the <code>role</code> of an active descendant will cause Windows screen readers to switch modes in exactly the same way that the <code>role</code> of a focused element does. For example, if you are using NVDA and are interacting with an input in forms mode, tabbing to a button will switch you to browse mode (unless you've disabled this behavior in user settings). By the same mechanism, if we bring back this cursed code:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">aria-activedescendant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>nope<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
+<p>Updating <code>aria-activedescendant</code> to point to that button will also switch the user to browse mode. Subsequent keyboard interactions will thereafter be handled by NVDA instead of by the page, at which point the script updating <code>aria-activedescendant</code> in response to keyboard events will stop doing anything. This is the primary reason to avoid having <code>aria-activedescendant</code> point to elements that are not part of a composite widget like options in a listbox.</p>
+<figure>
+  <img src="/writing/assets/combobox-load-more.png" alt="A screenshot of an open combobox with two options, group one and group two. Below the two options in the popup is a highlighted option with the text Load all results.">
+  <figcaption>If your combobox's popup listbox has actions in addition to selectable options, you should still mark up the actions with <code>role="option"</code> to prevent unhelpful mode switching.</figcaption>
+</figure>
+<p>Mobile screen readers will essentially ignore <code>aria-activedescendant</code>, since they move their cursor through the accessibility tree in response to touch input (simplifying a little here; mobile screen readers also support other types of input). This means that an iOS VoiceOver or Android Talkback user will generally swipe through all the options without the <code>aria-activedescendant</code> value changing at all. In some cases, this might be an issue for scrolling if items are also not focusable. If items are focusable, they will generally gain focus when the VoiceOver or Talkback cursor lands on them, natively triggering scroll when needed.</p>
+<p>Also VoiceOver on Safari on macOS will ignore <code>aria-activedescendant</code> if you so much as look at it funny.</p>
+<h2 id="when-to-use-aria-activedescendant">When to use aria-activedescendant</h2>
+<p>Comboboxes.</p>
+<p><img src="/writing/assets/nailed-it.jpg" alt="Once again: a very young child holds a camera backwards, staring confidently into the lens instead of the viewfinder. The caption says Nailed It."></p>
+<p>OK but really -- I have not found a real-world use case for <code>aria-activedescendant</code> that does not also involve editing text.</p>
+<p>Even in complex use cases of giant virtualized trees, data tables, tree grids, and SVG charts and graphs, managing keyboard focus ends up being simpler to implement and more robust. If anyone has a good example for needing <code>aria-activedescendant</code> outside of a combobox/editing scenario, I'd love to hear about it. I'm sure it exists in theory out there somewhere, presumably right next to a perfectly accessible combobox full of tooltips.</p>
+<p>There are a few text editing use cases for <code>aria-activedescendant</code> beyond just comboboxes, however. Some examples include:</p>
+<ul>
+<li>Freeform search inputs that expand a popup of suggestions. I'd generally recommend against putting a <code>role=combobox</code> on a site-wide search for two reasons: comboboxes generally do not imply freeform input, and using that role might make the searchbox harder to find for screen reader users explicitly looking for edit boxes.</li>
+<li>@-mentions inside a chat input. This usually involves a floating listbox or menu anchored to your text insertion cursor. Focus remains in the chat input to enable continued typing, and <code>aria-activedescendant</code> makes the popup accessible. The entire pattern is very similar to a combobox, but without the combobox role.</li>
+<li>Any floating suggestions in a document canvas editing experience (not sure what to call this exactly). Think Google Docs, Word Online, website creation canvases, etc. You might have something like a spelling or grammar suggestions popup appear without pulling the user's focus away from where they currently are in the document.</li>
+</ul>
+<p>Generally the theme is to consider <code>aria-activedescendant</code> in any use case where you need to some sort of immediately relevant supplemental actions related to current user text input.</p>
+<h2 id="where-to-use-aria-activedescendant">Where to use aria-activedescendant</h2>
+<p>The <code>aria-activedescendant</code> attribute must be defined directly on the element that has keyboard focus for the active descendant to be picked up by screen readers.</p>
+<p>I know this was already covered in an earlier section, but I wasn't sure how else to shoehorn in a section on &quot;Where&quot;.</p>
+<h2 id="who-is-aria-activedescendant">Who is aria-activedescendant</h2>
+<p>Truly we are all <code>aria-activedescendant</code>, at least in our hearts.</p>
+<p>I'm not sure where I was going with this. I think this article might be losing focus.</p>
+<hr>
+<p>Many thanks and apologies to <a href="https://ericwbailey.design/">Eric Bailey</a> and <a href="https://adrianroselli.com/">Adrian Roselli</a> for being kind enough to review this article ages ago when I first wrote it.</p>
 
     ]]></content>
   </entry>
