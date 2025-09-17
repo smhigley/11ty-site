@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	<link href="https://sarahmhigley.com/feed.xml" rel="self"/>
 	<link href="https://sarahmhigley.com/"/>
-	<updated>2024-10-16T00:00:00Z</updated>
+	<updated>2025-09-17T00:00:00Z</updated>
 	<id>https://sarahmhigley.com</id>
 	<author>
     <name>Sarah Higley</name>
@@ -1476,6 +1476,93 @@ If the primary purpose is to provide an interface for the user to edit, manipula
 <p>I'm not sure where I was going with this. I think this article might be losing focus.</p>
 <hr>
 <p>Many thanks and apologies to <a href="https://ericwbailey.design/">Eric Bailey</a> and <a href="https://adrianroselli.com/">Adrian Roselli</a> for being kind enough to review this article ages ago when I first wrote it.</p>
+
+    ]]></content>
+  </entry>
+	
+  
+  <entry>
+    <title><![CDATA[forced-color-adjust: none is an unavoidable foot gun]]></title>
+    <link href="https://sarahmhigley.com/writing/forced-color-adjust-none/"/>
+    <updated>2025-09-17T00:00:00Z</updated>
+    <id>https://sarahmhigley.com/writing/forced-color-adjust-none/</id>
+    <content type="html"><![CDATA[
+      <p>Over the past seven (?!) years at Microsoft, high contrast styles have been a surprisingly consistent source of accessibility issues from partner teams. The surprise is because other common sources of bugs that bubble up to me tend to be either technically complex (e.g. live regions, focus management, assistive tech behavior), or theoretically complex (understanding semantics, assistive tech behavior). In contrast (heh), high contrast styles tend to be relatively simple and more easily understood by non-accessibility-focused devs since they involve relatively straightforward CSS.</p>
+<p>There are two exceptions that cause non-trivial issues to arise:</p>
+<ol>
+<li>SVGs (written about more in <a href="https://css-tricks.com/accessible-svgs-high-contrast-mode/">Eric Bailey's article</a>)</li>
+<li>Sprinkling <code>forced-color-adjust: none</code> throughout a codebase like cloves in biryani. They may sometimes be helpful, but stumbling across one unexpectedly can make you gag.</li>
+</ol>
+<p>This post is aimed at anyone working in an environment with multiple other developers or development teams while needing to maintain a codebase over time. If: you lovingly handcraft all your styles, and everyone who contributes is familiar with all CSS in the codebase, <em>and</em> this stays true both now and in perpetuity, then this probably won't be a problem.</p>
+<p>However if you, like me, work in a large and chaotic system where code you write is copied, consumed, customized, and maintained away from your control by many other people, then it is a matter of <em>when</em> and not <em>if</em> a <code>forced-color-adjust: none</code> style will cause high contrast mode bugs.</p>
+<h2 id="the-problem">The problem</h2>
+<p>By default, forced color modes work by converting UI from author-defined colors into a reduced palette of system colors based on HTML semantics, not authored CSS. Static text will adopt a <code>CanvasText</code> color against a <code>Canvas</code> background. Buttons will use <code>ButtonText</code> on <code>ButtonFace</code>, and disabled controls will have content and borders appear as <code>GrayText</code>.</p>
+<figure>
+  <img src="/writing/assets/hcm-colors.png" alt="Two side-by-side screenshots of the same content, in and out of high contrast mode. The content is a heading, paragraph text, a button, a link, and a disabled text input. THe high contrast screenshot shows a dark blueish background, light beige text, a teal button, blue link, and grey input.">
+  <figcaption>Some basic content in and out of Windows high contrast mode, with no CSS overrides. The right screenshot shows a customized high contrast theme.</figcaption>
+</figure>
+<p>Even though this is how it works <em>by default</em>, it is still possible to override the default styles and customize forced color styles for both good and evil. There are a few ways to go about this:</p>
+<ol>
+<li>
+<p>Intentionally create transparent borders or outlines, knowing they'll only show up in forced colors mode. (This and some other tips are covered in my <a href="/writing/whcm-quick-tips/">Quick Tips for High Contrast Mode</a> article)</p>
+</li>
+<li>
+<p>Using a forced colors mode media query, tweak styles using system color keywords:</p>
+</li>
+</ol>
+<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">forced-colors</span><span class="token punctuation">:</span> active<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><br>  <span class="token selector">.primary-button</span> <span class="token punctuation">{</span><br>    <span class="token property">border-color</span><span class="token punctuation">:</span> Highlight<span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>(note this only works with system color keywords, other colors will not be rendered without <code>forced-color-adjust: none</code>)</p>
+<ol start="3">
+<li>Use a forced colors mode media query with <code>forced-color-adjust: none</code> to completely control colors, ideally still using system colors:</li>
+</ol>
+<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">forced-colors</span><span class="token punctuation">:</span> active<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><br>  <span class="token selector">button[aria-pressed=true]</span> <span class="token punctuation">{</span><br>    <span class="token property">forced-color-adjust</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span><br>    <span class="token property">background-color</span><span class="token punctuation">:</span> Highlight<span class="token punctuation">;</span><br>    <span class="token property">color</span><span class="token punctuation">:</span> HighlightText<span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>So the question you, a savvy reader, may already be asking is: if system color keywords work without needing <code>forced-color-adjust: none</code>, then why include it in that third example?</p>
+<p>The reason is because of an unspec'd (unspecced? unspec'èd?) browser behavior: text backplates. In what appears to be a well-intended attempt to save authors from themselves, browsers render a solid-colored backplate to any text over a styled background (this happens with backgrounds on the same element or on ancestor elements). The color of this backplate is <code>Canvas</code>, regardless of the text color.</p>
+<p>So if you want to have, for example, a toggle button that inverts colors when pressed, you might start with this CSS:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">forced-colors</span><span class="token punctuation">:</span> active<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><br>  <span class="token selector">button[aria-pressed=true]</span> <span class="token punctuation">{</span><br>    <span class="token property">background-color</span><span class="token punctuation">:</span> Highlight<span class="token punctuation">;</span><br>    <span class="token property">color</span><span class="token punctuation">:</span> HighlightText<span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>And you would end up with this:</p>
+<p><img src="/writing/assets/hcm-text-backplate.png" alt="A screenshot of two buttons. The top clearly says an unpressed toggle button in light blue text on a dark button. The second button has unreadable dark blue text on a dark rectangle within a light blue button"></p>
+<p>That cursed second button says &quot;A pressed toggle button&quot; for those of you who do not have perfect vision and did not press your eyeball against the screen.</p>
+<p>Adding a backplate does make sense and provide a safeguard for readability in some situations: text over images, for example:</p>
+<figure>
+  <img src="/writing/assets/hcm-image-text-backplate.png" alt="Two lines of text overlaid on a brightly colored photo of a curious siamese cat approaching the camera against a blurred outside background of a yurt, some people, and a sunny day. The text is a heading saying Cats are cool, and a smaller line saying and some subtitle text too, I guess.">
+  <figcaption>This is pretty useful, and I believe images were the original use case for text backplates.</figcaption>
+</figure>
+<p>However, adding a <code>Canvas</code> backplate for text that has an explicit (system) <code>color</code> style is risky at best, even more so when an explicit (system) background color was also provided. The use of system color keywords presumably in a forced-colors media query already implies a certain amount of intentionality from the author, so dealing with a text backplate often feels like fighting with the browser over who can deliver better colors to the user.</p>
+<p>Additionally, the backplate is fully outside web authors' control, and the only thing we can do to fix it is add <code>forced-color-adjust: none</code>:</p>
+<p><img src="/writing/assets/hcm-correct-button-colors.png" alt="The same two buttons. Now the second button looks just fine, with dark text on a light blue background."></p>
+<p>And then weep.</p>
+<h2 id="wait%2C-why-are-we-crying%3F">Wait, why are we crying?</h2>
+<p>The problem with adding <code>forced-color-adjust: none</code> is that it allows <em>all</em> CSS-styled colors to come through on that element, not just system colors. So even if you (a responsible developer who cares enough about accessibility to have stumbled on this blog) craft beautifully accessible forced-colors CSS using only system color keywords, someone else may come along and unintentionally screw it up. Usually without ever knowing that they affected high contrast mode styles at all.</p>
+<p>It looks a bit like this:</p>
+<p>Your code: beautiful, lovely, perfect.</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">forced-colors</span><span class="token punctuation">:</span> active<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><br>  <span class="token selector">button[aria-pressed=true]</span> <span class="token punctuation">{</span><br>    <span class="token property">forced-color-adjust</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span><br>    <span class="token property">background-color</span><span class="token punctuation">:</span> Highlight<span class="token punctuation">;</span><br>    <span class="token property">color</span><span class="token punctuation">:</span> HighlightText<span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Their code: terrible. (But if we're being honest this is perfectly normal and reasonable)</p>
+<pre class="language-css"><code class="language-css"><span class="token selector">.custom-button[aria-pressed=true]</span> <span class="token punctuation">{</span><br>  <span class="token property">background-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span><br>  <span class="token property">color</span><span class="token punctuation">:</span> purple<span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>Since the addition of <code>.customized</code> creates a higher specificity style, it overrides the original style even though it's outside a forced-colors media query. And because of your <code>forced-color-adjust: none</code>, the random red and purple colors get to come through:</p>
+<p><img src="/writing/assets/hcm-color-override.png" alt="The same two buttons. This time, the second button has a bright red background with purple text."></p>
+<p>In a collaborative environment, someone somewhere will always take your code and extend or customize it. Often this involves writing styles with a higher specificity selector. Or even a same-specificity selector that comes after your CSS. That's pretty standard practice, which makes it all the worse that it trips up so spectacularly on <code>forced-color-adjust: none</code>.</p>
+<p>This is fixable, but the downstream CSS author has to manually re-add the forced-color styles back in. Which means the author of that code needs to be aware that this is necessary, even though they themselves never touched or directly overrode them:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector">.custom-button[aria-pressed=true]</span> <span class="token punctuation">{</span><br>  <span class="token property">background-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span><br>  <span class="token property">color</span><span class="token punctuation">:</span> purple<span class="token punctuation">;</span><br><span class="token punctuation">}</span><br><br><span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">forced-colors</span><span class="token punctuation">:</span> active<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><br>  <span class="token selector">.custom-button[aria-pressed=true]</span> <span class="token punctuation">{</span><br>    <span class="token property">background-color</span><span class="token punctuation">:</span> Highlight<span class="token punctuation">;</span><br>    <span class="token property">color</span><span class="token punctuation">:</span> HighlightText<span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<p>Authors are especially unlikely to realize when they need this, because most of the time they don't. And in practice, web authors should not need to be aware of this level of minutiae when making small style tweaks. If you're the unlucky schmuck maintaining this stuff, good luck trying to keep up-to-date documentation on which specific selectors will need forced-color styles re-asserted every time they are customized.</p>
+<p>The library I work on consistently gets a trickle of high contrast questions from partner teams that are caused by variations of this issue. And those are just the ones that get caught. Changing the colors of a shared base control is the most common style customization out there, and every single use of <code>forced-color-adjust: none</code> is one CSS line away from breaking in high contrast.</p>
+<h2 id="ok-i-get-it%2C-i-just-won't-use-it">OK I get it, I just won't use it</h2>
+<p>So if <code>forced-color-adjust: none</code> is a foot gun, is it possible to avoid it?</p>
+<p>No.</p>
+<p>Well, I suppose it could be possible for projects that have fairly simple controls and content, but usually no. Here is a reduced list of use cases for overriding colors off the top of my head:</p>
+<ul>
+<li>A primary button style to differentiate the primary action from secondary actions (e.g. for Save / Cancel buttons)</li>
+<li>The pressed state of a toggle button</li>
+<li>The selected date of a datepicker</li>
+<li>Many other selected item styles (tabs, options, rows in a grid, etc.)</li>
+<li>Highlighting the current page in a navigation section</li>
+</ul>
+<p>Some of those could potentially use a design that doesn't rely on color at all (e.g. using a check icon to denote selection), but in practice at least sometimes you will need custom high contrast text colors. In theory, putting effort into high contrast styles is a good practice that can improve the user experience quite a bit, making it easier to identify buttons, selected items, and other visual cues at a glance.</p>
+<p>In practice, doing so also makes the high contrast UX much more fragile and likely to break over time. And since this is accessibility, the bugs will likely go uncaught for a frustrating length of time as well.</p>
+<h2 id="so-what-should-we-do%3F">So what should we do?</h2>
+<p>Cry. Drink. Drunk cry.</p>
+<p>But really, it's still probably good to customize high contrast colors when needed, which means you'll need to use <code>forced-color-adjust: none</code> sometimes. Try to keep those instances both infrequent and tightly scoped. Never add <code>forced-color-adjust</code> at a higher level than you need to. And if it's only necessary in one state (e.g. hover or pressed), only add it to that state.</p>
+<p>Perhaps someday text backplates will go away (at least for non-image backgrounds) and we can all stop using <code>forced-color-adjust: none</code> entirely. (Except for those weird instances like color pickers where you actually want it. Please don't @ me with your random good use cases, I know they exist.)</p>
 
     ]]></content>
   </entry>
