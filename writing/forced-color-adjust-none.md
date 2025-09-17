@@ -113,13 +113,16 @@ Their code: terrible. (But if we're being honest this is perfectly normal and re
 }
 ```
 
-Since the addition of `.customized` creates a higher specificity style, it overrides the original style even though it's outside a forced-colors media query. And because of your `forced-color-adjust: none`, the random red and purple colors get to come through:
+Since the addition of a `.custom-button` class creates a higher specificity style, it overrides the original style even though it's outside a forced-colors media query and clearly not intended to affect high contrast mode. And because of the original `forced-color-adjust: none`, the random red and purple colors come through:
 
-![The same two buttons. This time, the second button has a bright red background with purple text.](/writing/assets/hcm-color-override.png)
+<figure>
+  <img src="/writing/assets/hcm-color-override.png" alt="The same two buttons. This time, the second button has a bright red background with purple text.">
+  <figcaption>Sorry about the unhinged color choice, that one's on me.</figcaption>
+</figure>
 
-In a collaborative environment, someone somewhere will always take your code and extend or customize it. Often this involves writing styles with a higher specificity selector. Or even a same-specificity selector that comes after your CSS. That's pretty standard practice, which makes it all the worse that it trips up so spectacularly on `forced-color-adjust: none`.
+In a collaborative environment, someone somewhere will always take your code and extend or customize it. Often this involves writing styles with a higher specificity selector. Or even a same-specificity selector that comes after your CSS. None of the code involved is unusual or bad practice, which makes it all the worse that it trips up so spectacularly and unpredictably on `forced-color-adjust: none`.
 
-This is fixable, but the downstream CSS author has to manually re-add the forced-color styles back in. Which means the author of that code needs to be aware that this is necessary, even though they themselves never touched or directly overrode them:
+Individual bugs are fixable, but the downstream CSS author has to manually re-add the forced-color styles back in. Which means the author of that code needs to be aware that this is necessary, even though they themselves never touched or directly overrode forced-colors styles:
 
 ```css
 .custom-button[aria-pressed=true] {
