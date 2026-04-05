@@ -1,0 +1,9 @@
+{% extends 'templates/base.njk' %}
+
+{% set heading = title %}
+{% set items = collections.talk %}
+
+{% block content %}
+  <p>{{ content | safe }}</p>
+  {% include 'templates/partials/talk-list.njk' %}
+{% endblock %}

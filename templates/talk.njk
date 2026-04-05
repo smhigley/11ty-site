@@ -1,0 +1,23 @@
+{% extends 'templates/base.njk' %}
+
+{% set heading = title %}
+
+{% block content %}
+  <div class="meta">
+    <span class="date">{{ date.toUTCString() | dateFilter }}</span>
+    <a href="{{ url }}" class="conf">{{ conf }}</a>
+    <span class="links">
+      {% if slides %}
+        <a href="{{ slides }}" target="_blank">Slides</a>
+      {% endif %}
+      {% if video %}
+        &bull; <a href="{{ video }}" target="_blank">Video</a>
+      {% endif %}
+    </span>
+  </div>
+  {{ content | safe }}
+
+  <div class="post-footer">
+    <a href="/speaking" class="back-link">All Talks</a>
+  </div>
+{% endblock %}

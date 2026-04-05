@@ -1,0 +1,22 @@
+{% if items.length %}
+  <ul class="item-list">
+    {% for item in items | reverse %}
+      <li class="item">
+        <h3>{{ item.data.title }}</h3>
+        <div class="meta">
+          <span class="date">{{ item.data.date.toUTCString() | dateFilter }}</span>
+          <span class="links">
+            &bull; <a href="{{ item.data.url }}" class="conf">{{ item.data.conf }}</a>
+            {% if item.data.slides %}
+              &bull; <a href="{{ item.data.slides }}" target="_blank">Slides</a>
+            {% endif %}
+            {% if item.data.video %}
+              &bull; <a href="{{ item.data.video }}" target="_blank">Video</a>
+            {% endif %}
+          </span>
+        </div>
+        <p class="summary">{{ item.data.content | safe }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

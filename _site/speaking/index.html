@@ -48,7 +48,221 @@
       <h1 class="page-title" id="page-top">Speaking</h1>
 
       
-  <p>Coming soon: I'm currently in the process of making sure any talks I post have associated transcripts :).</p>
+  <p><p>A collection of links to accessibility talks. Where available, links to videos of the talks are provided.</p>
+</p>
+  
+  <ul class="item-list">
+    
+      <li class="item">
+        <h3>The Many Lives of a Notification</h3>
+        <div class="meta">
+          <span class="date">May 13, 2025</span>
+          <span class="links">
+            &bull; <a href="https://knowbility.org/programs/john-slatin-accessu-2025/the-many-lives-of-a-notification" class="conf">Access U</a>
+            
+              &bull; <a href="https://smhigley.github.io/slides/have-a-notification/#/" target="_blank">Slides</a>
+            
+            
+          </span>
+        </div>
+        <p class="summary"><p>Live regions are one of the most powerful tools for improving screen reader accessibility in web applications. Still, when used incorrectly, they can turn an otherwise good experience into a completely unusable mess. They are fragile and full of undocumented nuances and gotchas, intimidating for the initiated and frustrating for those who regularly deal with them.</p>
+<p>How do you make toast notifications work for people using screen magnification software? Why does this one error message stubbornly refuse to work with VoiceOver, even though it's fine with NVDA? How can you tell if you made a mistake, or the browser or screen reader did?</p>
+<p>We’ll examine when and why to use or not use notifications, how to build robust live region implementations, and how to debug them. We’ll also review some specific examples, including form errors, loading updates, and announcements in a simple chat application.</p>
+</p>
+      </li>
+    
+      <li class="item">
+        <h3>Weird ARIA: Breaking Down Complex Interactions</h3>
+        <div class="meta">
+          <span class="date">May 12, 2022</span>
+          <span class="links">
+            &bull; <a href="https://someantics.dev/weird-aria/" class="conf">Some Antics</a>
+            
+            
+              &bull; <a href="https://www.youtube.com/watch?v=-JQ5FFl-2Rk" target="_blank">Video</a>
+            
+          </span>
+        </div>
+        <p class="summary"><p>ARIA is a set of HTML attributes designed for exposing complex interactions accessibly via assistive technologies. But when interactions get complex, ARIA can get <em>weird</em>.</p>
+</p>
+      </li>
+    
+      <li class="item">
+        <h3>Venturing into unmapped ARIAs</h3>
+        <div class="meta">
+          <span class="date">March 15, 2022</span>
+          <span class="links">
+            &bull; <a href="https://www.deque.com/axe-con/presenters/sarah-higley/" class="conf">axe-con</a>
+            
+              &bull; <a href="https://smhigley.github.io/slides/unmapped-arias/#/" target="_blank">Slides</a>
+            
+            
+              &bull; <a href="https://www.youtube.com/watch?v=xrhgUnv3Mz4&amp;list=PLdhQLgcmuKTsHY97JYtMGbjca-M_tT8Pl&amp;index=62" target="_blank">Video</a>
+            
+          </span>
+        </div>
+        <p class="summary"><p>What happens when you need to build UI for an interaction that doesn’t map neatly to any existing HTML element or ARIA pattern? How do you approach decisions about keyboard handling and focus, and what semantics to define? In this talk, we’ll break down how to approach custom UI controls through the lens of two examples: complex data grid interactions, and more advanced trees. We’ll explore how to narrow down valid use cases, explore and prototype potential solutions, and run user tests. Finally, we’ll take a look at specific takeaways from actual usability studies: what’s the best approach for selecting rows in a grid? Filtering data? Slapping extra buttons on tree items? There’s only one way to find out, and it involves bad puns.</p>
+</p>
+      </li>
+    
+      <li class="item">
+        <h3>Debugging Accessibility for Web Developers</h3>
+        <div class="meta">
+          <span class="date">May 18, 2021</span>
+          <span class="links">
+            &bull; <a href="https://www.theurlist.com/aspnet-standup-2021-05-18" class="conf">ASP.NET Community Standup</a>
+            
+            
+              &bull; <a href="https://www.youtube.com/watch?v=5ceTua82w4s" target="_blank">Video</a>
+            
+          </span>
+        </div>
+        <p class="summary"><p>Learn how to track down and fix accessibility issues in your web applications using browser dev tools.</p>
+<p>This was a more conversational video around debugging accessibility with Chris Heilmann and Jon Galloway.</p>
+</p>
+      </li>
+    
+      <li class="item">
+        <h3>Why are div buttons bad for accessibility, and why should we stop using them?</h3>
+        <div class="meta">
+          <span class="date">March 12, 2021</span>
+          <span class="links">
+            &bull; <a href="https://learn.microsoft.com/en-us/shows/web-wednesday/why-are-div-buttons-bad-and-why-is-semantic-html-important" class="conf">Microsoft Learn -- Web Wednesday</a>
+            
+            
+              &bull; <a href="https://www.youtube.com/watch?v=SIRsxPO3PXE" target="_blank">Video</a>
+            
+          </span>
+        </div>
+        <p class="summary"><p>One of the strengths of HTML and JavaScript is the ability to completely control the user interface. However, some of the techniques we implement can make our application inaccessible. Sarah Higley (@codingchaos) explains the challenges with one of the most common custom controls - the div button, where the developer converts a div tag into something which behaves like a button, but isn't actually one.</p>
+</p>
+      </li>
+    
+      <li class="item">
+        <h3>Debugging Broken Accessibility</h3>
+        <div class="meta">
+          <span class="date">September 17, 2020</span>
+          <span class="links">
+            &bull; <a href="https://inclusivedesign24.org/2020/schedule/#talk7" class="conf">Inclusive Design 24</a>
+            
+              &bull; <a href="https://smhigley.github.io/slides/debugging-a11y/#/" target="_blank">Slides</a>
+            
+            
+              &bull; <a href="https://www.youtube.com/watch?v=In2sH3h_fJg&amp;list=PLn7dsvRdQEfGkK9xxk54XdKTLk7zf_Qwp&amp;index=8" target="_blank">Video</a>
+            
+          </span>
+        </div>
+        <p class="summary"><p>Accessibility testing can show you what bugs you have, but not why they occurred or how to fix them. Sometimes this is simple: if an image is missing alt text, you add an alt attribute. Other times you may find yourself with 50 open browser tabs and lacking a few handfuls of hair.</p>
+<p>Let's make that process a little easier by looking at tools and tricks for debugging everything from combobox semantics to live regions. Then we'll follow the root causes a little further to look at where in today's web ecosystem they really originate from.</p>
+</p>
+      </li>
+    
+      <li class="item">
+        <h3>The Many Lives of a Notification</h3>
+        <div class="meta">
+          <span class="date">July 23, 2020</span>
+          <span class="links">
+            &bull; <a href="https://a11ytalks.com/posts/2020-jul" class="conf">A11y Talks</a>
+            
+              &bull; <a href="https://smhigley.github.io/slides/notification-lives/#/" target="_blank">Slides</a>
+            
+            
+              &bull; <a href="https://www.youtube.com/watch?v=W5YAaLLBKhQ&amp;list=PLIyMotGrARQ2NbdlgAZ0EFf1BK2Ksg-to&amp;index=21" target="_blank">Video</a>
+            
+          </span>
+        </div>
+        <p class="summary"><p>Live regions pop up all over the web, for both good and questionable reasons. They can be intimidating when starting out, and frustrating for those who regularly deal with them. Do you really need a live region for that combobox? How do you make toast notifications noticeable for someone using screen magnification? Why does this one error message refuse to work with VoiceOver, even though it's fine with NVDA? This presentation will take a look at when and how to use different types of live regions, some alternative possibilities, and how to debug problems as they arise. Finally, we'll touch on some areas where even the best current implementations still fall short, and where things could go in the future.</p>
+</p>
+      </li>
+    
+      <li class="item">
+        <h3>Tooltips: an investigation in four parts</h3>
+        <div class="meta">
+          <span class="date">March 1, 2020</span>
+          <span class="links">
+            &bull; <a href="https://smhigley.github.io/slides/technica11y-tooltips/#/" class="conf">Microsoft online talk</a>
+            
+              &bull; <a href="https://smhigley.github.io/slides/technica11y-tooltips/#/" target="_blank">Slides</a>
+            
+            
+          </span>
+        </div>
+        <p class="summary"><p>A pandemic-era talk on tooltip accessibility; the video was formerly on YouTube but has since been removed. As a fun bonus, this grew out of an <a href="https://www.youtube.com/watch?v=7s_sjl4bEP8">impromptu lightning talk/rant at a11yTO in 2019</a></p>
+</p>
+      </li>
+    
+      <li class="item">
+        <h3>Grids: A Case Study in Accessibility</h3>
+        <div class="meta">
+          <span class="date">August 21, 2019</span>
+          <span class="links">
+            &bull; <a href="https://smhigley.github.io/slides/a11y-grid-slides/#/" class="conf">Code PaLOUsa</a>
+            
+              &bull; <a href="https://smhigley.github.io/slides/a11y-grid-slides/#/" target="_blank">Slides</a>
+            
+            
+          </span>
+        </div>
+        <p class="summary"><p>This was given as half of a keynote at Code PaLOUsa in Louiville, KY in 2019, with Gianugo Rabellino giving the other half. There are no videos of the talk, but the slides are still around.</p>
+</p>
+      </li>
+    
+      <li class="item">
+        <h3>Designing Accessibility for Other Developers</h3>
+        <div class="meta">
+          <span class="date">October 10, 2018</span>
+          <span class="links">
+            &bull; <a href="https://jsi2018.sched.com/event/GAZT/designing-accessibility-for-other-developers-sarah-higley-sitepen?iframe=no&amp;w=100%&amp;sidebar=yes&amp;bg=no" class="conf">Node + JS Interactive</a>
+            
+              &bull; <a href="https://smhigley.github.io/slides/a11y-component-design/#/" target="_blank">Slides</a>
+            
+            
+              &bull; <a href="https://www.youtube.com/watch?v=Urvj09ycqYQ" target="_blank">Video</a>
+            
+          </span>
+        </div>
+        <p class="summary"><p>The moment you step into any large project or open source venture you must accept that code you write will be used in ways you did not originally intend. Part of creating any good UI library is figuring out how to design it to be flexible enough to suit a range of needs while still baking in best practices. This is especially relevant in the case of accessibility: an area that can be crucial to users but is often overlooked.</p>
+<p>Take a journey through an office full of all the developers you never hoped to work with, but will encounter nonetheless: the caveman coder, a contractor here to smash your code until it “works”; the blunderer, a dev who always knows just enough to break your builds; the horde of interns, hired last week to “help”; and finally the inventor: the “let’s just roll our own” developer who will abandon your library if it doesn’t support a host of custom features, plus a pony. Then find out how to hint, nudge, and wrangle them into coding accessible UI components for the good of the web.</p>
+</p>
+      </li>
+    
+      <li class="item">
+        <h3>Escape the Office: Designing Interfaces for Other Developers</h3>
+        <div class="meta">
+          <span class="date">March 12, 2018</span>
+          <span class="links">
+            &bull; <a href="https://archive.tsconf.io/2018/presenters.php" class="conf">TS Conf</a>
+            
+              &bull; <a href="https://smhigley.github.io/ts-slides/#/" target="_blank">Slides</a>
+            
+            
+              &bull; <a href="https://www.youtube.com/watch?v=zuhxOFTeWos" target="_blank">Video</a>
+            
+          </span>
+        </div>
+        <p class="summary"><p>People have a tendency to assume everyone navigates the world in the same way they do: on two legs, responding to visual cues, hearing speech, reading emotion. For developers this often means web accessibility comes as an afterthought, if at all. But we can do better! Keyboard accessibility affects a broad range of users with vision and mobility impairments, and they still deserve to be able to get spied on by Uber, overshare on social media, and create cat memes.</p>
+</p>
+      </li>
+    
+      <li class="item">
+        <h3>Don&#39;t Forget Your Keys</h3>
+        <div class="meta">
+          <span class="date">July 21, 2017</span>
+          <span class="links">
+            &bull; <a href="https://2017.nejsconf.com/speakers/sarah-higley/" class="conf">Nebraska JS</a>
+            
+              &bull; <a href="https://smhigley.github.io/keyboard-slides/#/" target="_blank">Slides</a>
+            
+            
+              &bull; <a href="https://www.youtube.com/watch?v=0RZn8RrO6t4&amp;list=PLzcPHbGhqFeQAcdDNaaCLYeahx_223tzR" target="_blank">Video</a>
+            
+          </span>
+        </div>
+        <p class="summary"><p>People have a tendency to assume everyone navigates the world in the same way they do: on two legs, responding to visual cues, hearing speech, reading emotion. For developers this often means web accessibility comes as an afterthought, if at all. But we can do better! Keyboard accessibility affects a broad range of users with vision and mobility impairments, and they still deserve to be able to get spied on by Uber, overshare on social media, and create cat memes.</p>
+</p>
+      </li>
+    
+  </ul>
 
 
     </main>
