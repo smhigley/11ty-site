@@ -128,4 +128,4 @@ If added to ARIA, an interactive list can also easily be added to HTML by creati
 </ul>
 ```
 
-For anyone who has their own examples of UI that could be an interactive list, or can think of other features that I've missed, I will pay attention to [responses on Bluesky](https://bsky.app/profile/codingchaos.bsky.social) between now and the discussion on October 26th. Commenting on the [ARIA github issue](https://github.com/w3c/aria/issues/2036) also works.
+For anyone who has their own examples of UI that could be an interactive list, or can think of other features that I've missed, I will pay attention to [responses on Bluesky](https://bsky.app/profile/codingchaos.bsky.social/post/3mxfefddgis2m) between now and the discussion on October 26th. Commenting on the [ARIA github issue](https://github.com/w3c/aria/issues/2036) also works.
