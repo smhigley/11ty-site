@@ -1,7 +1,7 @@
 ---
 title: The web needs interactive lists
 tags: post
-date: 2026-09-11
+date: 2026-10-08
 summary: "A plea to developers: if this gets created, let's not fuck it up. This is a slightly more spec-heavy post than usual, but hopefully still useful."
 ---
 

@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	<link href="https://sarahmhigley.com/feed.xml" rel="self"/>
 	<link href="https://sarahmhigley.com/"/>
-	<updated>2026-09-11T00:00:00Z</updated>
+	<updated>2026-10-08T00:00:00Z</updated>
 	<id>https://sarahmhigley.com</id>
 	<author>
     <name>Sarah Higley</name>
@@ -1574,7 +1574,7 @@ If the primary purpose is to provide an interface for the user to edit, manipula
   <entry>
     <title><![CDATA[The web needs interactive lists]]></title>
     <link href="https://sarahmhigley.com/writing/interactive-lists/"/>
-    <updated>2026-09-11T00:00:00Z</updated>
+    <updated>2026-10-08T00:00:00Z</updated>
     <id>https://sarahmhigley.com/writing/interactive-lists/</id>
     <content type="html"><![CDATA[
       <p>One of the priciples of creating new web platform features is &quot;pave the cowpaths&quot; -- figure out what cursèd UI developers and designers are already creating with third party HTML/CSS/JS, and brainstorm how to pull it into the web platform. Maybe with an exorcism or two to fix any particularly egregious accessibility problems.</p>
