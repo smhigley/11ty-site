@@ -4,7 +4,7 @@
 	<subtitle></subtitle>
 	<link href="https://sarahmhigley.com/feed.xml" rel="self"/>
 	<link href="https://sarahmhigley.com/"/>
-	<updated>2025-09-17T00:00:00Z</updated>
+	<updated>2026-09-11T00:00:00Z</updated>
 	<id>https://sarahmhigley.com</id>
 	<author>
     <name>Sarah Higley</name>
@@ -1566,6 +1566,95 @@ If the primary purpose is to provide an interface for the user to edit, manipula
 <p>Cry. Drink. Drunk cry.</p>
 <p>But really, it's still probably good to customize high contrast colors when needed, which means you'll need to use <code>forced-color-adjust: none</code> sometimes. Try to keep those instances both infrequent and tightly scoped. Never add <code>forced-color-adjust</code> at a higher level than you need to. And if it's only necessary in one state (e.g. hover or pressed), only add it to that state.</p>
 <p>Perhaps someday text backplates will go away (at least for non-image backgrounds) and we can all stop using <code>forced-color-adjust: none</code> entirely. (Except for those weird instances like color pickers where you actually want it. Please don't @ me with your random good use cases, I know they exist.)</p>
+
+    ]]></content>
+  </entry>
+	
+  
+  <entry>
+    <title><![CDATA[The web needs interactive lists]]></title>
+    <link href="https://sarahmhigley.com/writing/interactive-lists/"/>
+    <updated>2026-09-11T00:00:00Z</updated>
+    <id>https://sarahmhigley.com/writing/interactive-lists/</id>
+    <content type="html"><![CDATA[
+      <p>One of the priciples of creating new web platform features is &quot;pave the cowpaths&quot; -- figure out what cursèd UI developers and designers are already creating with third party HTML/CSS/JS, and brainstorm how to pull it into the web platform. Maybe with an exorcism or two to fix any particularly egregious accessibility problems.</p>
+<p>When the same principle is applied to web accessibility specs, it generally means ensuring any widely used UI patterns can be marked up with an appropriate semantic pattern (i.e. roles and <code>aria-*</code> attributes) and documented interaction patterns that are understandable and operable across different devices, user settings, color modes, zoom levels, and assistive tech. Whether web developers actually <em>do</em> any of that is an entirely separate problem, but it should at least be possible.</p>
+<p>Developers and designers will always create new innovative ways to be weird and inaccessible in their UI (intense side-eye at stuffing tabs and tables into comboboxes), and spec authors will always struggle to decide how far to support the chaos. However, every once in a while developers and designers create a perfectly normal, understandable, and theoretically accessible UI pattern that for whatever reason is not supported on the web.</p>
+<p>One of those patterns is an interactive list.</p>
+<h2 id="what-is-an-interactive-list%3F">What is an interactive list?</h2>
+<p>One way to think of an interactive list is as the one-dimensional version of a data grid. Just as a <a href="https://w3c.github.io/aria/#grid">data grid</a> is the interactive version of a table (i.e. <code>&lt;table&gt;</code> or <code>role=&quot;table&quot;</code>), an interactive list would be the interactive version of a static list (i.e. <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, or <code>role=&quot;list&quot;</code>).</p>
+<figure>
+  <img src="/writing/assets/interactive-card-file-list.png" alt="A list of recent files under the heading Quick Access presumably from an online app like Google Drive or OneDrive. Each file is a square card with a preview image, the file name, and a short description about who last opened the file when. There are four files arranged horizontally, under a set of filter buttons, with the 'owned by Sarah Higley' button selected. The files are: untitled page, why cats are the best pets, bug-audit-presentation, and aria-actions-f2f.">
+  <figcaption>A set of cards inside an application is a common visual UI pattern that could be marked up as an interactive list. Sometimes. It Depends™.</figcaption>
+</figure>
+<p>An interactive list, like a data grid, would be a single tab stop composite widget, where arrowing between list items would be expected. As such, it would more commonly be useful within interfaces that lean more towards web applications than content-focused websites.</p>
+<p>Here are a few more concrete examples of UI where an interactive list role could benefit accessibility:</p>
+<h3 id="1.-navigation-within-an-application.">1. Navigation within an application.</h3>
+<img src="/writing/assets/azure-portal-nav.png" alt="An unidentified app's navigation, but it's actually just azure portal. Each item has an icon and text. The items are: create a resource, home, dashboard, all services, all resources, resource groups, and app services." style="max-width: 400px">
+<p>Normally navigation should be a simple, tabbable set of links, often in a static list. However in environments that function more like traditional desktop applications than websites (think email inboxes or Powerpoint online), it can be beneficial to have navigation be a single tab stop.</p>
+<p>A tablist can sometimes be appropriate here, but an interactive list with child links would allow users to both arrow through items and also keep highly beneficial link functionality (e.g. using a screen reader's links dialog from anywhere in the app). Tablists also do not support static content like section/group headers, which often exists in navigation regions.</p>
+<p>Multi-level navigation in apps like email inboxes sometimes use a tree, but nested lists of links can offer a significantly lower learning curve than a tree along with preserving virtual cursor access and use of the links dialog.</p>
+<h3 id="2.-chat-messages">2. Chat messages</h3>
+<figure>
+  <img src="/writing/assets/catbot-chat.png" alt="A screenshot of a generic AI chat app called CatBot with a cute cat avatar. The chat shows a user question, what else can you tell me about cats? Followed by a short wikipedia-generated answer about cat domestication in ancient Egypt. The CatBot response is followed by five icon buttons: copy, share, more options, like, and dislike. There is also part of a previous response to an unknown query above the user question that shows a list of five links to cited references used in that response, followed by the same five icon buttons at the end.">
+  <figcaption>AI chatbots might be a menace, but the chat interface should be accessible. It's quite common in AI chats to have long structured content, links, citations, and action buttons in each response.</figcaption>
+</figure>
+<p>In this case, each individual chat message is usually not interactive in the sense that they do not have a single primary action and are not selectable. However, users should not need to tab through all content in a chat pane in order to reach the chat input. Most chat applications also allow users to arrow (and often use page down/page up to skip) through past messages.</p>
+<h3 id="3.-some-carousels">3. Some carousels</h3>
+<p><img src="/writing/assets/netflix-carousel.png" alt="A screenshot of a Netflix carousel with the heading Your Next Watch. Their are five items currently visible in the carousel, with a subtle page marker showing the first page out of many -- probably over 20 -- pages."></p>
+<p>Yes, everyone knows you <a href="https://shouldiuseacarousel.com/">shouldn't use a carousel</a>. However, they continue to be built, and sometimes as in the case of streaming services, have become somewhat standard. Especially in UIs like this one from Netflix where there are many carousels in succession, users should be able to quickly tab to their desired category and then arrow through each item in that carousel.</p>
+<p>The interactive list role wouldn't be appropriate for all carousels -- only ones similar to the pictured streaming service categories or other product carousels where each item has a primary action, and the context calls for arrowing between items. As with most accessibility choices, there is no one-size-fits-all.</p>
+<h3 id="4.-file-navigators-and-other-lists-of-actionable-items">4. File navigators and other lists of actionable items</h3>
+<figure>
+  <img src="/writing/assets/file-list.png" alt="A screenshot of file explorer's file list view, showing an assets folder followed by a list of markdown files roughly corresponding to blog posts on this site. This view of file explorer shows only the folder or file name, no other details.">
+  <figcaption>Depending on the layout choice, file navigation is often either an interactive list, a grid (when multiple columns of details are shown), or a tree (when folders can be expanded in-place). Although selection is present, it is secondary to the primary action which is to open the file.</figcaption>
+</figure>
+<p>This applies not just to lists of files, but any other list of items where each item does one primary action. While <code>listbox</code> is a tempting role to reach for here, it is not ideal for several reasons: it enforces a selected state on options, it does not robustly support virtual cursor navigation of options, and it does not support having a non-selection primary action.</p>
+<figure>
+  <img src="/writing/assets/github-reviewer-list.png" alt="A screenshot of the list of reviewers on a pull request in the github UI. There is a heading that says reviewers followed by five usernames. Each user has a small avatar, their username, an icon button to re-request a review, and an informational button indicating if they've added a comment, requested changes, or left an approving review.">
+  <figcaption>While github has not implemented this with arrow key navigation, this is a good example of the type of UI that, depending on context, could easily be created as a single-tab-stop composite widget. Each user has a primary action (viewing their profile) and a nested secondary action button (re-requesting a review).</figcaption>
+</figure>
+<h2 id="this-already-exists-in-native-ui">This already exists in native UI</h2>
+<p>Windows, macOS, iOS, and Android all have native versions of an interactive list, which matters for two reasons: assistive tech users are already familiar with the paradigm and wouldn't need to learn anything new, and from a technical/spec perspective, accessibility API mappings already exist.</p>
+<p>Native platforms already providing this UX pattern is also compelling evidence that there are valid use cases for interactive lists.</p>
+<h2 id="semantics-and-interaction-requirements">Semantics and interaction requirements</h2>
+<p>There are three places to reference when determining semantic requirements for interactive lists:</p>
+<ul>
+<li>Grid, as the only other composite widget pattern that allows flexible inner content (e.g. nested links, buttons, headings, lists, etc.).</li>
+<li>Static list, as the base semantic pattern.</li>
+<li>What kinds of interactive list-like controls people are creating in the wild (i.e. the cow paths).</li>
+</ul>
+<p>At the most basic level, it should be possible to create a horizontal or vertical arrow-navigable set of interactive items that do some general action when pressed. This alone would be enough to create the Netflix-style carousel example from earlier.</p>
+<p>We can also come up with a few more requirements just from referencing the examples above:</p>
+<ul>
+<li><strong>Selection</strong>, such as that shown in the file list example, should be supported but not required (this is also how grids work). Both single-select or multiselect should be supported.</li>
+<li><strong>Nested interactives</strong> should be allowed (also similar to grids). This would enable the navigation example (nested links), the chat example, the initial quick access file cards example with their more options button, and the github reviewers list with the re-request review button.</li>
+<li><strong>Nested structural content</strong> such as headings, lists, even tables. This would support the chat example as well as the first quick access file card example where card headers/file names could potentially be marked up as headings.</li>
+<li><strong>Virtual cursor navigation should work</strong>: in most of these examples but particularly the navigation, cards, and chat, many users may prefer to use virtual cursor to navigate and interact. That means it should be possible to both navigate the list's content and also activate list items themselves while using the virtual cursor mode in Windows screen readers.</li>
+</ul>
+<p>In addition to the specific requirements above, basic features of both static lists and typical composite widgets should also be supported, such as:</p>
+<ul>
+<li>The list should convey its structure and relationships as the user interacts with list items (e.g. the total number of list items when you first enter, and index of the current list item).</li>
+<li>The keyboard interaction pattern for an interactive list should be a single tab stop with arrowing between list items.</li>
+<li>Windows screen readers with automatic mode switching should switch to focus mode when landing on an interactive list, similar to other composite widgets like grid or tablist.</li>
+</ul>
+<h3 id="existing-aria-semantics-cannot-replicate-an-interactive-list">Existing ARIA semantics cannot replicate an interactive list</h3>
+<p>ARIA already has a number of one-dimensional composite widget roles, but no combination of them can cover all the existing common use cases for interactive lists. Even in cases where you can hack together something with existing roles, there are shortcomings.</p>
+<p>The existing somewhat list-like linear composite widget roles are: <code>listbox</code>, <code>menu</code>/<code>menubar</code>, <code>radiogroup</code>, <code>tablist</code>, and <code>toolbar</code>. Of those, <code>radiogroup</code> and <code>listbox</code> are both form controls specifically designed only for selection, which prevents usage for any control where the main click handler does a non-selection action. <code>menu</code> and <code>menubar</code> are intended only for application-style menus or context menus, and additionally do not support virtual cursor navigation across all screen readers (<code>listbox</code> has the same issue, for that matter). <code>tablist</code> is designed for swapping visible content in an associated <code>tabpanel</code>, and <code>toolbar</code> is slightly more flexible but still intended only for buttons and form controls that affect some associated area of the page.</p>
+<p>None of those roles allow nested structured content or secondary interactive controls.</p>
+<p>Some clever developers might think of simply using a static list and managing focus between listitems, but that approach will not correctly trigger mode switching for Windows screen readers, nor will it allow screen readers and voice control to directly trigger a click event on the list items, as they are spec'd as static container elements.</p>
+<h2 id="adding-interactive-list-to-the-web">Adding interactive list to the web</h2>
+<p>Hopefully by now you've either gotten bored and left, or are convinced that we should have static lists on the web. The good news is that there's already work around making that happen, and you (the now super-informed reader of my pedantic blog post) can help!</p>
+<p>There is an active proposal in ARIA to add interactive lists that will be discussed at the end of October 2026:</p>
+<ul>
+<li>The primary spec issue: <a href="https://github.com/w3c/aria/issues/2036">#2036</a></li>
+<li>A writeup for the 2023 face-to-face meeting from Mario Batušić <a href="https://github.com/w3c/aria/wiki/Proposal:-Interactive-Lists">Proposal: Interactive Lists</a></li>
+<li>Another writeup for the 2023 face-to-face meeting from me, with proposed spec language: <a href="https://gist.github.com/smhigley/a613aab8287726f61202869e2f479553">Interactive list proposal</a></li>
+<li>TBA: a PR for a <code>listview</code> role that I'm including in this post as personal pressure to actually finish it soon (too bad spec'ing a new brain isn't an option 😭). Congrats if you finish reading this post before I finish the PR and replace this rambling bullet point with an actual link.</li>
+</ul>
+<p>If added to ARIA, an interactive list can also easily be added to HTML by creating a new <a href="https://open-ui.org/components/scoped-focusgroup.explainer/">focusgroup</a> token. This would make authoring as easy as doing:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">focusgroup</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Arrowing is fun<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>But only where appropriate<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Like in application-style interfaces<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Let's not mess this up<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>By doing things like using it for standard website navigation<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Pretty please<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></code></pre>
+<p>For anyone who has their own examples of UI that could be an interactive list, or can think of other features that I've missed, I will pay attention to <a href="https://bsky.app/profile/codingchaos.bsky.social">responses on Bluesky</a> between now and the discussion on October 26th. Commenting on the <a href="https://github.com/w3c/aria/issues/2036">ARIA github issue</a> also works.</p>
 
     ]]></content>
   </entry>
