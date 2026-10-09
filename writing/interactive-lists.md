@@ -36,6 +36,15 @@ A tablist can sometimes be appropriate here, but an interactive list with child 
 
 Multi-level navigation in apps like email inboxes sometimes use a tree, but nested lists of links can offer a significantly lower learning curve than a tree along with preserving virtual cursor access and use of the links dialog.
 
+Pagination is another navigation-like component that would be a good interactive list use case, especially when there can be a large number of pages. If linking to a specific page is possible, then it could be an interactive list with nested buttons. If not, then no nested interactives would be needed.
+
+<figure>
+  <img src="/writing/assets/pagination-github.png" alt="A screenshot of a horizontal pagination with 18 pages total. It displays the first 7 page numbers, a ... button, and the 18th page number. There are previous and next buttons before and after the numbers.">
+  <figcaption>Fun fact: the ARIA spec has 18 pages of issues.</figcaption>
+</figure>
+
+h/t to [Sylvia Villegas](https://bsky.app/profile/svillegas.com) for bringing up pagination as a use case.
+
 ### 2. Chat messages
 
 <figure>
@@ -107,7 +116,7 @@ Some clever developers might think of simply using a static list and managing fo
 
 ## Adding interactive list to the web
 
-Hopefully by now you've either gotten bored and left, or are convinced that we should have static lists on the web. The good news is that there's already work around making that happen, and you (the now super-informed reader of my pedantic blog post) can help!
+Hopefully by now you've either gotten bored and left, or are convinced that we should have interactive lists on the web. The good news is that there's already work around making that happen, and you (the now super-informed reader of my pedantic blog post) can help!
 
 There is an active proposal in ARIA to add interactive lists that will be discussed at the end of October 2026:
 - The primary spec issue: [#2036](https://github.com/w3c/aria/issues/2036)

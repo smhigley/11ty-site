@@ -66,6 +66,12 @@
 <p>Normally navigation should be a simple, tabbable set of links, often in a static list. However in environments that function more like traditional desktop applications than websites (think email inboxes or Powerpoint online), it can be beneficial to have navigation be a single tab stop.</p>
 <p>A tablist can sometimes be appropriate here, but an interactive list with child links would allow users to both arrow through items and also keep highly beneficial link functionality (e.g. using a screen reader's links dialog from anywhere in the app). Tablists also do not support static content like section/group headers, which often exists in navigation regions.</p>
 <p>Multi-level navigation in apps like email inboxes sometimes use a tree, but nested lists of links can offer a significantly lower learning curve than a tree along with preserving virtual cursor access and use of the links dialog.</p>
+<p>Pagination is another navigation-like component that would be a good interactive list use case, especially when there can be a large number of pages. If linking to a specific page is possible, then it could be an interactive list with nested buttons. If not, then no nested interactives would be needed.</p>
+<figure>
+  <img src="/writing/assets/pagination-github.png" alt="A screenshot of a horizontal pagination with 18 pages total. It displays the first 7 page numbers, a ... button, and the 18th page number. There are previous and next buttons before and after the numbers.">
+  <figcaption>Fun fact: the ARIA spec has 18 pages of issues.</figcaption>
+</figure>
+<p>h/t to <a href="https://bsky.app/profile/svillegas.com">Sylvia Villegas</a> for bringing up pagination as a use case.</p>
 <h3 id="2.-chat-messages">2. Chat messages</h3>
 <figure>
   <img src="/writing/assets/catbot-chat.png" alt="A screenshot of a generic AI chat app called CatBot with a cute cat avatar. The chat shows a user question, what else can you tell me about cats? Followed by a short wikipedia-generated answer about cat domestication in ancient Egypt. The CatBot response is followed by five icon buttons: copy, share, more options, like, and dislike. There is also part of a previous response to an unknown query above the user question that shows a list of five links to cited references used in that response, followed by the same five icon buttons at the end.">
@@ -116,7 +122,7 @@
 <p>None of those roles allow nested structured content or secondary interactive controls.</p>
 <p>Some clever developers might think of simply using a static list and managing focus between listitems, but that approach will not correctly trigger mode switching for Windows screen readers, nor will it allow screen readers and voice control to directly trigger a click event on the list items, as they are spec'd as static container elements.</p>
 <h2 id="adding-interactive-list-to-the-web">Adding interactive list to the web</h2>
-<p>Hopefully by now you've either gotten bored and left, or are convinced that we should have static lists on the web. The good news is that there's already work around making that happen, and you (the now super-informed reader of my pedantic blog post) can help!</p>
+<p>Hopefully by now you've either gotten bored and left, or are convinced that we should have interactive lists on the web. The good news is that there's already work around making that happen, and you (the now super-informed reader of my pedantic blog post) can help!</p>
 <p>There is an active proposal in ARIA to add interactive lists that will be discussed at the end of October 2026:</p>
 <ul>
 <li>The primary spec issue: <a href="https://github.com/w3c/aria/issues/2036">#2036</a></li>
