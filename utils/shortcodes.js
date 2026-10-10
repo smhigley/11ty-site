@@ -14,5 +14,8 @@ module.exports = {
   <span class="note-title">${type == 'alert' ? '!important' : 'Note:'}</span>
   ${content}
 </aside>`;
+  },
+  year: function () {
+    return new Date().getFullYear();
   }
 }
